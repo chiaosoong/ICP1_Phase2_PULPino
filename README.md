@@ -20,7 +20,7 @@
 ## PADS
 1. 去除I2C，GPIO，SPI Master
 2. GPIO保留gpio_out[8]，防止tb.sv滞留
-   ```System Verilog
+   ```SystemVerilog
    // end of computation
     if (~gpio_out[8])
       wait(gpio_out[8]);
