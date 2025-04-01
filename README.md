@@ -13,7 +13,7 @@
    - `pulpino/sw/build/apps/helloworld/slm_files/spi_stim.txt`
 7. SPI测试文件:
    - `/pulpino/tb/tb_spi_pkg.sv `
-   - 查看错误地址：
+   - 查看出错地址：
      `$display("%t: [SPI] Readback has failed, expected %X, got %X", $time, spi_data, spi_data_recv);`
      --->  `$display("%t: [SPI] Readback has failed, expected %X, got %X, at address %X", $time, spi_data, spi_data_recv, spi_addr);`
 
