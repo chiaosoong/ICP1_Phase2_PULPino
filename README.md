@@ -1,6 +1,6 @@
 # RTL
 ## SRAM
-1. instruction ram和data ram共用sp_ram 
+1. `core_region.sv`:instruction ram和data ram共用sp_ram
 2. 添加SRAM编译：
    - `pulpino/vsim/vcompile/rtl/vcompile_pulpino.sh`：
    - `vlog -quiet     -work ${LIB_PATH} ${RTL_PATH}/components/SPHDL100909.v              || goto error`
@@ -8,7 +8,15 @@
    - 通过SPI调试SRAM
    - `make "${PROJECT_NAME}.vsim"` --->  `make "${PROJECT_NAME}.vsim.spi"`
 4. tb.sv：
-   `include "tb_mem_pkg.sv` ---> `//include "tb_mem_pkg.sv"`
+   - `include "tb_mem_pkg.sv` ---> `//include "tb_mem_pkg.sv"`
+   - 注释：```SystemVerilog
+     if (memload == "PRELOAD")
+    begin
+      // preload memories
+      mem_preload();
+    end
+   ```
+   
 6. 查看SRAM输入数据：
    - `pulpino/sw/build/apps/helloworld/slm_files/spi_stim.txt`
 7. SPI测试文件:
