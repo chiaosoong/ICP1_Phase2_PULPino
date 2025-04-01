@@ -20,7 +20,7 @@
 ## FLL
 1. 修改`clk_rst_gen`
 
-## PADS
+## Peripherals
 1. 去除I2C，GPIO，SPI Master
 2. GPIO保留gpio_out[8]，防止tb.sv滞留
    ```SystemVerilog
