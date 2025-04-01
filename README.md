@@ -18,7 +18,7 @@
      --->  `$display("%t: [SPI] Readback has failed, expected %X, got %X, at address %X", $time, spi_data, spi_data_recv, spi_addr);`
 
 ## FLL
-1. 修改`clk_rst_gen`
+1. 修改`clk_rst_gen.sv`
 
 ## Peripherals
 1. 去除I2C，GPIO，SPI Master
