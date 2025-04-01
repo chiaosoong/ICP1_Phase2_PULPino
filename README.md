@@ -9,14 +9,14 @@
    - `make "${PROJECT_NAME}.vsim"` --->  `make "${PROJECT_NAME}.vsim.spi"`
 4. tb.sv：
    - `include "tb_mem_pkg.sv` ---> `//include "tb_mem_pkg.sv"`
-   - 注释：```SystemVerilog
+   - 注释：
+     ```SystemVerilog
      if (memload == "PRELOAD")
-    begin
+     begin
       // preload memories
       mem_preload();
-    end
-   ```
-   
+     end
+     ```
 6. 查看SRAM输入数据：
    - `pulpino/sw/build/apps/helloworld/slm_files/spi_stim.txt`
 7. SPI测试文件:
