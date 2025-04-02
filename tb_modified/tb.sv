@@ -250,7 +250,7 @@ module tb;
     if (memload == "PRELOAD")
     begin
       // preload memories
-      mem_preload();
+      // mem_preload();
     end
     else if (memload == "SPI")
     begin
@@ -385,7 +385,7 @@ module tb;
 
   // TODO: this is a hack, do it properly!
   `include "tb_spi_pkg.sv"
-  `include "tb_mem_pkg.sv"
+  //`include "tb_mem_pkg.sv"
   `include "spi_debug_test.svh"
   `include "mem_dpi.svh"
 
