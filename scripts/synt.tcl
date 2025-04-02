@@ -1,8 +1,8 @@
-set ROOT "./"
+set ROOT "/h/d5/u/fa7855yu-s/etin35_project/pulpino"
 
-set SYNT_SCRIPT    "${ROOT}/scripts"
-set SYNT_OUT       "${ROOT}/outputs"
-set SYNT_REPORT    "${ROOT}/reports"
+set SYNT_SCRIPT    "${ROOT}/sw/build/WORK/tcl"
+set SYNT_OUT       "${ROOT}/sw/build/WORK/outputs"
+set SYNT_REPORT    "${ROOT}/sw/build/WORK/reports"
 
 if {![file exists ${SYNT_SCRIPT}]}     { file mkdir ${SYNT_SCRIPT}}
 if {![file exists ${SYNT_OUT}]}        { file mkdir ${SYNT_OUT}}
@@ -12,7 +12,8 @@ puts "\n\n\n DESIGN FILES \n\n\n"
 source $SYNT_SCRIPT/design_setup.tcl
 
 puts "\n\n\n ANALYZE HDL DESIGN \n\n\n"
-read_hdl -vhdl ${DESIGN_FILES}
+read_hdl -sv    ${DESIGN_FILES_sv}
+read_hdl -v2001 ${DESIGN_FILES_v}
 
 puts "\n\n\n ELABORATE \n\n\n"
 elaborate ${DESIGN}
