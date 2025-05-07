@@ -1,0 +1,1387 @@
+****************************************
+Report : timing
+	-path_type full
+	-delay_type max
+	-slack_lesser_than 0.00
+	-max_paths 10
+	-sort_by slack
+Design : pulpino_padstop
+Version: O-2018.06-SP5
+Date   : Wed May  7 14:34:54 2025
+****************************************
+
+
+  Startpoint: pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/operation_reg[0]
+               (rising edge-triggered flip-flop clocked by tck_i)
+  Endpoint: pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/tdo_pad_o_reg
+               (rising edge-triggered flip-flop clocked by tck_i')
+  Path Group: tck_i
+  Path Type: max
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock tck_i (rise edge)                                 0.00       0.00
+  clock network delay (ideal)                             5.00       5.00
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/operation_reg[0]/CP (HS65_LL_SDFPRQNX9)
+                                                          0.00       5.00 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/operation_reg[0]/QN (HS65_LL_SDFPRQNX9)
+                                                          0.30 *     5.30 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC20651_n_188/Z (HS65_LL_BFX284)
+                                                          0.08 *     5.38 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC90519_n_188/Z (HS65_LL_BFX7)
+                                                          0.14 *     5.52 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC91369_n_188/Z (HS65_LL_BFX284)
+                                                          0.10 *     5.62 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC93676_n_188/Z (HS65_LL_BFX2)
+                                                          0.28 *     5.91 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC94508_n_188/Z (HS65_LL_BFX284)
+                                                          0.16 *     6.06 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC102822_n_188/Z (HS65_LL_BFX2)
+                                                          0.13 *     6.19 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC106681_n_188/Z (HS65_LL_BFX2)
+                                                          0.31 *     6.50 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC103753_n_188/Z (HS65_LL_BFX213)
+                                                          0.15 *     6.65 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC112309_n_188/Z (HS65_LL_BFX2)
+                                                          0.29 *     6.94 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC114082_n_188/Z (HS65_LL_BFX213)
+                                                          0.16 *     7.10 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC126643_n_188/Z (HS65_LL_BFX2)
+                                                          0.08 *     7.18 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC127242_n_188/Z (HS65_LL_BFX27)
+                                                          0.06 *     7.24 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC128386_n_188/Z (HS65_LL_BFX9)
+                                                          0.04 *     7.28 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC127820_n_188/Z (HS65_LL_BFX2)
+                                                          0.06 *     7.34 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC125354_n_188/Z (HS65_LL_BFX2)
+                                                          0.34 *     7.68 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC125988_n_188/Z (HS65_LL_BFX213)
+                                                          0.17 *     7.85 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC123266_n_188/Z (HS65_LL_BFX2)
+                                                          0.29 *     8.14 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC123980_n_188/Z (HS65_LL_BFX213)
+                                                          0.16 *     8.30 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC122525_n_188/Z (HS65_LL_BFX2)
+                                                          0.29 *     8.59 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC124672_n_188/Z (HS65_LL_BFX213)
+                                                          0.16 *     8.75 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC121758_n_188/Z (HS65_LL_BFX2)
+                                                          0.12 *     8.87 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC120988_n_188/Z (HS65_LL_BFX2)
+                                                          0.09 *     8.96 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC120182_n_188/Z (HS65_LL_BFX2)
+                                                          0.07 *     9.03 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC119364_n_188/Z (HS65_LL_BFX2)
+                                                          0.07 *     9.10 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC118489_n_188/Z (HS65_LL_BFX2)
+                                                          0.07 *     9.17 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC117668_n_188/Z (HS65_LL_BFX2)
+                                                          0.07 *     9.23 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC116773_n_188/Z (HS65_LL_BFX2)
+                                                          0.07 *     9.30 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC115897_n_188/Z (HS65_LL_BFX2)
+                                                          0.07 *     9.37 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC115004_n_188/Z (HS65_LL_BFX2)
+                                                          0.08 *     9.46 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC110456_n_188/Z (HS65_LL_BFX7)
+                                                          0.16 *     9.62 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC111369_n_188/Z (HS65_LL_BFX284)
+                                                          0.10 *     9.72 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC108577_n_188/Z (HS65_LL_BFX2)
+                                                          0.31 *    10.03 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC109503_n_188/Z (HS65_LL_BFX284)
+                                                          0.17 *    10.20 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC105709_n_188/Z (HS65_LL_BFX2)
+                                                          0.09 *    10.29 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC104746_n_188/Z (HS65_LL_BFX2)
+                                                          0.15 *    10.44 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC101704_n_188/Z (HS65_LL_BFX2)
+                                                          0.14 *    10.58 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC100550_n_188/Z (HS65_LL_BFX2)
+                                                          0.11 *    10.68 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC99567_n_188/Z (HS65_LL_BFX2)
+                                                          0.10 *    10.78 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC98846_n_188/Z (HS65_LL_BFX2)
+                                                          0.08 *    10.87 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC97860_n_188/Z (HS65_LL_BFX2)
+                                                          0.07 *    10.94 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC96736_n_188/Z (HS65_LL_BFX2)
+                                                          0.07 *    11.02 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC95724_n_188/Z (HS65_LL_BFX2)
+                                                          0.07 *    11.08 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC92453_n_188/Z (HS65_LL_BFX2)
+                                                          0.11 *    11.20 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC89326_n_188/Z (HS65_LL_BFX2)
+                                                          0.10 *    11.30 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC86714_n_188/Z (HS65_LL_BFX2)
+                                                          0.33 *    11.63 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC87905_n_188/Z (HS65_LL_BFX284)
+                                                          0.17 *    11.80 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC82760_n_188/Z (HS65_LL_BFX2)
+                                                          0.32 *    12.13 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC84753_n_188/Z (HS65_LL_BFX284)
+                                                          0.17 *    12.29 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC73391_n_188/Z (HS65_LL_BFX2)
+                                                          0.30 *    12.60 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC78838_n_188/Z (HS65_LL_BFX284)
+                                                          0.16 *    12.76 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC58280_n_188/Z (HS65_LL_BFX2)
+                                                          0.30 *    13.06 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC65787_n_188/Z (HS65_LL_BFX284)
+                                                          0.16 *    13.23 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC40858_n_188/Z (HS65_LL_BFX2)
+                                                          0.29 *    13.52 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC49429_n_188/Z (HS65_LL_BFX284)
+                                                          0.16 *    13.67 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC30894_n_188/Z (HS65_LL_BFX2)
+                                                          0.07 *    13.74 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC10602_n_188/Z (HS65_LL_BFX2)
+                                                          0.08 *    13.82 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/g7560/Z (HS65_LL_IVX9)
+                                                          0.07 *    13.89 f
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/g6937/Z (HS65_LL_NOR2X6)
+                                                          0.09 *    13.98 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/g6903/Z (HS65_LL_NOR2AX3)
+                                                          0.28 *    14.25 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/g6848/Z (HS65_LL_NAND2AX7)
+                                                          0.22 *    14.48 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/g6832/Z (HS65_LL_NOR3X4)
+                                                          0.09 *    14.57 f
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/g6828/Z (HS65_LL_AOI31X5)
+                                                          0.08 *    14.64 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/g6819/Z (HS65_LL_AOI212X4)
+                                                          0.07 *    14.71 f
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/g6816/Z (HS65_LL_NAND3X5)
+                                                          0.21 *    14.92 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC99976_n_303/Z (HS65_LL_BFX284)
+                                                          0.13 *    15.04 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC118643_n_303/Z (HS65_LL_BFX2)
+                                                          0.06 *    15.11 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC117796_n_303/Z (HS65_LL_BFX2)
+                                                          0.06 *    15.17 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC110605_n_303/Z (HS65_LL_BFX2)
+                                                          0.06 *    15.23 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC109651_n_303/Z (HS65_LL_BFX2)
+                                                          0.06 *    15.30 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC108698_n_303/Z (HS65_LL_BFX2)
+                                                          0.07 *    15.37 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC107749_n_303/Z (HS65_LL_BFX2)
+                                                          0.07 *    15.44 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC106796_n_303/Z (HS65_LL_BFX2)
+                                                          0.07 *    15.50 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC105844_n_303/Z (HS65_LL_BFX2)
+                                                          0.07 *    15.57 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC104882_n_303/Z (HS65_LL_BFX2)
+                                                          0.07 *    15.64 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC103917_n_303/Z (HS65_LL_BFX2)
+                                                          0.06 *    15.71 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC102940_n_303/Z (HS65_LL_BFX2)
+                                                          0.06 *    15.77 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC101908_n_303/Z (HS65_LL_BFX2)
+                                                          0.14 *    15.91 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC101004_n_303/Z (HS65_LL_BFX2)
+                                                          0.10 *    16.01 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/FE_PHC99015_n_303/Z (HS65_LL_BFX2)
+                                                          0.15 *    16.16 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/g6812/Z (HS65_LL_NOR2AX3)
+                                                          0.15 *    16.32 f
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/g6808/Z (HS65_LL_AND2X4)
+                                                          0.12 *    16.43 f
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/g6802/Z (HS65_LL_CBI4I6X5)
+                                                          0.11 *    16.54 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/g6801/Z (HS65_LL_NOR4ABX2)
+                                                          0.22 *    16.76 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/g6797/Z (HS65_LL_NAND4ABX3)
+                                                          0.43 *    17.18 f
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/g6795/Z (HS65_LL_OAI12X3)
+                                                          0.25 *    17.44 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/g6793/Z (HS65_LL_NOR3X4)
+                                                          0.13 *    17.57 f
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/g6792/Z (HS65_LL_NOR3AX2)
+                                                          0.12 *    17.69 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/g6791/Z (HS65_LL_AO212X4)
+                                                          0.17 *    17.87 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/g190/Z (HS65_LL_AO32X4)
+                                                          0.28 *    18.14 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/g1382/Z (HS65_LL_AOI32X5)
+                                                          0.16 *    18.31 f
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC137675_n_97/Z (HS65_LL_BFX4)
+                                                          0.18 *    18.48 f
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC137369_n_97/Z (HS65_LL_BFX2)
+                                                          0.10 *    18.58 f
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC138359_n_97/Z (HS65_LL_BFX2)
+                                                          0.08 *    18.66 f
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC137948_n_97/Z (HS65_LL_BFX2)
+                                                          0.09 *    18.76 f
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/g1381/Z (HS65_LL_OAI12X3)
+                                                          0.32 *    19.07 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC12462_n_98/Z (HS65_LL_BFX284)
+                                                          0.17 *    19.24 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC96109_n_98/Z (HS65_LL_BFX7)
+                                                          0.15 *    19.40 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC97088_n_98/Z (HS65_LL_BFX284)
+                                                          0.10 *    19.50 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC95123_n_98/Z (HS65_LL_BFX2)
+                                                          0.08 *    19.58 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC93030_n_98/Z (HS65_LL_BFX7)
+                                                          0.12 *    19.70 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC136847_n_98/Z (HS65_LL_BFX2)
+                                                          0.29 *    19.98 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC94105_n_98/Z (HS65_LL_BFX284)
+                                                          0.15 *    20.14 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC90969_n_98/Z (HS65_LL_BFX7)
+                                                          0.16 *    20.30 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC92033_n_98/Z (HS65_LL_BFX284)
+                                                          0.10 *    20.40 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC88620_n_98/Z (HS65_LL_BFX2)
+                                                          0.31 *    20.71 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC89792_n_98/Z (HS65_LL_BFX284)
+                                                          0.17 *    20.88 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC85481_n_98/Z (HS65_LL_BFX2)
+                                                          0.34 *    21.22 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC87045_n_98/Z (HS65_LL_BFX284)
+                                                          0.17 *    21.39 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC79610_n_98/Z (HS65_LL_BFX2)
+                                                          0.35 *    21.74 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC83172_n_98/Z (HS65_LL_BFX284)
+                                                          0.17 *    21.91 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC66846_n_98/Z (HS65_LL_BFX2)
+                                                          0.33 *    22.24 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC73895_n_98/Z (HS65_LL_BFX284)
+                                                          0.16 *    22.40 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC51280_n_98/Z (HS65_LL_BFX2)
+                                                          0.29 *    22.69 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC59230_n_98/Z (HS65_LL_BFX284)
+                                                          0.16 *    22.85 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC32751_n_98/Z (HS65_LL_BFX2)
+                                                          0.29 *    23.13 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC43110_n_98/Z (HS65_LL_BFX284)
+                                                          0.16 *    23.29 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/FE_PHC22899_n_98/Z (HS65_LL_BFX2)
+                                                          0.07 *    23.36 r
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/tdo_pad_o_reg/D (HS65_LL_DFPRQX4)
+                                                          0.00 *    23.36 r
+  data arrival time                                                 23.36
+
+  clock tck_i' (rise edge)                               25.00      25.00
+  clock network delay (ideal)                             0.00      25.00
+  clock reconvergence pessimism                           0.00      25.00
+  clock uncertainty                                      -2.50      22.50
+  pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/tdo_pad_o_reg/CP (HS65_LL_DFPRQX4)
+                                                                    22.50 r
+  library setup time                                     -0.07 *    22.43
+  data required time                                                22.43
+  ------------------------------------------------------------------------------
+  data required time                                                22.43
+  data arrival time                                                -23.36
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.92
+
+
+  Startpoint: pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: pulpino_top_i/core_region_i/data_mem/bank0_byte2
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.70       0.70
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg/CP (HS65_LLS_SDFPRQNX18)
+                                                          0.00       0.70 r
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg/QN (HS65_LLS_SDFPRQNX18)
+                                                          0.25 *     0.95 r
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/FE_OFC3857_n_544/Z (HS65_LL_CNIVX55)
+                                                          0.02 *     0.97 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/FE_PHC11053_useincr_addr_ex/Z (HS65_LL_BFX49)
+                                                          0.06 *     1.03 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/g4075/Z (HS65_LL_AND2X4)
+                                                          0.16 *     1.18 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g777/CO (HS65_LL_HA1X18)
+                                                          0.09 *     1.27 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g776/CO (HS65_LLS1_FA1X35)
+                                                          0.09 *     1.36 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g775/CO (HS65_LLS1_FA1X9)
+                                                          0.12 *     1.48 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g774/CO (HS65_LL_FA1X18)
+                                                          0.11 *     1.59 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g773/CO (HS65_LL_FA1X4)
+                                                          0.15 *     1.73 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g772/CO (HS65_LL_FA1X4)
+                                                          0.17 *     1.91 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g771/CO (HS65_LL_FA1X9)
+                                                          0.14 *     2.05 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g770/CO (HS65_LL_FA1X18)
+                                                          0.14 *     2.19 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g769/CO (HS65_LLS1_FA1X35)
+                                                          0.10 *     2.28 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g768/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.35 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g767/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.43 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g766/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.50 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g765/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.57 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g764/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.65 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g763/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.72 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g762/CO (HS65_LLS1_FA1X35)
+                                                          0.08 *     2.79 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g761/CO (HS65_LLS1_FA1X35)
+                                                          0.08 *     2.87 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g760/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.94 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g759/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.02 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g758/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.09 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g757/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.16 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g756/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.24 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g755/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.31 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g754/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.38 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g753/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.45 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g752/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.53 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g751/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.60 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g750/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.67 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g749/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.74 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g748/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.82 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g747/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.89 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g746/Z (HS65_LL_XOR3X27)
+                                                          0.15 *     4.03 f
+  pulpino_top_i/core_region_i/g745/Z (HS65_LL_CNNOR2X15)
+                                                          0.07 *     4.10 r
+  pulpino_top_i/core_region_i/g742/Z (HS65_LL_NAND4ABX19)
+                                                          0.05 *     4.16 f
+  pulpino_top_i/core_region_i/FE_RC_395_0/Z (HS65_LL_NOR2X38)
+                                                          0.07 *     4.23 r
+  pulpino_top_i/core_region_i/g740/Z (HS65_LL_AND2X27)
+                                                          0.09 *     4.32 r
+  pulpino_top_i/core_region_i/data_ram_mux_i/FE_OFC3830_core_data_req/Z (HS65_LL_IVX18)
+                                                          0.03 *     4.34 f
+  pulpino_top_i/core_region_i/data_ram_mux_i/g700/Z (HS65_LL_NAND2X29)
+                                                          0.04 *     4.38 r
+  pulpino_top_i/core_region_i/data_mem/g5587/Z (HS65_LL_CNAND2X38)
+                                                          0.09 *     4.47 r
+  pulpino_top_i/core_region_i/data_mem/g5582/Z (HS65_LL_AND2X9)
+                                                          0.13 *     4.60 r
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13130_n_48/Z (HS65_LL_BFX7)
+                                                          0.35 *     4.95 r
+  pulpino_top_i/core_region_i/data_mem/g5589/Z (HS65_LL_NOR2AX6)
+                                                          0.43 *     5.39 r
+  pulpino_top_i/core_region_i/data_mem/g5595/Z (HS65_LL_NAND2X14)
+                                                          0.08 *     5.47 f
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13304_n_131/Z (HS65_LL_BFX9)
+                                                          0.29 *     5.75 f
+  pulpino_top_i/core_region_i/data_mem/g5551/Z (HS65_LL_NOR2AX19)
+                                                          0.11 *     5.87 r
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13643_wdata_02_3/Z (HS65_LL_BFX7)
+                                                          0.60 *     6.47 r
+  pulpino_top_i/core_region_i/data_mem/bank0_byte2/D[3] (ST_SPHDL_2048x8m8_L)
+                                                          0.04 *     6.51 r
+  data arrival time                                                  6.51
+
+  clock clk (rise edge)                                   7.00       7.00
+  clock network delay (ideal)                             0.00       7.00
+  clock reconvergence pessimism                           0.00       7.00
+  clock uncertainty                                      -0.35       6.65
+  pulpino_top_i/core_region_i/data_mem/bank0_byte2/CK (ST_SPHDL_2048x8m8_L)
+                                                                     6.65 r
+  library setup time                                     -0.92 *     5.73
+  data required time                                                 5.73
+  ------------------------------------------------------------------------------
+  data required time                                                 5.73
+  data arrival time                                                 -6.51
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.78
+
+
+  Startpoint: pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: pulpino_top_i/core_region_i/data_mem/bank0_byte1
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.70       0.70
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg/CP (HS65_LLS_SDFPRQNX18)
+                                                          0.00       0.70 r
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg/QN (HS65_LLS_SDFPRQNX18)
+                                                          0.25 *     0.95 r
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/FE_OFC3857_n_544/Z (HS65_LL_CNIVX55)
+                                                          0.02 *     0.97 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/FE_PHC11053_useincr_addr_ex/Z (HS65_LL_BFX49)
+                                                          0.06 *     1.03 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/g4075/Z (HS65_LL_AND2X4)
+                                                          0.16 *     1.18 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g777/CO (HS65_LL_HA1X18)
+                                                          0.09 *     1.27 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g776/CO (HS65_LLS1_FA1X35)
+                                                          0.09 *     1.36 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g775/CO (HS65_LLS1_FA1X9)
+                                                          0.12 *     1.48 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g774/CO (HS65_LL_FA1X18)
+                                                          0.11 *     1.59 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g773/CO (HS65_LL_FA1X4)
+                                                          0.15 *     1.73 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g772/CO (HS65_LL_FA1X4)
+                                                          0.17 *     1.91 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g771/CO (HS65_LL_FA1X9)
+                                                          0.14 *     2.05 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g770/CO (HS65_LL_FA1X18)
+                                                          0.14 *     2.19 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g769/CO (HS65_LLS1_FA1X35)
+                                                          0.10 *     2.28 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g768/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.35 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g767/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.43 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g766/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.50 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g765/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.57 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g764/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.65 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g763/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.72 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g762/CO (HS65_LLS1_FA1X35)
+                                                          0.08 *     2.79 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g761/CO (HS65_LLS1_FA1X35)
+                                                          0.08 *     2.87 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g760/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.94 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g759/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.02 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g758/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.09 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g757/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.16 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g756/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.24 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g755/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.31 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g754/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.38 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g753/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.45 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g752/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.53 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g751/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.60 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g750/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.67 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g749/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.74 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g748/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.82 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g747/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.89 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g746/Z (HS65_LL_XOR3X27)
+                                                          0.15 *     4.03 f
+  pulpino_top_i/core_region_i/g745/Z (HS65_LL_CNNOR2X15)
+                                                          0.07 *     4.10 r
+  pulpino_top_i/core_region_i/g742/Z (HS65_LL_NAND4ABX19)
+                                                          0.05 *     4.16 f
+  pulpino_top_i/core_region_i/FE_RC_395_0/Z (HS65_LL_NOR2X38)
+                                                          0.07 *     4.23 r
+  pulpino_top_i/core_region_i/g740/Z (HS65_LL_AND2X27)
+                                                          0.09 *     4.32 r
+  pulpino_top_i/core_region_i/data_ram_mux_i/FE_OFC3830_core_data_req/Z (HS65_LL_IVX18)
+                                                          0.03 *     4.34 f
+  pulpino_top_i/core_region_i/data_ram_mux_i/g700/Z (HS65_LL_NAND2X29)
+                                                          0.04 *     4.38 r
+  pulpino_top_i/core_region_i/data_mem/g5587/Z (HS65_LL_CNAND2X38)
+                                                          0.09 *     4.47 r
+  pulpino_top_i/core_region_i/data_mem/g5582/Z (HS65_LL_AND2X9)
+                                                          0.13 *     4.60 r
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13130_n_48/Z (HS65_LL_BFX7)
+                                                          0.35 *     4.95 r
+  pulpino_top_i/core_region_i/data_mem/g5589/Z (HS65_LL_NOR2AX6)
+                                                          0.43 *     5.39 r
+  pulpino_top_i/core_region_i/data_mem/g5594/Z (HS65_LL_NAND2X14)
+                                                          0.16 *     5.54 f
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13252_n_130/Z (HS65_LL_BFX9)
+                                                          0.28 *     5.82 f
+  pulpino_top_i/core_region_i/data_mem/g5439/Z (HS65_LL_NOR2AX13)
+                                                          0.65 *     6.47 r
+  pulpino_top_i/core_region_i/data_mem/bank0_byte1/D[6] (ST_SPHDL_2048x8m8_L)
+                                                          0.04 *     6.51 r
+  data arrival time                                                  6.51
+
+  clock clk (rise edge)                                   7.00       7.00
+  clock network delay (ideal)                             0.00       7.00
+  clock reconvergence pessimism                           0.00       7.00
+  clock uncertainty                                      -0.35       6.65
+  pulpino_top_i/core_region_i/data_mem/bank0_byte1/CK (ST_SPHDL_2048x8m8_L)
+                                                                     6.65 r
+  library setup time                                     -0.87 *     5.78
+  data required time                                                 5.78
+  ------------------------------------------------------------------------------
+  data required time                                                 5.78
+  data arrival time                                                 -6.51
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.74
+
+
+  Startpoint: pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/CS_reg[1]
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: pulpino_top_i/core_region_i/instr_mem/sp_ram_wrap_i/bank0_byte0
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.70       0.70
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/CS_reg[1]/CP (HS65_LL_DFPRQX9)
+                                                          0.00       0.70 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/CS_reg[1]/Q (HS65_LL_DFPRQX9)
+                                                          0.18 *     0.88 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/FE_PHC58561_CS_1/Z (HS65_LL_BFX2)
+                                                          0.06 *     0.93 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/FE_PHC21279_CS_1/Z (HS65_LL_BFX2)
+                                                          0.06 *     1.00 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/FE_PHC6898_CS_1/Z (HS65_LL_BFX2)
+                                                          0.27 *     1.26 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/g1600/Z (HS65_LL_NOR2AX3)
+                                                          0.14 *     1.40 f
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/g1598/S0 (HS65_LL_HA1X4)
+                                                          0.18 *     1.57 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/FE_OFC1065_RLAST/Z (HS65_LL_BFX9)
+                                                          0.06 *     1.63 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/FE_PHC50140_FE_RN_8/Z (HS65_LL_BFX2)
+                                                          0.17 *     1.80 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/FE_PHC59046_FE_RN_8/Z (HS65_LL_BFX142)
+                                                          0.11 *     1.91 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/FE_PHC79407_FE_RN_8/Z (HS65_LL_BFX27)
+                                                          0.05 *     1.96 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/g1595/Z (HS65_LL_AOI21X2)
+                                                          0.08 *     2.04 f
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/g1593/Z (HS65_LL_AO12X9)
+                                                          0.14 *     2.18 f
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/g138/Z (HS65_LL_MUX21I1X6)
+                                                          0.15 *     2.33 f
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/FE_PHC22207_grant_R/Z (HS65_LL_BFX284)
+                                                          0.11 *     2.44 f
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/FE_DBTC15_grant_R/Z (HS65_LL_IVX9)
+                                                          0.05 *     2.49 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/WRITE_CTRL/g2180/Z (HS65_LL_NAND2X7)
+                                                          0.15 *     2.64 f
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/WRITE_CTRL/g2160/Z (HS65_LL_AOI21X6)
+                                                          0.24 *     2.88 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/WRITE_CTRL/g2156/Z (HS65_LL_NAND2X7)
+                                                          0.09 *     2.97 f
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/g147/Z (HS65_LL_NOR2AX3)
+                                                          0.12 *     3.09 f
+  pulpino_top_i/core_region_i/instr_ram_mux_i/FE_OFC2566_cen/Z (HS65_LL_IVX9)
+                                                          0.27 *     3.36 r
+  pulpino_top_i/core_region_i/instr_ram_mux_i/FE_OFC2567_cen/Z (HS65_LL_BFX9)
+                                                          0.42 *     3.79 r
+  pulpino_top_i/core_region_i/instr_ram_mux_i/FE_OFC2569_cen/Z (HS65_LL_IVX18)
+                                                          0.36 *     4.15 f
+  pulpino_top_i/core_region_i/instr_ram_mux_i/FE_OFC2571_cen/Z (HS65_LL_IVX9)
+                                                          0.29 *     4.43 r
+  pulpino_top_i/core_region_i/instr_ram_mux_i/g347/Z (HS65_LL_AND2X4)
+                                                          0.32 *     4.75 r
+  pulpino_top_i/core_region_i/instr_mem/sp_ram_wrap_i/g5587/Z (HS65_LL_AND2X18)
+                                                          0.17 *     4.92 r
+  pulpino_top_i/core_region_i/instr_mem/sp_ram_wrap_i/g5582/Z (HS65_LL_AND2X4)
+                                                          0.32 *     5.24 r
+  pulpino_top_i/core_region_i/instr_mem/sp_ram_wrap_i/g5589/Z (HS65_LL_NOR2AX3)
+                                                          0.22 *     5.46 r
+  pulpino_top_i/core_region_i/instr_mem/sp_ram_wrap_i/FE_OFC2707_n_125/Z (HS65_LL_BFX18)
+                                                          0.19 *     5.66 r
+  pulpino_top_i/core_region_i/instr_mem/sp_ram_wrap_i/g5593/Z (HS65_LL_NAND2X7)
+                                                          0.35 *     6.00 f
+  pulpino_top_i/core_region_i/instr_mem/sp_ram_wrap_i/g5509/Z (HS65_LL_NOR2AX3)
+                                                          0.53 *     6.53 r
+  pulpino_top_i/core_region_i/instr_mem/sp_ram_wrap_i/bank0_byte0/D[2] (ST_SPHDL_2048x8m8_L)
+                                                          0.00 *     6.53 r
+  data arrival time                                                  6.53
+
+  clock clk (rise edge)                                   7.00       7.00
+  clock network delay (ideal)                             0.00       7.00
+  clock reconvergence pessimism                           0.00       7.00
+  clock uncertainty                                      -0.35       6.65
+  pulpino_top_i/core_region_i/instr_mem/sp_ram_wrap_i/bank0_byte0/CK (ST_SPHDL_2048x8m8_L)
+                                                                     6.65 r
+  library setup time                                     -0.85 *     5.80
+  data required time                                                 5.80
+  ------------------------------------------------------------------------------
+  data required time                                                 5.80
+  data arrival time                                                 -6.53
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.74
+
+
+  Startpoint: pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: pulpino_top_i/core_region_i/data_mem/bank0_byte0
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.70       0.70
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg/CP (HS65_LLS_SDFPRQNX18)
+                                                          0.00       0.70 r
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg/QN (HS65_LLS_SDFPRQNX18)
+                                                          0.25 *     0.95 r
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/FE_OFC3857_n_544/Z (HS65_LL_CNIVX55)
+                                                          0.02 *     0.97 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/FE_PHC11053_useincr_addr_ex/Z (HS65_LL_BFX49)
+                                                          0.06 *     1.03 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/g4075/Z (HS65_LL_AND2X4)
+                                                          0.16 *     1.18 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g777/CO (HS65_LL_HA1X18)
+                                                          0.09 *     1.27 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g776/CO (HS65_LLS1_FA1X35)
+                                                          0.09 *     1.36 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g775/CO (HS65_LLS1_FA1X9)
+                                                          0.12 *     1.48 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g774/CO (HS65_LL_FA1X18)
+                                                          0.11 *     1.59 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g773/CO (HS65_LL_FA1X4)
+                                                          0.15 *     1.73 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g772/CO (HS65_LL_FA1X4)
+                                                          0.17 *     1.91 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g771/CO (HS65_LL_FA1X9)
+                                                          0.14 *     2.05 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g770/CO (HS65_LL_FA1X18)
+                                                          0.14 *     2.19 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g769/CO (HS65_LLS1_FA1X35)
+                                                          0.10 *     2.28 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g768/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.35 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g767/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.43 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g766/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.50 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g765/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.57 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g764/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.65 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g763/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.72 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g762/CO (HS65_LLS1_FA1X35)
+                                                          0.08 *     2.79 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g761/CO (HS65_LLS1_FA1X35)
+                                                          0.08 *     2.87 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g760/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.94 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g759/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.02 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g758/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.09 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g757/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.16 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g756/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.24 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g755/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.31 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g754/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.38 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g753/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.45 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g752/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.53 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g751/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.60 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g750/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.67 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g749/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.74 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g748/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.82 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g747/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.89 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g746/Z (HS65_LL_XOR3X27)
+                                                          0.15 *     4.03 f
+  pulpino_top_i/core_region_i/g745/Z (HS65_LL_CNNOR2X15)
+                                                          0.07 *     4.10 r
+  pulpino_top_i/core_region_i/g742/Z (HS65_LL_NAND4ABX19)
+                                                          0.05 *     4.16 f
+  pulpino_top_i/core_region_i/FE_RC_395_0/Z (HS65_LL_NOR2X38)
+                                                          0.07 *     4.23 r
+  pulpino_top_i/core_region_i/g740/Z (HS65_LL_AND2X27)
+                                                          0.09 *     4.32 r
+  pulpino_top_i/core_region_i/data_ram_mux_i/FE_OFC3830_core_data_req/Z (HS65_LL_IVX18)
+                                                          0.03 *     4.34 f
+  pulpino_top_i/core_region_i/data_ram_mux_i/g700/Z (HS65_LL_NAND2X29)
+                                                          0.04 *     4.38 r
+  pulpino_top_i/core_region_i/data_mem/g5587/Z (HS65_LL_CNAND2X38)
+                                                          0.09 *     4.47 r
+  pulpino_top_i/core_region_i/data_mem/g5582/Z (HS65_LL_AND2X9)
+                                                          0.13 *     4.60 r
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13130_n_48/Z (HS65_LL_BFX7)
+                                                          0.35 *     4.95 r
+  pulpino_top_i/core_region_i/data_mem/g5589/Z (HS65_LL_NOR2AX6)
+                                                          0.43 *     5.39 r
+  pulpino_top_i/core_region_i/data_mem/g5593/Z (HS65_LL_OR2ABX18)
+                                                          0.20 *     5.58 f
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13383_n_129/Z (HS65_LL_BFX13)
+                                                          0.18 *     5.76 f
+  pulpino_top_i/core_region_i/data_mem/g5531/Z (HS65_LL_NOR2AX13)
+                                                          0.40 *     6.16 r
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13639_wdata_00_6/Z (HS65_LL_BFX4)
+                                                          0.41 *     6.57 r
+  pulpino_top_i/core_region_i/data_mem/bank0_byte0/D[6] (ST_SPHDL_2048x8m8_L)
+                                                          0.01 *     6.58 r
+  data arrival time                                                  6.58
+
+  clock clk (rise edge)                                   7.00       7.00
+  clock network delay (ideal)                             0.00       7.00
+  clock reconvergence pessimism                           0.00       7.00
+  clock uncertainty                                      -0.35       6.65
+  pulpino_top_i/core_region_i/data_mem/bank0_byte0/CK (ST_SPHDL_2048x8m8_L)
+                                                                     6.65 r
+  library setup time                                     -0.80 *     5.85
+  data required time                                                 5.85
+  ------------------------------------------------------------------------------
+  data required time                                                 5.85
+  data arrival time                                                 -6.58
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.73
+
+
+  Startpoint: pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: pulpino_top_i/core_region_i/data_mem/bank0_byte0
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.70       0.70
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg/CP (HS65_LLS_SDFPRQNX18)
+                                                          0.00       0.70 r
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg/QN (HS65_LLS_SDFPRQNX18)
+                                                          0.25 *     0.95 r
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/FE_OFC3857_n_544/Z (HS65_LL_CNIVX55)
+                                                          0.02 *     0.97 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/FE_PHC11053_useincr_addr_ex/Z (HS65_LL_BFX49)
+                                                          0.06 *     1.03 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/g4075/Z (HS65_LL_AND2X4)
+                                                          0.16 *     1.18 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g777/CO (HS65_LL_HA1X18)
+                                                          0.09 *     1.27 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g776/CO (HS65_LLS1_FA1X35)
+                                                          0.09 *     1.36 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g775/CO (HS65_LLS1_FA1X9)
+                                                          0.12 *     1.48 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g774/CO (HS65_LL_FA1X18)
+                                                          0.11 *     1.59 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g773/CO (HS65_LL_FA1X4)
+                                                          0.15 *     1.73 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g772/CO (HS65_LL_FA1X4)
+                                                          0.17 *     1.91 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g771/CO (HS65_LL_FA1X9)
+                                                          0.14 *     2.05 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g770/CO (HS65_LL_FA1X18)
+                                                          0.14 *     2.19 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g769/CO (HS65_LLS1_FA1X35)
+                                                          0.10 *     2.28 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g768/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.35 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g767/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.43 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g766/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.50 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g765/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.57 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g764/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.65 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g763/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.72 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g762/CO (HS65_LLS1_FA1X35)
+                                                          0.08 *     2.79 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g761/CO (HS65_LLS1_FA1X35)
+                                                          0.08 *     2.87 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g760/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.94 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g759/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.02 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g758/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.09 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g757/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.16 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g756/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.24 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g755/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.31 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g754/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.38 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g753/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.45 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g752/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.53 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g751/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.60 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g750/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.67 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g749/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.74 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g748/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.82 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g747/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.89 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g746/Z (HS65_LL_XOR3X27)
+                                                          0.15 *     4.03 f
+  pulpino_top_i/core_region_i/g745/Z (HS65_LL_CNNOR2X15)
+                                                          0.07 *     4.10 r
+  pulpino_top_i/core_region_i/g742/Z (HS65_LL_NAND4ABX19)
+                                                          0.05 *     4.16 f
+  pulpino_top_i/core_region_i/FE_RC_395_0/Z (HS65_LL_NOR2X38)
+                                                          0.07 *     4.23 r
+  pulpino_top_i/core_region_i/g740/Z (HS65_LL_AND2X27)
+                                                          0.09 *     4.32 r
+  pulpino_top_i/core_region_i/data_ram_mux_i/FE_OFC3830_core_data_req/Z (HS65_LL_IVX18)
+                                                          0.03 *     4.34 f
+  pulpino_top_i/core_region_i/data_ram_mux_i/g700/Z (HS65_LL_NAND2X29)
+                                                          0.04 *     4.38 r
+  pulpino_top_i/core_region_i/data_mem/g5587/Z (HS65_LL_CNAND2X38)
+                                                          0.09 *     4.47 r
+  pulpino_top_i/core_region_i/data_mem/g5582/Z (HS65_LL_AND2X9)
+                                                          0.13 *     4.60 r
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13130_n_48/Z (HS65_LL_BFX7)
+                                                          0.35 *     4.95 r
+  pulpino_top_i/core_region_i/data_mem/g5589/Z (HS65_LL_NOR2AX6)
+                                                          0.43 *     5.39 r
+  pulpino_top_i/core_region_i/data_mem/g5593/Z (HS65_LL_OR2ABX18)
+                                                          0.20 *     5.58 f
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13383_n_129/Z (HS65_LL_BFX13)
+                                                          0.18 *     5.76 f
+  pulpino_top_i/core_region_i/data_mem/g5509/Z (HS65_LL_NOR2AX13)
+                                                          0.46 *     6.22 r
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13654_wdata_00_2/Z (HS65_LL_BFX4)
+                                                          0.34 *     6.57 r
+  pulpino_top_i/core_region_i/data_mem/bank0_byte0/D[2] (ST_SPHDL_2048x8m8_L)
+                                                          0.01 *     6.58 r
+  data arrival time                                                  6.58
+
+  clock clk (rise edge)                                   7.00       7.00
+  clock network delay (ideal)                             0.00       7.00
+  clock reconvergence pessimism                           0.00       7.00
+  clock uncertainty                                      -0.35       6.65
+  pulpino_top_i/core_region_i/data_mem/bank0_byte0/CK (ST_SPHDL_2048x8m8_L)
+                                                                     6.65 r
+  library setup time                                     -0.80 *     5.85
+  data required time                                                 5.85
+  ------------------------------------------------------------------------------
+  data required time                                                 5.85
+  data arrival time                                                 -6.58
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.73
+
+
+  Startpoint: pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: pulpino_top_i/core_region_i/data_mem/bank3_byte3
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.70       0.70
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg/CP (HS65_LLS_SDFPRQNX18)
+                                                          0.00       0.70 r
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg/QN (HS65_LLS_SDFPRQNX18)
+                                                          0.25 *     0.95 r
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/FE_OFC3857_n_544/Z (HS65_LL_CNIVX55)
+                                                          0.02 *     0.97 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/FE_PHC11053_useincr_addr_ex/Z (HS65_LL_BFX49)
+                                                          0.06 *     1.03 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/g4075/Z (HS65_LL_AND2X4)
+                                                          0.16 *     1.18 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g777/CO (HS65_LL_HA1X18)
+                                                          0.09 *     1.27 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g776/CO (HS65_LLS1_FA1X35)
+                                                          0.09 *     1.36 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g775/CO (HS65_LLS1_FA1X9)
+                                                          0.12 *     1.48 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g774/CO (HS65_LL_FA1X18)
+                                                          0.11 *     1.59 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g773/CO (HS65_LL_FA1X4)
+                                                          0.15 *     1.73 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g772/CO (HS65_LL_FA1X4)
+                                                          0.17 *     1.91 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g771/CO (HS65_LL_FA1X9)
+                                                          0.14 *     2.05 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g770/CO (HS65_LL_FA1X18)
+                                                          0.14 *     2.19 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g769/CO (HS65_LLS1_FA1X35)
+                                                          0.10 *     2.28 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g768/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.35 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g767/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.43 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g766/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.50 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g765/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.57 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g764/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.65 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g763/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.72 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g762/CO (HS65_LLS1_FA1X35)
+                                                          0.08 *     2.79 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g761/CO (HS65_LLS1_FA1X35)
+                                                          0.08 *     2.87 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g760/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.94 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g759/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.02 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g758/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.09 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g757/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.16 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g756/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.24 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g755/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.31 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g754/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.38 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g753/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.45 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g752/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.53 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g751/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.60 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g750/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.67 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g749/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.74 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g748/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.82 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g747/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.89 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g746/Z (HS65_LL_XOR3X27)
+                                                          0.15 *     4.03 f
+  pulpino_top_i/core_region_i/g745/Z (HS65_LL_CNNOR2X15)
+                                                          0.07 *     4.10 r
+  pulpino_top_i/core_region_i/g742/Z (HS65_LL_NAND4ABX19)
+                                                          0.05 *     4.16 f
+  pulpino_top_i/core_region_i/FE_RC_395_0/Z (HS65_LL_NOR2X38)
+                                                          0.07 *     4.23 r
+  pulpino_top_i/core_region_i/g740/Z (HS65_LL_AND2X27)
+                                                          0.09 *     4.32 r
+  pulpino_top_i/core_region_i/data_ram_mux_i/FE_OFC3830_core_data_req/Z (HS65_LL_IVX18)
+                                                          0.03 *     4.34 f
+  pulpino_top_i/core_region_i/data_ram_mux_i/g700/Z (HS65_LL_NAND2X29)
+                                                          0.04 *     4.38 r
+  pulpino_top_i/core_region_i/data_mem/g5587/Z (HS65_LL_CNAND2X38)
+                                                          0.09 *     4.47 r
+  pulpino_top_i/core_region_i/data_mem/g5582/Z (HS65_LL_AND2X9)
+                                                          0.13 *     4.60 r
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13130_n_48/Z (HS65_LL_BFX7)
+                                                          0.35 *     4.95 r
+  pulpino_top_i/core_region_i/data_mem/g5592/Z (HS65_LL_NOR2AX19)
+                                                          0.35 *     5.30 r
+  pulpino_top_i/core_region_i/data_mem/g5608/Z (HS65_LL_NAND2X14)
+                                                          0.17 *     5.47 f
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13250_n_144/Z (HS65_LL_BFX7)
+                                                          0.28 *     5.76 f
+  pulpino_top_i/core_region_i/data_mem/g5537/Z (HS65_LL_NOR2AX6)
+                                                          0.36 *     6.11 r
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13609_wdata_33_3/Z (HS65_LL_BFX2)
+                                                          0.44 *     6.55 r
+  pulpino_top_i/core_region_i/data_mem/bank3_byte3/D[3] (ST_SPHDL_2048x8m8_L)
+                                                          0.00 *     6.56 r
+  data arrival time                                                  6.56
+
+  clock clk (rise edge)                                   7.00       7.00
+  clock network delay (ideal)                             0.00       7.00
+  clock reconvergence pessimism                           0.00       7.00
+  clock uncertainty                                      -0.35       6.65
+  pulpino_top_i/core_region_i/data_mem/bank3_byte3/CK (ST_SPHDL_2048x8m8_L)
+                                                                     6.65 r
+  library setup time                                     -0.82 *     5.83
+  data required time                                                 5.83
+  ------------------------------------------------------------------------------
+  data required time                                                 5.83
+  data arrival time                                                 -6.56
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.73
+
+
+  Startpoint: pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: pulpino_top_i/core_region_i/data_mem/bank0_byte2
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.70       0.70
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg/CP (HS65_LLS_SDFPRQNX18)
+                                                          0.00       0.70 r
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg/QN (HS65_LLS_SDFPRQNX18)
+                                                          0.25 *     0.95 r
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/FE_OFC3857_n_544/Z (HS65_LL_CNIVX55)
+                                                          0.02 *     0.97 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/FE_PHC11053_useincr_addr_ex/Z (HS65_LL_BFX49)
+                                                          0.06 *     1.03 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/g4075/Z (HS65_LL_AND2X4)
+                                                          0.16 *     1.18 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g777/CO (HS65_LL_HA1X18)
+                                                          0.09 *     1.27 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g776/CO (HS65_LLS1_FA1X35)
+                                                          0.09 *     1.36 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g775/CO (HS65_LLS1_FA1X9)
+                                                          0.12 *     1.48 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g774/CO (HS65_LL_FA1X18)
+                                                          0.11 *     1.59 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g773/CO (HS65_LL_FA1X4)
+                                                          0.15 *     1.73 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g772/CO (HS65_LL_FA1X4)
+                                                          0.17 *     1.91 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g771/CO (HS65_LL_FA1X9)
+                                                          0.14 *     2.05 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g770/CO (HS65_LL_FA1X18)
+                                                          0.14 *     2.19 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g769/CO (HS65_LLS1_FA1X35)
+                                                          0.10 *     2.28 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g768/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.35 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g767/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.43 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g766/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.50 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g765/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.57 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g764/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.65 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g763/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.72 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g762/CO (HS65_LLS1_FA1X35)
+                                                          0.08 *     2.79 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g761/CO (HS65_LLS1_FA1X35)
+                                                          0.08 *     2.87 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g760/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.94 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g759/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.02 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g758/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.09 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g757/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.16 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g756/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.24 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g755/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.31 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g754/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.38 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g753/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.45 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g752/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.53 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g751/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.60 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g750/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.67 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g749/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.74 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g748/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.82 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g747/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.89 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g746/Z (HS65_LL_XOR3X27)
+                                                          0.15 *     4.03 f
+  pulpino_top_i/core_region_i/g745/Z (HS65_LL_CNNOR2X15)
+                                                          0.07 *     4.10 r
+  pulpino_top_i/core_region_i/g742/Z (HS65_LL_NAND4ABX19)
+                                                          0.05 *     4.16 f
+  pulpino_top_i/core_region_i/FE_RC_395_0/Z (HS65_LL_NOR2X38)
+                                                          0.07 *     4.23 r
+  pulpino_top_i/core_region_i/g740/Z (HS65_LL_AND2X27)
+                                                          0.09 *     4.32 r
+  pulpino_top_i/core_region_i/data_ram_mux_i/FE_OFC3830_core_data_req/Z (HS65_LL_IVX18)
+                                                          0.03 *     4.34 f
+  pulpino_top_i/core_region_i/data_ram_mux_i/g700/Z (HS65_LL_NAND2X29)
+                                                          0.04 *     4.38 r
+  pulpino_top_i/core_region_i/data_mem/g5587/Z (HS65_LL_CNAND2X38)
+                                                          0.09 *     4.47 r
+  pulpino_top_i/core_region_i/data_mem/g5582/Z (HS65_LL_AND2X9)
+                                                          0.13 *     4.60 r
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13130_n_48/Z (HS65_LL_BFX7)
+                                                          0.35 *     4.95 r
+  pulpino_top_i/core_region_i/data_mem/g5589/Z (HS65_LL_NOR2AX6)
+                                                          0.43 *     5.39 r
+  pulpino_top_i/core_region_i/data_mem/g5595/Z (HS65_LL_NAND2X14)
+                                                          0.08 *     5.47 f
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13304_n_131/Z (HS65_LL_BFX9)
+                                                          0.29 *     5.75 f
+  pulpino_top_i/core_region_i/data_mem/g5554/Z (HS65_LL_NOR2AX19)
+                                                          0.12 *     5.87 r
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13644_wdata_02_2/Z (HS65_LL_BFX7)
+                                                          0.55 *     6.43 r
+  pulpino_top_i/core_region_i/data_mem/bank0_byte2/D[2] (ST_SPHDL_2048x8m8_L)
+                                                          0.04 *     6.47 r
+  data arrival time                                                  6.47
+
+  clock clk (rise edge)                                   7.00       7.00
+  clock network delay (ideal)                             0.00       7.00
+  clock reconvergence pessimism                           0.00       7.00
+  clock uncertainty                                      -0.35       6.65
+  pulpino_top_i/core_region_i/data_mem/bank0_byte2/CK (ST_SPHDL_2048x8m8_L)
+                                                                     6.65 r
+  library setup time                                     -0.90 *     5.75
+  data required time                                                 5.75
+  ------------------------------------------------------------------------------
+  data required time                                                 5.75
+  data arrival time                                                 -6.47
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.72
+
+
+  Startpoint: pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: pulpino_top_i/core_region_i/data_mem/bank0_byte0
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.70       0.70
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg/CP (HS65_LLS_SDFPRQNX18)
+                                                          0.00       0.70 r
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/prepost_useincr_ex_o_reg/QN (HS65_LLS_SDFPRQNX18)
+                                                          0.25 *     0.95 r
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/FE_OFC3857_n_544/Z (HS65_LL_CNIVX55)
+                                                          0.02 *     0.97 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/FE_PHC11053_useincr_addr_ex/Z (HS65_LL_BFX49)
+                                                          0.06 *     1.03 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/g4075/Z (HS65_LL_AND2X4)
+                                                          0.16 *     1.18 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g777/CO (HS65_LL_HA1X18)
+                                                          0.09 *     1.27 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g776/CO (HS65_LLS1_FA1X35)
+                                                          0.09 *     1.36 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g775/CO (HS65_LLS1_FA1X9)
+                                                          0.12 *     1.48 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g774/CO (HS65_LL_FA1X18)
+                                                          0.11 *     1.59 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g773/CO (HS65_LL_FA1X4)
+                                                          0.15 *     1.73 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g772/CO (HS65_LL_FA1X4)
+                                                          0.17 *     1.91 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g771/CO (HS65_LL_FA1X9)
+                                                          0.14 *     2.05 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g770/CO (HS65_LL_FA1X18)
+                                                          0.14 *     2.19 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g769/CO (HS65_LLS1_FA1X35)
+                                                          0.10 *     2.28 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g768/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.35 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g767/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.43 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g766/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.50 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g765/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.57 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g764/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.65 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g763/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.72 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g762/CO (HS65_LLS1_FA1X35)
+                                                          0.08 *     2.79 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g761/CO (HS65_LLS1_FA1X35)
+                                                          0.08 *     2.87 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g760/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     2.94 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g759/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.02 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g758/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.09 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g757/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.16 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g756/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.24 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g755/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.31 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g754/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.38 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g753/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.45 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g752/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.53 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g751/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.60 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g750/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.67 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g749/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.74 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g748/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.82 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g747/CO (HS65_LLS1_FA1X35)
+                                                          0.07 *     3.89 f
+  pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27/g746/Z (HS65_LL_XOR3X27)
+                                                          0.15 *     4.03 f
+  pulpino_top_i/core_region_i/g745/Z (HS65_LL_CNNOR2X15)
+                                                          0.07 *     4.10 r
+  pulpino_top_i/core_region_i/g742/Z (HS65_LL_NAND4ABX19)
+                                                          0.05 *     4.16 f
+  pulpino_top_i/core_region_i/FE_RC_395_0/Z (HS65_LL_NOR2X38)
+                                                          0.07 *     4.23 r
+  pulpino_top_i/core_region_i/g740/Z (HS65_LL_AND2X27)
+                                                          0.09 *     4.32 r
+  pulpino_top_i/core_region_i/data_ram_mux_i/FE_OFC3830_core_data_req/Z (HS65_LL_IVX18)
+                                                          0.03 *     4.34 f
+  pulpino_top_i/core_region_i/data_ram_mux_i/g700/Z (HS65_LL_NAND2X29)
+                                                          0.04 *     4.38 r
+  pulpino_top_i/core_region_i/data_mem/g5587/Z (HS65_LL_CNAND2X38)
+                                                          0.09 *     4.47 r
+  pulpino_top_i/core_region_i/data_mem/g5582/Z (HS65_LL_AND2X9)
+                                                          0.13 *     4.60 r
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13130_n_48/Z (HS65_LL_BFX7)
+                                                          0.35 *     4.95 r
+  pulpino_top_i/core_region_i/data_mem/g5589/Z (HS65_LL_NOR2AX6)
+                                                          0.43 *     5.39 r
+  pulpino_top_i/core_region_i/data_mem/g5593/Z (HS65_LL_OR2ABX18)
+                                                          0.20 *     5.58 f
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13383_n_129/Z (HS65_LL_BFX13)
+                                                          0.18 *     5.76 f
+  pulpino_top_i/core_region_i/data_mem/g5533/Z (HS65_LL_NOR2AX13)
+                                                          0.41 *     6.17 r
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13657_wdata_00_1/Z (HS65_LL_BFX4)
+                                                          0.38 *     6.54 r
+  pulpino_top_i/core_region_i/data_mem/bank0_byte0/D[1] (ST_SPHDL_2048x8m8_L)
+                                                          0.01 *     6.55 r
+  data arrival time                                                  6.55
+
+  clock clk (rise edge)                                   7.00       7.00
+  clock network delay (ideal)                             0.00       7.00
+  clock reconvergence pessimism                           0.00       7.00
+  clock uncertainty                                      -0.35       6.65
+  pulpino_top_i/core_region_i/data_mem/bank0_byte0/CK (ST_SPHDL_2048x8m8_L)
+                                                                     6.65 r
+  library setup time                                     -0.81 *     5.84
+  data required time                                                 5.84
+  ------------------------------------------------------------------------------
+  data required time                                                 5.84
+  data arrival time                                                 -6.55
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.71
+
+
+  Startpoint: pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/CS_reg[1]
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: pulpino_top_i/core_region_i/instr_mem/sp_ram_wrap_i/bank2_byte1
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.70       0.70
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/CS_reg[1]/CP (HS65_LL_DFPRQX9)
+                                                          0.00       0.70 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/CS_reg[1]/Q (HS65_LL_DFPRQX9)
+                                                          0.18 *     0.88 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/FE_PHC58561_CS_1/Z (HS65_LL_BFX2)
+                                                          0.06 *     0.93 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/FE_PHC21279_CS_1/Z (HS65_LL_BFX2)
+                                                          0.06 *     1.00 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/FE_PHC6898_CS_1/Z (HS65_LL_BFX2)
+                                                          0.27 *     1.26 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/g1600/Z (HS65_LL_NOR2AX3)
+                                                          0.14 *     1.40 f
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/g1598/S0 (HS65_LL_HA1X4)
+                                                          0.18 *     1.57 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/FE_OFC1065_RLAST/Z (HS65_LL_BFX9)
+                                                          0.06 *     1.63 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/FE_PHC50140_FE_RN_8/Z (HS65_LL_BFX2)
+                                                          0.17 *     1.80 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/FE_PHC59046_FE_RN_8/Z (HS65_LL_BFX142)
+                                                          0.11 *     1.91 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/FE_PHC79407_FE_RN_8/Z (HS65_LL_BFX27)
+                                                          0.05 *     1.96 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/g1595/Z (HS65_LL_AOI21X2)
+                                                          0.08 *     2.04 f
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/g1593/Z (HS65_LL_AO12X9)
+                                                          0.14 *     2.18 f
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/g138/Z (HS65_LL_MUX21I1X6)
+                                                          0.15 *     2.33 f
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/FE_PHC22207_grant_R/Z (HS65_LL_BFX284)
+                                                          0.11 *     2.44 f
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/FE_DBTC15_grant_R/Z (HS65_LL_IVX9)
+                                                          0.05 *     2.49 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/WRITE_CTRL/g2180/Z (HS65_LL_NAND2X7)
+                                                          0.15 *     2.64 f
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/WRITE_CTRL/g2160/Z (HS65_LL_AOI21X6)
+                                                          0.24 *     2.88 r
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/WRITE_CTRL/g2156/Z (HS65_LL_NAND2X7)
+                                                          0.09 *     2.97 f
+  pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/g147/Z (HS65_LL_NOR2AX3)
+                                                          0.12 *     3.09 f
+  pulpino_top_i/core_region_i/instr_ram_mux_i/FE_OFC2566_cen/Z (HS65_LL_IVX9)
+                                                          0.27 *     3.36 r
+  pulpino_top_i/core_region_i/instr_ram_mux_i/FE_OFC2567_cen/Z (HS65_LL_BFX9)
+                                                          0.42 *     3.79 r
+  pulpino_top_i/core_region_i/instr_ram_mux_i/FE_OFC2569_cen/Z (HS65_LL_IVX18)
+                                                          0.36 *     4.15 f
+  pulpino_top_i/core_region_i/instr_ram_mux_i/FE_OFC2571_cen/Z (HS65_LL_IVX9)
+                                                          0.29 *     4.43 r
+  pulpino_top_i/core_region_i/instr_ram_mux_i/g347/Z (HS65_LL_AND2X4)
+                                                          0.32 *     4.75 r
+  pulpino_top_i/core_region_i/instr_mem/sp_ram_wrap_i/g5587/Z (HS65_LL_AND2X18)
+                                                          0.17 *     4.92 r
+  pulpino_top_i/core_region_i/instr_mem/sp_ram_wrap_i/g5582/Z (HS65_LL_AND2X4)
+                                                          0.32 *     5.24 r
+  pulpino_top_i/core_region_i/instr_mem/sp_ram_wrap_i/g5591/Z (HS65_LL_NOR2AX6)
+                                                          0.55 *     5.79 r
+  pulpino_top_i/core_region_i/instr_mem/sp_ram_wrap_i/g5602/Z (HS65_LL_NAND2X14)
+                                                          0.33 *     6.13 f
+  pulpino_top_i/core_region_i/instr_mem/sp_ram_wrap_i/g5459/Z (HS65_LL_CNNOR2AX15)
+                                                          0.43 *     6.56 r
+  pulpino_top_i/core_region_i/instr_mem/sp_ram_wrap_i/bank2_byte1/D[4] (ST_SPHDL_2048x8m8_L)
+                                                          0.05 *     6.62 r
+  data arrival time                                                  6.62
+
+  clock clk (rise edge)                                   7.00       7.00
+  clock network delay (ideal)                             0.00       7.00
+  clock reconvergence pessimism                           0.00       7.00
+  clock uncertainty                                      -0.35       6.65
+  pulpino_top_i/core_region_i/instr_mem/sp_ram_wrap_i/bank2_byte1/CK (ST_SPHDL_2048x8m8_L)
+                                                                     6.65 r
+  library setup time                                     -0.73 *     5.92
+  data required time                                                 5.92
+  ------------------------------------------------------------------------------
+  data required time                                                 5.92
+  data arrival time                                                 -6.62
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.70
+
+Warning: report_timing has satisfied the max_paths criteria. There are 2915 further endpoints which have paths of interest with slack less than     0.00 that were not considered when generating this report. (UITE-502)
+
+1

@@ -1,0 +1,386 @@
+****************************************
+Report : timing
+	-path_type full
+	-delay_type min
+	-slack_lesser_than 0.00
+	-max_paths 10
+	-sort_by slack
+Design : pulpino_padstop
+Version: O-2018.06-SP5
+Date   : Wed May  7 14:34:35 2025
+****************************************
+
+
+  Startpoint: pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_slave_sm/state_reg[2]
+               (rising edge-triggered flip-flop clocked by spi_clk)
+  Endpoint: spi_mode_o[0]
+               (output port clocked by spi_clk)
+  Path Group: spi_clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock spi_clk (rise edge)                               0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_slave_sm/state_reg[2]/CP (HS65_LL_DFPRQNX4)
+                                                          0.00       0.00 r
+  pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_slave_sm/state_reg[2]/QN (HS65_LL_DFPRQNX4)
+                                                          0.39 *     0.39 f
+  pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_slave_sm/g3623/Z (HS65_LL_NAND2AX4)
+                                                          0.14 *     0.53 r
+  FE_OFC537_spi_mode_internal_0/Z (HS65_LL_BFX27)         0.14 *     0.67 r
+  spi_mode_pad0/PADIO (CPAD_S_74x50u_OUT)                 0.45 *     1.13 r
+  spi_mode_o[0] (out)                                     0.00 *     1.13 r
+  data arrival time                                                  1.13
+
+  clock spi_clk (rise edge)                               0.00       0.00
+  clock network delay (ideal)                             5.00       5.00
+  clock reconvergence pessimism                          -2.50       2.50
+  clock uncertainty                                       2.50       5.00
+  output external delay                                  -2.50       2.50
+  data required time                                                 2.50
+  ------------------------------------------------------------------------------
+  data required time                                                 2.50
+  data arrival time                                                 -1.13
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -1.37
+
+
+  Startpoint: pulpino_top_i/core_region_i/data_mem/bank1_byte1
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[13]
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  pulpino_top_i/core_region_i/data_mem/bank1_byte1/CK (ST_SPHDL_2048x8m8_L)
+                                                          0.00       0.00 r
+  pulpino_top_i/core_region_i/data_mem/bank1_byte1/Q[5] (ST_SPHDL_2048x8m8_L)
+                                                          0.52 &     0.52 r
+  pulpino_top_i/core_region_i/data_mem/g5293/Z (HS65_LL_MX41X14)
+                                                          0.18 *     0.70 r
+  pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[13]/D (HS65_LL_SDFPRQX9)
+                                                          0.00 *     0.70 r
+  data arrival time                                                  0.70
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.70       0.70
+  clock reconvergence pessimism                           0.00       0.70
+  clock uncertainty                                       0.35       1.05
+  pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[13]/CP (HS65_LL_SDFPRQX9)
+                                                                     1.05 r
+  library hold time                                      -0.04 *     1.01
+  data required time                                                 1.01
+  ------------------------------------------------------------------------------
+  data required time                                                 1.01
+  data arrival time                                                 -0.70
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.31
+
+
+  Startpoint: pulpino_top_i/core_region_i/data_mem/bank1_byte3
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[29]
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  pulpino_top_i/core_region_i/data_mem/bank1_byte3/CK (ST_SPHDL_2048x8m8_L)
+                                                          0.00       0.00 r
+  pulpino_top_i/core_region_i/data_mem/bank1_byte3/Q[5] (ST_SPHDL_2048x8m8_L)
+                                                          0.51 &     0.51 r
+  pulpino_top_i/core_region_i/data_mem/g5269/Z (HS65_LL_MX41X7)
+                                                          0.19 *     0.70 r
+  pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[29]/D (HS65_LL_SDFPRQX9)
+                                                          0.00 *     0.70 r
+  data arrival time                                                  0.70
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.70       0.70
+  clock reconvergence pessimism                           0.00       0.70
+  clock uncertainty                                       0.35       1.05
+  pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[29]/CP (HS65_LL_SDFPRQX9)
+                                                                     1.05 r
+  library hold time                                      -0.06 *     0.99
+  data required time                                                 0.99
+  ------------------------------------------------------------------------------
+  data required time                                                 0.99
+  data arrival time                                                 -0.70
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.29
+
+
+  Startpoint: pulpino_top_i/core_region_i/data_mem/bank1_byte2
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[23]
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  pulpino_top_i/core_region_i/data_mem/bank1_byte2/CK (ST_SPHDL_2048x8m8_L)
+                                                          0.00       0.00 r
+  pulpino_top_i/core_region_i/data_mem/bank1_byte2/Q[7] (ST_SPHDL_2048x8m8_L)
+                                                          0.52 &     0.52 r
+  pulpino_top_i/core_region_i/data_mem/g5290/Z (HS65_LL_MX41X7)
+                                                          0.21 *     0.72 r
+  pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[23]/D (HS65_LL_SDFPRQX9)
+                                                          0.00 *     0.73 r
+  data arrival time                                                  0.73
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.70       0.70
+  clock reconvergence pessimism                           0.00       0.70
+  clock uncertainty                                       0.35       1.05
+  pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[23]/CP (HS65_LL_SDFPRQX9)
+                                                                     1.05 r
+  library hold time                                      -0.06 *     0.99
+  data required time                                                 0.99
+  ------------------------------------------------------------------------------
+  data required time                                                 0.99
+  data arrival time                                                 -0.73
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.26
+
+
+  Startpoint: pulpino_top_i/core_region_i/data_mem/bank1_byte1
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[14]
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  pulpino_top_i/core_region_i/data_mem/bank1_byte1/CK (ST_SPHDL_2048x8m8_L)
+                                                          0.00       0.00 r
+  pulpino_top_i/core_region_i/data_mem/bank1_byte1/Q[6] (ST_SPHDL_2048x8m8_L)
+                                                          0.52 &     0.52 f
+  pulpino_top_i/core_region_i/data_mem/g5291/Z (HS65_LL_MX41X7)
+                                                          0.19 *     0.71 f
+  pulpino_top_i/core_region_i/FE_OFC3403_axi_mem_rdata_14/Z (HS65_LL_BFX27)
+                                                          0.09 *     0.80 f
+  pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[14]/D (HS65_LL_SDFPRQX9)
+                                                          0.01 *     0.81 f
+  data arrival time                                                  0.81
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.70       0.70
+  clock reconvergence pessimism                           0.00       0.70
+  clock uncertainty                                       0.35       1.05
+  pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[14]/CP (HS65_LL_SDFPRQX9)
+                                                                     1.05 r
+  library hold time                                      -0.00 *     1.05
+  data required time                                                 1.05
+  ------------------------------------------------------------------------------
+  data required time                                                 1.05
+  data arrival time                                                 -0.81
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.24
+
+
+  Startpoint: pulpino_top_i/core_region_i/data_mem/bank1_byte3
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[31]
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  pulpino_top_i/core_region_i/data_mem/bank1_byte3/CK (ST_SPHDL_2048x8m8_L)
+                                                          0.00       0.00 r
+  pulpino_top_i/core_region_i/data_mem/bank1_byte3/Q[7] (ST_SPHDL_2048x8m8_L)
+                                                          0.51 &     0.51 f
+  pulpino_top_i/core_region_i/data_mem/g5282/Z (HS65_LL_MX41X7)
+                                                          0.14 *     0.66 f
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13225_axi_mem_rdata_31/Z (HS65_LL_BFX7)
+                                                          0.14 *     0.80 f
+  pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[31]/D (HS65_LL_SDFPRQX9)
+                                                          0.00 *     0.80 f
+  data arrival time                                                  0.80
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.70       0.70
+  clock reconvergence pessimism                           0.00       0.70
+  clock uncertainty                                       0.35       1.05
+  pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[31]/CP (HS65_LL_SDFPRQX9)
+                                                                     1.05 r
+  library hold time                                      -0.03 *     1.02
+  data required time                                                 1.02
+  ------------------------------------------------------------------------------
+  data required time                                                 1.02
+  data arrival time                                                 -0.80
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.23
+
+
+  Startpoint: pulpino_top_i/core_region_i/data_mem/bank1_byte1
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[15]
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  pulpino_top_i/core_region_i/data_mem/bank1_byte1/CK (ST_SPHDL_2048x8m8_L)
+                                                          0.00       0.00 r
+  pulpino_top_i/core_region_i/data_mem/bank1_byte1/Q[7] (ST_SPHDL_2048x8m8_L)
+                                                          0.52 &     0.52 f
+  pulpino_top_i/core_region_i/data_mem/g5288/Z (HS65_LL_MX41X7)
+                                                          0.19 *     0.71 f
+  pulpino_top_i/core_region_i/FE_OFC3394_axi_mem_rdata_15/Z (HS65_LL_BFX18)
+                                                          0.10 *     0.81 f
+  pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[15]/D (HS65_LL_SDFPRQX9)
+                                                          0.01 *     0.82 f
+  data arrival time                                                  0.82
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.70       0.70
+  clock reconvergence pessimism                           0.00       0.70
+  clock uncertainty                                       0.35       1.05
+  pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[15]/CP (HS65_LL_SDFPRQX9)
+                                                                     1.05 r
+  library hold time                                      -0.01 *     1.04
+  data required time                                                 1.04
+  ------------------------------------------------------------------------------
+  data required time                                                 1.04
+  data arrival time                                                 -0.82
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.22
+
+
+  Startpoint: pulpino_top_i/core_region_i/data_mem/bank1_byte3
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[30]
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  pulpino_top_i/core_region_i/data_mem/bank1_byte3/CK (ST_SPHDL_2048x8m8_L)
+                                                          0.00       0.00 r
+  pulpino_top_i/core_region_i/data_mem/bank1_byte3/Q[6] (ST_SPHDL_2048x8m8_L)
+                                                          0.51 &     0.51 f
+  pulpino_top_i/core_region_i/data_mem/g5268/Z (HS65_LL_MX41X7)
+                                                          0.15 *     0.66 f
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13230_axi_mem_rdata_30/Z (HS65_LL_BFX7)
+                                                          0.15 *     0.81 f
+  pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[30]/D (HS65_LL_SDFPRQX9)
+                                                          0.00 *     0.81 f
+  data arrival time                                                  0.81
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.70       0.70
+  clock reconvergence pessimism                           0.00       0.70
+  clock uncertainty                                       0.35       1.05
+  pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[30]/CP (HS65_LL_SDFPRQX9)
+                                                                     1.05 r
+  library hold time                                      -0.03 *     1.02
+  data required time                                                 1.02
+  ------------------------------------------------------------------------------
+  data required time                                                 1.02
+  data arrival time                                                 -0.81
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.21
+
+
+  Startpoint: pulpino_top_i/core_region_i/data_mem/bank1_byte2
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[21]
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  pulpino_top_i/core_region_i/data_mem/bank1_byte2/CK (ST_SPHDL_2048x8m8_L)
+                                                          0.00       0.00 r
+  pulpino_top_i/core_region_i/data_mem/bank1_byte2/Q[5] (ST_SPHDL_2048x8m8_L)
+                                                          0.52 &     0.52 f
+  pulpino_top_i/core_region_i/data_mem/g5295/Z (HS65_LL_MX41X7)
+                                                          0.16 *     0.68 f
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13221_axi_mem_rdata_21/Z (HS65_LL_BFX7)
+                                                          0.15 *     0.82 f
+  pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[21]/D (HS65_LL_SDFPRQX9)
+                                                          0.00 *     0.82 f
+  data arrival time                                                  0.82
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.70       0.70
+  clock reconvergence pessimism                           0.00       0.70
+  clock uncertainty                                       0.35       1.05
+  pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[21]/CP (HS65_LL_SDFPRQX9)
+                                                                     1.05 r
+  library hold time                                      -0.03 *     1.02
+  data required time                                                 1.02
+  ------------------------------------------------------------------------------
+  data required time                                                 1.02
+  data arrival time                                                 -0.82
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.20
+
+
+  Startpoint: pulpino_top_i/core_region_i/data_mem/bank1_byte3
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[24]
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  pulpino_top_i/core_region_i/data_mem/bank1_byte3/CK (ST_SPHDL_2048x8m8_L)
+                                                          0.00       0.00 r
+  pulpino_top_i/core_region_i/data_mem/bank1_byte3/Q[0] (ST_SPHDL_2048x8m8_L)
+                                                          0.52 &     0.52 f
+  pulpino_top_i/core_region_i/data_mem/g5285/Z (HS65_LL_MX41X7)
+                                                          0.17 *     0.68 f
+  pulpino_top_i/core_region_i/data_mem/FE_PHC13231_axi_mem_rdata_24/Z (HS65_LL_BFX7)
+                                                          0.14 *     0.82 f
+  pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[24]/D (HS65_LL_SDFPRQX9)
+                                                          0.00 *     0.83 f
+  data arrival time                                                  0.83
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.70       0.70
+  clock reconvergence pessimism                           0.00       0.70
+  clock uncertainty                                       0.35       1.05
+  pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL/RDATA_REG_reg[24]/CP (HS65_LL_SDFPRQX9)
+                                                                     1.05 r
+  library hold time                                      -0.03 *     1.02
+  data required time                                                 1.02
+  ------------------------------------------------------------------------------
+  data required time                                                 1.02
+  data arrival time                                                 -0.83
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.19
+
+Warning: report_timing has satisfied the max_paths criteria. There are 27 further endpoints which have paths of interest with slack less than     0.00 that were not considered when generating this report. (UITE-502)
+
+1
