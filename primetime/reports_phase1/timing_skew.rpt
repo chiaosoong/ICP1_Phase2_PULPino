@@ -1,0 +1,35 @@
+****************************************
+Report : clock timing
+	-type skew
+	-verbose
+	-nworst 1
+	-setup
+Design : PADSTOP
+Version: O-2018.06-SP5
+Date   : Thu Apr 24 11:23:01 2025
+****************************************
+
+  Clock: clk
+
+  Startpoint: matrixTOP_inst/Matrix_multiplier_inst/P_result_reg[0]
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: matrixTOP_inst/Matrix_multiplier_inst/P_result_reg[0]
+               (rising edge-triggered flip-flop clocked by clk)
+
+  Point                                          Trans       Incr       Path
+  -----------------------------------------------------------------------------
+  clock clk (rise edge)                           0.20
+  clock network delay (ideal)                                1.00       1.00
+  startpoint clock latency                                              1.00
+
+  clock clk (rise edge)                           0.00
+  clock network delay (ideal)                                0.00       0.00
+  endpoint clock latency                                                0.00
+  -----------------------------------------------------
+  startpoint clock latency                      1.00
+  endpoint clock latency                        0.00
+  clock reconvergence pessimism                 0.00
+  -----------------------------------------------------
+  skew                                          1.00
+
+1

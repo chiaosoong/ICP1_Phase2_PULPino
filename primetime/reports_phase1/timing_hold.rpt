@@ -1,0 +1,395 @@
+****************************************
+Report : timing
+	-path_type full
+	-delay_type min
+	-slack_lesser_than 0.00
+	-max_paths 10
+	-sort_by slack
+Design : PADSTOP
+Version: O-2018.06-SP5
+Date   : Thu Apr 24 11:23:01 2025
+****************************************
+
+
+  Startpoint: matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: matrixTOP_inst/pwrite_inst/P_last_reg[12]
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011/CK (ST_SPHDL_160x32m8_L)
+                                                          0.00       0.00 r
+  matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011/Q[12] (ST_SPHDL_160x32m8_L)
+                                                          0.43 &     0.43 f
+  matrixTOP_inst/pwrite_inst/g2642/Z (HS65_LL_AO22X9)     0.12 *     0.56 f
+  matrixTOP_inst/pwrite_inst/FE_PHC480_n_23/Z (HS65_LL_DLYIC6X9)
+                                                          0.44 *     1.00 f
+  matrixTOP_inst/pwrite_inst/FE_PHC1361_n_23/Z (HS65_LL_DLYIC2X9)
+                                                          0.12 *     1.11 f
+  matrixTOP_inst/pwrite_inst/P_last_reg[12]/D (HS65_LL_DFPQX9)
+                                                          0.00 *     1.11 f
+  data arrival time                                                  1.11
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             1.00       1.00
+  clock reconvergence pessimism                           0.00       1.00
+  clock uncertainty                                       0.50       1.50
+  matrixTOP_inst/pwrite_inst/P_last_reg[12]/CP (HS65_LL_DFPQX9)      1.50 r
+  library hold time                                       0.01 *     1.51
+  data required time                                                 1.51
+  ------------------------------------------------------------------------------
+  data required time                                                 1.51
+  data arrival time                                                 -1.11
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.40
+
+
+  Startpoint: matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: matrixTOP_inst/pwrite_inst/P_last_reg[9]
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011/CK (ST_SPHDL_160x32m8_L)
+                                                          0.00       0.00 r
+  matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011/Q[9] (ST_SPHDL_160x32m8_L)
+                                                          0.43 &     0.43 f
+  matrixTOP_inst/pwrite_inst/g2639/Z (HS65_LL_AO22X9)     0.12 *     0.55 f
+  matrixTOP_inst/pwrite_inst/FE_PHC943_n_26/Z (HS65_LL_DLYIC6X4)
+                                                          0.44 *     0.99 f
+  matrixTOP_inst/pwrite_inst/FE_PHC518_n_26/Z (HS65_LL_DLYIC4X9)
+                                                          0.29 *     1.28 f
+  matrixTOP_inst/pwrite_inst/P_last_reg[9]/D (HS65_LL_DFPQX9)
+                                                          0.00 *     1.28 f
+  data arrival time                                                  1.28
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             1.00       1.00
+  clock reconvergence pessimism                           0.00       1.00
+  clock uncertainty                                       0.50       1.50
+  matrixTOP_inst/pwrite_inst/P_last_reg[9]/CP (HS65_LL_DFPQX9)       1.50 r
+  library hold time                                       0.01 *     1.51
+  data required time                                                 1.51
+  ------------------------------------------------------------------------------
+  data required time                                                 1.51
+  data arrival time                                                 -1.28
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.24
+
+
+  Startpoint: matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: matrixTOP_inst/pwrite_inst/P_last_reg[17]
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011/CK (ST_SPHDL_160x32m8_L)
+                                                          0.00       0.00 r
+  matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011/Q[17] (ST_SPHDL_160x32m8_L)
+                                                          0.44 &     0.44 f
+  matrixTOP_inst/pwrite_inst/g2647/Z (HS65_LL_AO22X9)     0.10 *     0.53 f
+  matrixTOP_inst/pwrite_inst/FE_PHC934_n_18/Z (HS65_LL_DLYIC4X4)
+                                                          0.29 *     0.83 f
+  matrixTOP_inst/pwrite_inst/FE_PHC498_n_18/Z (HS65_LL_DLYIC6X9)
+                                                          0.46 *     1.28 f
+  matrixTOP_inst/pwrite_inst/P_last_reg[17]/D (HS65_LL_DFPQX9)
+                                                          0.00 *     1.28 f
+  data arrival time                                                  1.28
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             1.00       1.00
+  clock reconvergence pessimism                           0.00       1.00
+  clock uncertainty                                       0.50       1.50
+  matrixTOP_inst/pwrite_inst/P_last_reg[17]/CP (HS65_LL_DFPQX9)      1.50 r
+  library hold time                                       0.00 *     1.50
+  data required time                                                 1.50
+  ------------------------------------------------------------------------------
+  data required time                                                 1.50
+  data arrival time                                                 -1.28
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.22
+
+
+  Startpoint: matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: matrixTOP_inst/pwrite_inst/P_last_reg[14]
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011/CK (ST_SPHDL_160x32m8_L)
+                                                          0.00       0.00 r
+  matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011/Q[14] (ST_SPHDL_160x32m8_L)
+                                                          0.43 &     0.43 f
+  matrixTOP_inst/pwrite_inst/g2638/Z (HS65_LL_AO22X9)     0.09 *     0.52 f
+  matrixTOP_inst/pwrite_inst/FE_PHC927_n_27/Z (HS65_LL_DLYIC4X4)
+                                                          0.33 *     0.85 f
+  matrixTOP_inst/pwrite_inst/FE_PHC497_n_27/Z (HS65_LL_DLYIC6X9)
+                                                          0.49 *     1.34 f
+  matrixTOP_inst/pwrite_inst/P_last_reg[14]/D (HS65_LL_DFPQX9)
+                                                          0.00 *     1.34 f
+  data arrival time                                                  1.34
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             1.00       1.00
+  clock reconvergence pessimism                           0.00       1.00
+  clock uncertainty                                       0.50       1.50
+  matrixTOP_inst/pwrite_inst/P_last_reg[14]/CP (HS65_LL_DFPQX9)      1.50 r
+  library hold time                                       0.00 *     1.50
+  data required time                                                 1.50
+  ------------------------------------------------------------------------------
+  data required time                                                 1.50
+  data arrival time                                                 -1.34
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.16
+
+
+  Startpoint: matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: matrixTOP_inst/pwrite_inst/P_last_reg[3]
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011/CK (ST_SPHDL_160x32m8_L)
+                                                          0.00       0.00 r
+  matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011/Q[3] (ST_SPHDL_160x32m8_L)
+                                                          0.43 &     0.43 f
+  matrixTOP_inst/pwrite_inst/g2631/Z (HS65_LL_AO22X9)     0.11 *     0.54 f
+  matrixTOP_inst/pwrite_inst/FE_PHC974_n_29/Z (HS65_LL_DLYIC6X9)
+                                                          0.42 *     0.96 f
+  matrixTOP_inst/pwrite_inst/FE_PHC485_n_29/Z (HS65_LL_DLYIC6X9)
+                                                          0.40 *     1.36 f
+  matrixTOP_inst/pwrite_inst/P_last_reg[3]/D (HS65_LL_DFPQX9)
+                                                          0.00 *     1.36 f
+  data arrival time                                                  1.36
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             1.00       1.00
+  clock reconvergence pessimism                           0.00       1.00
+  clock uncertainty                                       0.50       1.50
+  matrixTOP_inst/pwrite_inst/P_last_reg[3]/CP (HS65_LL_DFPQX9)       1.50 r
+  library hold time                                       0.01 *     1.51
+  data required time                                                 1.51
+  ------------------------------------------------------------------------------
+  data required time                                                 1.51
+  data arrival time                                                 -1.36
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.15
+
+
+  Startpoint: matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: matrixTOP_inst/pwrite_inst/P_last_reg[5]
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011/CK (ST_SPHDL_160x32m8_L)
+                                                          0.00       0.00 r
+  matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011/Q[5] (ST_SPHDL_160x32m8_L)
+                                                          0.43 &     0.43 f
+  matrixTOP_inst/pwrite_inst/g2629/Z (HS65_LL_AO22X9)     0.10 *     0.53 f
+  matrixTOP_inst/pwrite_inst/FE_PHC495_n_31/Z (HS65_LL_DLYIC6X9)
+                                                          0.41 *     0.94 f
+  matrixTOP_inst/pwrite_inst/FE_PHC973_n_31/Z (HS65_LL_DLYIC6X9)
+                                                          0.41 *     1.36 f
+  matrixTOP_inst/pwrite_inst/P_last_reg[5]/D (HS65_LL_DFPQX9)
+                                                          0.00 *     1.36 f
+  data arrival time                                                  1.36
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             1.00       1.00
+  clock reconvergence pessimism                           0.00       1.00
+  clock uncertainty                                       0.50       1.50
+  matrixTOP_inst/pwrite_inst/P_last_reg[5]/CP (HS65_LL_DFPQX9)       1.50 r
+  library hold time                                       0.01 *     1.51
+  data required time                                                 1.51
+  ------------------------------------------------------------------------------
+  data required time                                                 1.51
+  data arrival time                                                 -1.36
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.15
+
+
+  Startpoint: matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: matrixTOP_inst/pwrite_inst/P_last_reg[8]
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011/CK (ST_SPHDL_160x32m8_L)
+                                                          0.00       0.00 r
+  matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011/Q[8] (ST_SPHDL_160x32m8_L)
+                                                          0.43 &     0.43 f
+  matrixTOP_inst/pwrite_inst/g2628/Z (HS65_LL_AO22X9)     0.12 *     0.55 f
+  matrixTOP_inst/pwrite_inst/FE_PHC907_n_32/Z (HS65_LL_DLYIC6X4)
+                                                          0.39 *     0.94 f
+  matrixTOP_inst/pwrite_inst/FE_PHC486_n_32/Z (HS65_LL_DLYIC6X9)
+                                                          0.42 *     1.36 f
+  matrixTOP_inst/pwrite_inst/P_last_reg[8]/D (HS65_LL_DFPQX9)
+                                                          0.00 *     1.36 f
+  data arrival time                                                  1.36
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             1.00       1.00
+  clock reconvergence pessimism                           0.00       1.00
+  clock uncertainty                                       0.50       1.50
+  matrixTOP_inst/pwrite_inst/P_last_reg[8]/CP (HS65_LL_DFPQX9)       1.50 r
+  library hold time                                       0.00 *     1.50
+  data required time                                                 1.50
+  ------------------------------------------------------------------------------
+  data required time                                                 1.50
+  data arrival time                                                 -1.36
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.14
+
+
+  Startpoint: matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: matrixTOP_inst/pwrite_inst/P_last_reg[2]
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011/CK (ST_SPHDL_160x32m8_L)
+                                                          0.00       0.00 r
+  matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011/Q[2] (ST_SPHDL_160x32m8_L)
+                                                          0.44 &     0.44 f
+  matrixTOP_inst/pwrite_inst/g2630/Z (HS65_LL_AO22X9)     0.11 *     0.55 f
+  matrixTOP_inst/pwrite_inst/FE_PHC983_n_30/Z (HS65_LL_DLYIC6X9)
+                                                          0.42 *     0.97 f
+  matrixTOP_inst/pwrite_inst/FE_PHC500_n_30/Z (HS65_LL_DLYIC6X9)
+                                                          0.40 *     1.37 f
+  matrixTOP_inst/pwrite_inst/P_last_reg[2]/D (HS65_LL_DFPQX9)
+                                                          0.00 *     1.37 f
+  data arrival time                                                  1.37
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             1.00       1.00
+  clock reconvergence pessimism                           0.00       1.00
+  clock uncertainty                                       0.50       1.50
+  matrixTOP_inst/pwrite_inst/P_last_reg[2]/CP (HS65_LL_DFPQX9)       1.50 r
+  library hold time                                       0.01 *     1.51
+  data required time                                                 1.51
+  ------------------------------------------------------------------------------
+  data required time                                                 1.51
+  data arrival time                                                 -1.37
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.14
+
+
+  Startpoint: matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: matrixTOP_inst/pwrite_inst/P_last_reg[4]
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011/CK (ST_SPHDL_160x32m8_L)
+                                                          0.00       0.00 r
+  matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011/Q[4] (ST_SPHDL_160x32m8_L)
+                                                          0.43 &     0.43 f
+  matrixTOP_inst/pwrite_inst/g2648/Z (HS65_LL_AO22X9)     0.11 *     0.55 f
+  matrixTOP_inst/pwrite_inst/FE_PHC981_n_17/Z (HS65_LL_DLYIC6X9)
+                                                          0.42 *     0.97 f
+  matrixTOP_inst/pwrite_inst/FE_PHC479_n_17/Z (HS65_LL_DLYIC6X9)
+                                                          0.40 *     1.37 f
+  matrixTOP_inst/pwrite_inst/P_last_reg[4]/D (HS65_LL_DFPQX9)
+                                                          0.00 *     1.37 f
+  data arrival time                                                  1.37
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             1.00       1.00
+  clock reconvergence pessimism                           0.00       1.00
+  clock uncertainty                                       0.50       1.50
+  matrixTOP_inst/pwrite_inst/P_last_reg[4]/CP (HS65_LL_DFPQX9)       1.50 r
+  library hold time                                       0.01 *     1.51
+  data required time                                                 1.51
+  ------------------------------------------------------------------------------
+  data required time                                                 1.51
+  data arrival time                                                 -1.37
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.14
+
+
+  Startpoint: matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: matrixTOP_inst/pwrite_inst/P_last_reg[6]
+               (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  ------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011/CK (ST_SPHDL_160x32m8_L)
+                                                          0.00       0.00 r
+  matrixTOP_inst/sram_wrapper_inst/DUT_ST_SPHDL_160x32_mem2011/Q[6] (ST_SPHDL_160x32m8_L)
+                                                          0.43 &     0.43 f
+  matrixTOP_inst/pwrite_inst/g2649/Z (HS65_LL_AO22X9)     0.11 *     0.55 f
+  matrixTOP_inst/pwrite_inst/FE_PHC964_n_16/Z (HS65_LL_DLYIC6X4)
+                                                          0.41 *     0.96 f
+  matrixTOP_inst/pwrite_inst/FE_PHC508_n_16/Z (HS65_LL_DLYIC6X9)
+                                                          0.42 *     1.37 f
+  matrixTOP_inst/pwrite_inst/P_last_reg[6]/D (HS65_LL_DFPQX9)
+                                                          0.00 *     1.37 f
+  data arrival time                                                  1.37
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             1.00       1.00
+  clock reconvergence pessimism                           0.00       1.00
+  clock uncertainty                                       0.50       1.50
+  matrixTOP_inst/pwrite_inst/P_last_reg[6]/CP (HS65_LL_DFPQX9)       1.50 r
+  library hold time                                       0.01 *     1.51
+  data required time                                                 1.51
+  ------------------------------------------------------------------------------
+  data required time                                                 1.51
+  data arrival time                                                 -1.37
+  ------------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.14
+
+Warning: report_timing has satisfied the max_paths criteria. There are 5 further endpoints which have paths of interest with slack less than     0.00 that were not considered when generating this report. (UITE-502)
+
+1

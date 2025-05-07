@@ -1,0 +1,88 @@
+****************************************
+Report : Time Based Power
+	-verbose
+Design : PADSTOP
+Version: O-2018.06-SP5
+Date   : Thu Apr 24 11:23:01 2025
+****************************************
+
+Sampling Interval: 0.001 ns
+
+Library(s) Used:
+
+    CORE65LPLVT (File: /usr/local-eit/cad2/cmpstm/stm065v536/CORE65LPLVT_5.1/libs/CORE65LPLVT_bc_1.30V_m40C.db)
+    CLOCK65LPLVT (File: /usr/local-eit/cad2/cmpstm/stm065v536/CLOCK65LPLVT_3.1/libs/CLOCK65LPLVT_bc_1.30V_m40C.db)
+    SPHD110420 (File: /usr/local-eit/cad2/cmpstm/oldmems/mem2011/SPHD110420-48158@1.0/libs/SPHD110420_bc_1.30V_m40C.db)
+    PAD (File: /usr/local-eit/cad2/cmpstm/dicp18/lu_pads_65nm/Pads_Oct2012.db)
+
+
+Operating Conditions: bc_1.30V_m40C   Library: CORE65LPLVT
+Wire Load Model Mode: enclosed
+
+Cell               Design       Wire_model  Library       Selection_type
+--------------------------------------------------------------------------------
+                   PADSTOP      area_78Kto156K
+                                            CLOCK65LPLVT  automatic-by-area
+matrixTOP_inst     matrixTOP    area_42Kto48K
+                                            CLOCK65LPLVT  automatic-by-area
+matrixTOP_inst/mux_inst
+                   MUX          area_0Kto1K CLOCK65LPLVT  automatic-by-area
+matrixTOP_inst/postprocessing_inst
+                   PostProcessing
+                                area_3Kto4K CLOCK65LPLVT  automatic-by-area
+matrixTOP_inst/postprocessing_inst/add_37_29
+                   add_unsigned_181
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+matrixTOP_inst/sram_wrapper_inst
+                   sram_wrapper area_12Kto18K
+                                            CLOCK65LPLVT  automatic-by-area
+matrixTOP_inst/pwrite_inst
+                   Pwrite       area_3Kto4K CLOCK65LPLVT  automatic-by-area
+matrixTOP_inst/Matrix_multiplier_inst
+                   Matrix_multiplier
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+matrixTOP_inst/Matrix_multiplier_inst/csa_tree_add_169_60_groupi
+                   csa_tree_add_169_60_group_209
+                                area_1Kto2K CLOCK65LPLVT  automatic-by-area
+matrixTOP_inst/controller_inst
+                   Controller   area_0Kto1K CLOCK65LPLVT  automatic-by-area
+
+Power-specific unit information :
+    Voltage Units = 1 V
+    Capacitance Units = 1 pf
+    Time Units = 1 ns
+    Dynamic Power Units = 1 W
+    Leakage Power Units = 1 W
+
+
+
+  Attributes
+  ----------
+      i  -  Including register clock pin internal power
+      u  -  User defined power group
+
+                        Internal  Switching  Leakage    Total
+Power Group             Power     Power      Power      Power   (     %)  Attrs
+--------------------------------------------------------------------------------
+clock_network           5.176e-04 1.705e-04 2.923e-07 6.884e-04 (22.52%)  i
+register                1.973e-05 1.052e-05 3.355e-06 3.360e-05 ( 1.10%)  
+combinational           2.323e-04 1.673e-04 3.103e-05 4.306e-04 (14.09%)  
+sequential                 0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+memory                  1.875e-03 1.664e-07 1.100e-07 1.875e-03 (61.35%)  
+io_pad                  2.667e-05 2.109e-06 1.072e-14 2.878e-05 ( 0.94%)  
+black_box                  0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+
+  Net Switching Power  = 3.506e-04   (11.47%)
+  Cell Internal Power  = 2.671e-03   (87.39%)
+  Cell Leakage Power   = 3.479e-05   ( 1.14%)
+                         ---------
+Total Power            = 3.057e-03  (100.00%)
+
+X Transition Power     = 3.719e-06
+Glitching Power        =    0.0000
+
+Peak Power             =    2.0765
+Peak Time              =  9705.307
+
+1
