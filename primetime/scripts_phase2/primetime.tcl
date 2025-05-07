@@ -76,9 +76,9 @@ update_power
 
 ####################### report  #################
 # step 8: output report
-report_power -verbose > /h/d2/a/me0186ta-s/ICP1/Primetime/reports/power.rpt
+report_power -verbose > ./reports/power.rpt
 report_timing -delay_type min -max_paths 10 > ./reports/timing_hold.rpt
-report_timing -delay_type max -max_paths 10 > .reports/timing_setup.rpt
+report_timing -delay_type max -max_paths 10 > ./reports/timing_setup.rpt
 # report_timing -from [all_registers -clock_pins] [all_inputs] -to [all_registers -data_pins] [all_outputs] > /h/d2/a/me0186ta-s/ICP1/Primetime/reports/timing.rpt
 report_constraints -all_violators > ./reports/timing_violation.rpt
 report_clock_timing -type skew -verbose > ./reports/timing_skew.rpt
