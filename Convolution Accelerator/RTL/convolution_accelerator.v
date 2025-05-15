@@ -16,7 +16,7 @@ module convolution_accelerator #(
 
 
     output [(2*PX_W+$clog2(KE_W*KE_W))*(IFM_W-KE_W+1)-1:0] o_ofm,        // [503:0]
-    output wire                                            o_valid_ofm
+    output reg                                             o_valid_ofm
 );
 
 ///////////////////////////////READ KERNEL COEFFICIENTS///////////////////////////////
@@ -77,7 +77,7 @@ module convolution_accelerator #(
 
 
 ////////////////////////////////////////PARSE IFM DATA///////////////////////////////
-    wire [PX_W*IFM_W-1:0] row_pixel;
+    wire [PX_W*IFM_W-1:0] row_pixel; // [223:0]
     wire valid_row;
     parse_input_row #( 
         .PX_W(PX_W),
@@ -243,7 +243,7 @@ module convolution_accelerator #(
                 {ifm_r22, ifm_r23, ifm_r24, ifm_r25, ifm_r26};
         5'h1C:  {row0, row1, row2, row3, row4} = 
                 {ifm_r23, ifm_r24, ifm_r25, ifm_r26, ifm_r27};
-        default: ;
+        default: {row0, row1, row2, row3, row4} = 0;
         endcase
     end
 
@@ -256,7 +256,8 @@ module convolution_accelerator #(
         else
             start_mac = 1'b0;
     end
-
+    
+    wire [23:0] valid_ofm;
     // Generate block to create24 multiply accumulators
     genvar i;
     generate
@@ -277,10 +278,17 @@ module convolution_accelerator #(
                 .i_ker4(ker4),
 
                 .o_ofm(o_ofm[21*i+20:21*i]),
-                .o_valid_ofm(o_valid_ofm)
+                .o_valid_ofm(valid_ofm[i])
             );
         end
     endgenerate
+    
+    always@(*) begin
+        if (&valid_ofm)
+            o_valid_ofm = 1'b1;
+        else
+            o_valid_ofm = 1'b0;
+    end
 ////////////////////////////FINISH MULTIPLY AND ACCUMULATE///////////////////////////////
 
 endmodule
