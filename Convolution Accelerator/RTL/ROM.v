@@ -6,7 +6,7 @@ module ROM#(
     parameter PX_W = 8,   // kernel coefficient data width
     parameter KE_W = 5    // Kernel size: 5×5
 )(
-        input [$clog2(KE_W)-1:0]   i_addr, // [2:0], 000~100
+        input [$clog2(KE_W)-1:0]   i_addr,
         output reg [PX_W*KE_W-1:0] o_data
     );
 
