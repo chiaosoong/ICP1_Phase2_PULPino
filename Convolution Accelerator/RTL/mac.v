@@ -12,7 +12,7 @@ module mac #(
     input  wire [KE_W*PX_W-1:0]         i_row0, i_row1, i_row2, i_row3, i_row4, //  [39:0]
     input  wire [KE_W*PX_W-1:0]         i_ker0, i_ker1, i_ker2, i_ker3, i_ker4,
 
-    output reg                                   o_valid_ofm,   // 1 cycle “data valid”
+    output wire                                  o_valid_ofm,   // 1 cycle “data valid”
     output wire  [2*PX_W+$clog2(KE_W*KE_W)-1:0]  o_ofm          // [20:0]
 );
 
@@ -69,16 +69,22 @@ module mac #(
             sum_c = sum_c + prod[i];
     end
     
+    reg valid_reg1, valid_reg2, valid_reg3, valid_reg4, valid_reg5;
     // Register result & raise valid flag (single-cycle latency)
     always @(posedge i_clk) begin
         if (!i_rstn) begin
-            o_valid_ofm <= 1'b0;
+            {valid_reg1, valid_reg2, valid_reg3, valid_reg4, valid_reg5} <= 0;
         end
         else begin
-            o_valid_ofm <= i_start_mac;   // one cycle pulse
+            valid_reg1 <= i_start_mac;   // one cycle pulse
+            valid_reg2 <= valid_reg1;
+            valid_reg3 <= valid_reg2;
+            valid_reg4 <= valid_reg3;
+            valid_reg5 <= valid_reg4;
         end
     end
     
     assign o_ofm = sum_c;
+    assign o_valid_ofm = valid_reg5;
 
 endmodule
