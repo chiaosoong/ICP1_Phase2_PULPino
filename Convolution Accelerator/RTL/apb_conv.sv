@@ -1,5 +1,6 @@
 //`define CONV_START_ADDR      32'h1A10_3000
 //`define CONV_END_ADDR        32'h1A10_3FFF
+`include "apb_bus.sv"
 
 module apb_conv
 #(
