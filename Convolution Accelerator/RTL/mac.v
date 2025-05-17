@@ -69,22 +69,18 @@ module mac #(
             sum_c = sum_c + prod[i];
     end
     
-    reg valid_reg1, valid_reg2, valid_reg3, valid_reg4, valid_reg5;
+    localparam DELAY = 5;
+    reg [DELAY-1:0] valid_reg;
     // Register result & raise valid flag (single-cycle latency)
     always @(posedge i_clk) begin
         if (!i_rstn) begin
-            {valid_reg1, valid_reg2, valid_reg3, valid_reg4, valid_reg5} <= 0;
+            valid_reg <= 0;
         end
-        else begin
-            valid_reg1 <= i_start_mac;   // one cycle pulse
-            valid_reg2 <= valid_reg1;
-            valid_reg3 <= valid_reg2;
-            valid_reg4 <= valid_reg3;
-            valid_reg5 <= valid_reg4;
-        end
+        else
+            valid_reg <= {valid_reg[DELAY-2:0], i_start_mac};
     end
     
     assign o_ofm = sum_c;
-    assign o_valid_ofm = valid_reg5;
+    assign o_valid_ofm = valid_reg[DELAY-1];
 
 endmodule
