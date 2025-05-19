@@ -2,6 +2,10 @@
 #include <stdio.h>
 #include <string.h>
 
+static uint8_t ifm[28][28];
+static uint8_t filter[5][5];
+static uint32_t ofm[24][24];
+
 void conv2d_accelerator(
     const uint8_t ifm[28][28],
     const uint8_t filter[5][5],
@@ -34,9 +38,9 @@ void conv2d_accelerator(
 
 int main() {
     // 初始化测试数据
-    uint8_t ifm[28][28] = {0};
-    uint8_t filter[5][5] = {0};
-    uint32_t ofm[24][24] = {0};
+	memset(ifm,    0, sizeof(ifm));
+    memset(filter, 0, sizeof(filter));
+    memset(ofm,    0, sizeof(ofm));
 
     // 创建测试模式：中心5x5区域为255的输入
     for (int y = 12; y < 17; y++) {
