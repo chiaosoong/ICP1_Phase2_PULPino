@@ -38,7 +38,7 @@ void conv2d_accelerator(
 
 int main() {
     // 初始化测试数据
-	memset(ifm,    0, sizeof(ifm));
+    memset(ifm,    0, sizeof(ifm));
     memset(filter, 0, sizeof(filter));
     memset(ofm,    0, sizeof(ofm));
 
