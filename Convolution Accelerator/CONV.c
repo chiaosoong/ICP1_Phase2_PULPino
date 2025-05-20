@@ -1,72 +1,51 @@
 #include <stdint.h>
 #include <stdio.h>
-#include <string.h>
+ 
+#define H   28
+#define W   28
+#define FH   5
+#define FW   5
+#define OH  (H - FH + 1)
+#define OW  (W - FW + 1)
+ 
+static uint8_t  ifm[H][W];
+static uint8_t  filter[FH][FW];
+static uint32_t ofm[OH][OW];
+ 
+int main(void) {
+    for (int y = 0; y < H; y++)
+        for (int x = 0; x < W; x++)
+            ifm[y][x] = 0;
 
-static uint8_t ifm[28][28];
-static uint8_t filter[5][5];
-static uint32_t ofm[24][24];
-
-void conv2d_accelerator(
-    const uint8_t ifm[28][28],
-    const uint8_t filter[5][5],
-    uint32_t ofm[24][24])
-{
-    const int stride = 1;
-
-    for (int out_y = 0; out_y < 24; out_y++) {
-        for (int out_x = 0; out_x < 24; out_x++) {
+    for (int fy = 0; fy < FH; fy++)
+        for (int fx = 0; fx < FW; fx++)
+            filter[fy][fx] = 0;
+ 
+    static uint8_t filter[FH][FW] = {
+    {255, 255, 255, 255, 255},
+    {255, 255, 255, 255, 255},
+    {255, 255, 255, 255, 255},
+    {255, 255, 255, 255, 255},
+    {255, 255, 255, 255, 255}
+    };
+ 
+    for (int y = 4; y < 24; y++)
+        for (int x = 4; x < 24; x++)
+            ifm[y][x] = 1;
+ 
+    for (int out_y = 0; out_y < OH; out_y++) {
+        for (int out_x = 0; out_x < OW; out_x++) {
             int32_t sum = 0;
-            
-            // Filter window
-            for (int fy = 0; fy < 5; fy++) {
-                for (int fx = 0; fx < 5; fx++) {
-                    // Calculate input position
-                    int in_y = out_y * stride + fy;
-                    int in_x = out_x * stride + fx;
-					uint8_t ifm_val = ifm[in_y][in_x];
-                    
-                    // Multiply and accumulate
-                    sum += (int32_t)ifm_val * (int32_t)filter[fy][fx];
+            for (int fy = 0; fy < FH; fy++) {
+                for (int fx = 0; fx < FW; fx++) {
+                    sum += (int32_t)ifm[out_y + fy][out_x + fx]
+                         * (int32_t)filter[fy][fx];
                 }
             }
-            
-            // Store 32-bit result
             ofm[out_y][out_x] = (uint32_t)sum;
+            printf("OFM[%d][%d] = %10u\n", out_y, out_x, ofm[out_y][out_x]);
         }
     }
-}
-
-int main() {
-    // 初始化测试数据
-    memset(ifm,    0, sizeof(ifm));
-    memset(filter, 0, sizeof(filter));
-    memset(ofm,    0, sizeof(ofm));
-
-    // 创建测试模式：中心5x5区域为255的输入
-    for (int y = 12; y < 17; y++) {
-        for (int x = 12; x < 17; x++) {
-            ifm[y][x] = 255;
-        }
-    }
-
-    // 创建全255滤波器
-    for (int fy = 0; fy < 5; fy++) {
-        for (int fx = 0; fx < 5; fx++) {
-            filter[fy][fx] = 255;
-        }
-    }
-
-    // 执行卷积运算
-    conv2d_accelerator(ifm, filter, ofm);
-
-    // 打印输出特征图关键区域
-    printf("OFM(Center 8x8):\n");
-    for (int y = 8; y < 16; y++) {
-        for (int x = 8; x < 16; x++) {
-            printf("%8u", ofm[y][x]);
-        }
-        printf("\n");
-    }
-
+ 
     return 0;
 }
