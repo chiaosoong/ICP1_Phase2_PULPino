@@ -1,17 +1,15 @@
-% generate_constant_binary_grid.m  (fixed)
 rows = 28;
 cols = 28;
-numLines = rows * cols;                 % 784
 
-% deterministic pattern: 0¡­255 repeating
-data    = uint8(mod(0:numLines-1, 256));   % 784¡Á1 column
+% 1) Start with all zeros, uint8 type
+I = zeros(rows, cols, 'uint8');
 
-% convert to 8-bit binary (char matrix, still 784¡Á8)
-binStr  = dec2bin(data, 8);
+% 2) Set the central 20¡Á20 block to 1
+I(5:24, 5:24) = 1;      % MATLAB is 1-based; corresponds to C indices 4¡­23
 
-% ---- WRITE FILE, one row per line --------------------------------------
+% 3) Convert every element to an 8-bit binary string (row-major order)
+binStr = dec2bin(I(:), 8);   % 784¡Á8 char matrix
 fileID  = fopen('IFM.txt', 'w');
-
 binCell = cellstr(binStr);           % 784¡Á1 cell array, one 8-char string each
 fprintf(fileID, '%s\n', binCell{:}); % expands to 784 calls, one per line
 fclose(fileID);
@@ -19,9 +17,9 @@ fclose(fileID);
 disp('IFM.txt generated.');
 
 % Reshape to 28¡Á28 and show the decimal matrix
-I = reshape(data, cols, rows).';
-disp('IFM:')
-disp(I);
+ I = reshape(I(:), cols, rows).';
+ disp('IFM:')
+ disp(I);
 
 % 5¡Á5 kernel filled with 255
 A = uint8(255 * ones(5));          % 5-by-5
@@ -38,11 +36,3 @@ ofmID = fopen('OFM.txt','w');
 fprintf(ofmID, '%d\n', OFM(:));
 fclose(ofmID);
 disp('OFM.txt generated.');
-
-
-
-
-
-
-
-
