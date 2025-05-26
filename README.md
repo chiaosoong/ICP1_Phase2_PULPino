@@ -35,4 +35,4 @@
     if (~gpio_out[8])
       wait(gpio_out[8]);
    ```
-3. 去除GPIO后terminal无法显示printf信息，使用`make "${PROJECT_NAME}.vsim"` ---> simulate
+3. 去除GPIO后terminal无法显示printf信息，使用`make "${PROJECT_NAME}.vsim.spi"` ---> simulate
