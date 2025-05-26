@@ -1,0 +1,1286 @@
+****************************************
+Report : Time Based Power
+	-verbose
+Design : pulpino_padstop
+Version: O-2018.06-SP5
+Date   : Mon May 26 21:34:43 2025
+****************************************
+
+Sampling Interval: 0.001 ns
+
+Library(s) Used:
+
+    CORE65LPLVT (File: /usr/local-eit/cad2/cmpstm/stm065v536/CORE65LPLVT_5.1/libs/CORE65LPLVT_bc_1.30V_m40C.db)
+    CLOCK65LPLVT (File: /usr/local-eit/cad2/cmpstm/stm065v536/CLOCK65LPLVT_3.1/libs/CLOCK65LPLVT_bc_1.30V_m40C.db)
+    SPHDL100909 (File: /usr/local-eit/cad2/cmpstm/oldmems/mem2010/SPHDL100909-40446@1.0/libs/SPHDL100909_bc_1.30V_m40C.db)
+    PAD (File: /usr/local-eit/cad2/cmpstm/dicp18/lu_pads_65nm/Pads_Oct2012.db)
+
+
+Operating Conditions: bc_1.30V_m40C   Library: CORE65LPLVT
+Wire Load Model Mode: enclosed
+
+Cell               Design       Wire_model  Library       Selection_type
+--------------------------------------------------------------------------------
+                   pulpino_padstop
+                                area_780Kto1170K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i      pulpino_top  area_780Kto1170K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i
+                   peripherals_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_USER_WIDTH1_AXI_SLAVE_ID_WIDTH4_AXI_MASTER_ID_WIDTH2_axi_spi_master_AXI_BUS_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_ID_WIDTH2_AXI_USER_WIDTH1_Master_debug_DEBUG_BUS_Master_slave_AXI_BUS_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_ID_WIDTH4_AXI_USER_WIDTH1_Slave
+                                area_780Kto1170K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb2per_debug_i
+                   apb2per_PER_ADDR_WIDTH15_APB_ADDR_WIDTH32
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/genblk1[0].core_clock_gate
+                   cluster_clock_gating_21
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi2apb_i
+                   axi2apb_wrap_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_USER_WIDTH1_AXI_ID_WIDTH4_APB_ADDR_WIDTH32_axi_slave_AXI_BUS_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_ID_WIDTH4_AXI_USER_WIDTH1_Slave_apb_master_APB_BUS_Master
+                                area_24Kto30K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi2apb_i/genblk1.axi2apb_i
+                   axi2apb32_AXI4_ADDRESS_WIDTH32_AXI4_RDATA_WIDTH32_AXI4_WDATA_WIDTH32_AXI4_ID_WIDTH4_AXI4_USER_WIDTH1_BUFF_DEPTH_SLAVE2_APB_ADDR_WIDTH32
+                                area_24Kto30K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi2apb_i/genblk1.axi2apb_i/Slave_r_buffer
+                   axi_r_buffer_ID_WIDTH4_DATA_WIDTH32_USER_WIDTH1_BUFFER_DEPTH2
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi2apb_i/genblk1.axi2apb_i/Slave_r_buffer/buffer_i
+                   generic_fifo_DATA_WIDTH40_DATA_DEPTH2
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi2apb_i/genblk1.axi2apb_i/Slave_r_buffer/buffer_i/cg_cell
+                   cluster_clock_gating_18
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi2apb_i/genblk1.axi2apb_i/Slave_ar_buffer
+                   axi_ar_buffer_ID_WIDTH4_ADDR_WIDTH32_USER_WIDTH1_BUFFER_DEPTH2
+                                area_5Kto6K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi2apb_i/genblk1.axi2apb_i/Slave_ar_buffer/buffer_i
+                   generic_fifo_DATA_WIDTH66_DATA_DEPTH2_1
+                                area_5Kto6K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi2apb_i/genblk1.axi2apb_i/Slave_ar_buffer/buffer_i/cg_cell
+                   cluster_clock_gating_17
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi2apb_i/genblk1.axi2apb_i/Slave_w_buffer
+                   axi_w_buffer_DATA_WIDTH32_USER_WIDTH1_BUFFER_DEPTH2_1
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi2apb_i/genblk1.axi2apb_i/Slave_w_buffer/buffer_i
+                   generic_fifo_DATA_WIDTH38_DATA_DEPTH2_2
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi2apb_i/genblk1.axi2apb_i/Slave_w_buffer/buffer_i/cg_cell
+                   cluster_clock_gating_20
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi2apb_i/genblk1.axi2apb_i/Slave_aw_buffer
+                   axi_aw_buffer_ID_WIDTH4_ADDR_WIDTH32_USER_WIDTH1_BUFFER_DEPTH2
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi2apb_i/genblk1.axi2apb_i/Slave_aw_buffer/buffer_i
+                   generic_fifo_DATA_WIDTH66_DATA_DEPTH2
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi2apb_i/genblk1.axi2apb_i/Slave_aw_buffer/buffer_i/cg_cell
+                   cluster_clock_gating_16
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi2apb_i/genblk1.axi2apb_i/Slave_b_buffer
+                   axi_b_buffer_ID_WIDTH4_USER_WIDTH1_BUFFER_DEPTH2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi2apb_i/genblk1.axi2apb_i/Slave_b_buffer/buffer_i
+                   generic_fifo_DATA_WIDTH7_DATA_DEPTH2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi2apb_i/genblk1.axi2apb_i/Slave_b_buffer/buffer_i/cg_cell
+                   cluster_clock_gating_19
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/genblk1[1].core_clock_gate
+                   cluster_clock_gating_22
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i
+                   apb_uart     area_78Kto156K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_PEDET
+                   slib_edge_detect_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_FEDET
+                   slib_edge_detect_2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_ED_RI
+                   slib_edge_detect_6
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_IS_DCD
+                   slib_input_sync_3
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_TXFF
+                   slib_fifo_WIDTH8_SIZE_E6
+                                area_42Kto48K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_BG2
+                   slib_clock_div_RATIO8
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_ED_DSR
+                   slib_edge_detect_5
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_RX
+                   uart_receiver
+                                area_3Kto4K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_RX/RX_IFSB
+                   slib_input_filter_SIZE4
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_RX/RX_MVF
+                   slib_mv_filter_WIDTH4_THRESHOLD10
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_RX/RX_BRC
+                   slib_counter_WIDTH4
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_TX
+                   uart_transmitter
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_RXFF
+                   slib_fifo_WIDTH11_SIZE_E6
+                                area_60Kto66K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_BIDET
+                   slib_edge_detect_3
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_IF_RI
+                   slib_input_filter_SIZE2_3
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_IIC
+                   uart_interrupt
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_IS_SIN
+                   slib_input_sync
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_IF_DCD
+                   slib_input_filter_SIZE2_2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_ED_CTS
+                   slib_edge_detect_4
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_IIC_THRE_ED
+                   slib_edge_detect
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_IS_RI
+                   slib_input_sync_4
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_RCLK
+                   slib_edge_detect_8
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_ED_DCD
+                   slib_edge_detect_7
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_uart_i/UART_BG16
+                   uart_baudgen area_1Kto2K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/genblk1[2].core_clock_gate
+                   cluster_clock_gating_23
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_gpio_i
+                   apb_gpio     area_42Kto48K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/genblk1[4].core_clock_gate
+                   cluster_clock_gating_25
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/genblk1[5].core_clock_gate
+                   cluster_clock_gating_26
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i
+                   axi_spi_slave_wrap_AXI_ADDRESS_WIDTH32_AXI_DATA_WIDTH32_AXI_ID_WIDTH2_AXI_USER_WIDTH1_axi_master_AXI_BUS_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_ID_WIDTH2_AXI_USER_WIDTH1_Master
+                                area_234Kto312K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i
+                   axi_spi_slave_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_USER_WIDTH1_AXI_ID_WIDTH2
+                                area_234Kto312K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_slave_sm
+                   spi_slave_controller_DUMMY_CYCLES32
+                                area_48Kto54K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_slave_sm/u_spiregs
+                   spi_slave_regs_REG_SIZE8
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_slave_sm/u_cmd_parser
+                   spi_slave_cmd_parser
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_rxreg
+                   spi_slave_rx area_24Kto30K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_dcfifo_rx
+                   spi_slave_dc_fifo_DATA_WIDTH32_BUFFER_DEPTH8
+                                area_78Kto156K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_dcfifo_rx/u_dout
+                   dc_token_ring_fifo_dout_DATA_WIDTH32_BUFFER_DEPTH8
+                                area_1Kto2K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_dcfifo_rx/u_dout/read_tr
+                   dc_token_ring_BUFFER_DEPTH8_RESET_VALUE32h00000003
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_dcfifo_rx/u_dout/empty_synch
+                   dc_synchronizer_WIDTH8_RESET_VALUE32h0000000c
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_dcfifo_rx/u_din
+                   dc_token_ring_fifo_din_DATA_WIDTH32_BUFFER_DEPTH8
+                                area_78Kto156K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_dcfifo_rx/u_din/full
+                   dc_full_detector_BUFFER_DEPTH8
+                                area_1Kto2K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_dcfifo_rx/u_din/full/full_synch
+                   dc_synchronizer_WIDTH1_RESET_VALUE1h0
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_dcfifo_rx/u_din/buffer
+                   dc_data_buffer_DATA_WIDTH32_BUFFER_DEPTH8
+                                area_78Kto156K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_dcfifo_rx/u_din/write_tr
+                   dc_token_ring_BUFFER_DEPTH8_RESET_VALUE32h0000000c
+                                area_3Kto4K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_syncro
+                   spi_slave_syncro_AXI_ADDR_WIDTH32
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_axiplug
+                   spi_slave_axi_plug_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_USER_WIDTH1_AXI_ID_WIDTH2
+                                area_9Kto12K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_axiplug/add_154_29
+                   add_unsigned_2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_dcfifo_tx
+                   spi_slave_dc_fifo_DATA_WIDTH32_BUFFER_DEPTH8_1
+                                area_36Kto42K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_dcfifo_tx/u_din
+                   dc_token_ring_fifo_din_DATA_WIDTH32_BUFFER_DEPTH8_1
+                                area_24Kto30K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_dcfifo_tx/u_din/buffer
+                   dc_data_buffer_DATA_WIDTH32_BUFFER_DEPTH8_1
+                                area_24Kto30K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_dcfifo_tx/u_din/write_tr
+                   dc_token_ring_BUFFER_DEPTH8_RESET_VALUE32h0000000c_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_dcfifo_tx/u_din/full
+                   dc_full_detector_BUFFER_DEPTH8_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_dcfifo_tx/u_din/full/full_synch
+                   dc_synchronizer_WIDTH1_RESET_VALUE1h0_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_dcfifo_tx/u_dout
+                   dc_token_ring_fifo_dout_DATA_WIDTH32_BUFFER_DEPTH8_1
+                                area_9Kto12K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_dcfifo_tx/u_dout/read_tr
+                   dc_token_ring_BUFFER_DEPTH8_RESET_VALUE32h00000003_1
+                                area_5Kto6K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_dcfifo_tx/u_dout/empty_synch
+                   dc_synchronizer_WIDTH8_RESET_VALUE32h0000000c_1
+                                area_5Kto6K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_txreg
+                   spi_slave_tx area_24Kto30K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_event_unit_i
+                   apb_event_unit
+                                area_24Kto30K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_event_unit_i/i_interrupt_unit
+                   generic_service_unit_APB_ADDR_WIDTH12
+                                area_9Kto12K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_event_unit_i/i_sleep_unit
+                   sleep_unit_APB_ADDR_WIDTH12
+                                area_2Kto3K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_event_unit_i/i_event_unit
+                   generic_service_unit_APB_ADDR_WIDTH12_1
+                                area_9Kto12K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i
+                   apb_conv     area_780Kto1170K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init
+                   convolution_accelerator
+                                area_780Kto1170K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[10].inst_mac_i
+                   mac_10       area_36Kto42K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[10].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_4306_4
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[21].inst_mac_i
+                   mac_21       area_42Kto48K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[21].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_4332_3
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[13].inst_mac_i
+                   mac_13       area_42Kto48K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[13].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_4319_1
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[2].inst_mac_i
+                   mac_2        area_42Kto48K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[2].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_2
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[16].inst_mac_i
+                   mac_16       area_36Kto42K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[16].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_4319_4
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[5].inst_mac_i
+                   mac_5        area_36Kto42K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[5].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_5
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[19].inst_mac_i
+                   mac_19       area_42Kto48K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[19].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_4332_1
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[8].inst_mac_i
+                   mac_8        area_42Kto48K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[8].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_4306_2
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_rom
+                   ROM          area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[20].inst_mac_i
+                   mac_20       area_36Kto42K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[20].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_4332_2
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[23].inst_mac_i
+                   mac_23       area_42Kto48K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[23].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_4332_5
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[12].inst_mac_i
+                   mac_12       area_36Kto42K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[12].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_4319
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[15].inst_mac_i
+                   mac_15       area_36Kto42K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[15].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_4319_3
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[1].inst_mac_i
+                   mac_1        area_42Kto48K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[1].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_1
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[4].inst_mac_i
+                   mac_4        area_42Kto48K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[4].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_4
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[18].inst_mac_i
+                   mac_18       area_42Kto48K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[18].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_4332
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[7].inst_mac_i
+                   mac_7        area_42Kto48K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[7].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_4306_1
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[11].inst_mac_i
+                   mac_11       area_36Kto42K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[11].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_4306_5
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[22].inst_mac_i
+                   mac_22       area_36Kto42K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[22].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_4332_4
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[0].inst_mac_i
+                   mac          area_42Kto48K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[0].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_parse_input_row
+                   parse_input_row_PX_W8_IFM_W28
+                                area_12Kto18K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[14].inst_mac_i
+                   mac_14       area_42Kto48K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[14].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_4319_2
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[3].inst_mac_i
+                   mac_3        area_42Kto48K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[3].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_3
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[17].inst_mac_i
+                   mac_17       area_42Kto48K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[17].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_4319_5
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[6].inst_mac_i
+                   mac_6        area_42Kto48K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[6].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_4306
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[9].inst_mac_i
+                   mac_9        area_42Kto48K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[9].inst_mac_i/csa_tree_add_69_27_I25_groupi
+                   csa_tree_add_69_27_I25_group_10981_4306_3
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/apb_pulpino_i
+                   apb_pulpino_BOOT_ADDR32h00008000
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/periph_bus_i
+                   periph_bus_wrap_APB_ADDR_WIDTH32_APB_DATA_WIDTH32_apb_slave_APB_BUS_Slave_uart_master_APB_BUS_Master_gpio_master_APB_BUS_Master_spi_master_APB_BUS_Master_conv_master_APB_BUS_Master_event_unit_master_APB_BUS_Master_i2c_master_APB_BUS_Master_fll_master_APB_BUS_Master_soc_ctrl_master_APB_BUS_Master_debug_master_APB_BUS_Master
+                                area_2Kto3K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/periph_bus_i/apb_node_wrap_i
+                   apb_node_wrap_NB_MASTER9_APB_DATA_WIDTH32_APB_ADDR_WIDTH32_apb_slave_APB_BUS_APB_ADDR_WIDTH32_APB_DATA_WIDTH32_Slave_apb_masters_APB_BUS_APB_ADDR_WIDTH32_APB_DATA_WIDTH32_Master
+                                area_2Kto3K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/peripherals_i/periph_bus_i/apb_node_wrap_i/apb_node_i
+                   apb_node_NB_MASTER9_APB_DATA_WIDTH32_APB_ADDR_WIDTH32
+                                area_2Kto3K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i
+                   core_region_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_ID_MASTER_WIDTH2_AXI_ID_SLAVE_WIDTH4_AXI_USER_WIDTH1_USE_ZERO_RISCY0_RISCY_RV32F0_ZERO_RV32M1_ZERO_RV32E0_core_master_AXI_BUS_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_ID_WIDTH2_AXI_USER_WIDTH1_Master_dbg_master_AXI_BUS_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_ID_WIDTH2_AXI_USER_WIDTH1_Master_data_slave_AXI_BUS_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_ID_WIDTH4_AXI_USER_WIDTH1_Slave_instr_slave_AXI_BUS_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_ID_WIDTH4_AXI_USER_WIDTH1_Slave_debug_DEBUG_BUS_Slave
+                                area_780Kto1170K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_mem_axi_if
+                   axi_mem_if_SP_wrap_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_ID_WIDTH4_AXI_USER_WIDTH1_MEM_ADDR_WIDTH15_slave_AXI_BUS_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_ID_WIDTH4_AXI_USER_WIDTH1_Slave
+                                area_48Kto54K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i
+                   axi_mem_if_SP_AXI4_ADDRESS_WIDTH32_AXI4_RDATA_WIDTH32_AXI4_WDATA_WIDTH32_AXI4_ID_WIDTH4_AXI4_USER_WIDTH1_MEM_ADDR_WIDTH15
+                                area_48Kto54K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/WRITE_CTRL
+                   axi_write_only_ctrl_AXI4_ADDRESS_WIDTH32_AXI4_RDATA_WIDTH32_AXI4_WDATA_WIDTH32_AXI4_ID_WIDTH4_AXI4_USER_WIDTH1_AXI_NUMBYTES4_MEM_ADDR_WIDTH15
+                                area_2Kto3K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/Slave_aw_buffer_LP
+                   axi_aw_buffer_ID_WIDTH4_ADDR_WIDTH32_USER_WIDTH1_BUFFER_DEPTH4_1
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/Slave_aw_buffer_LP/buffer_i
+                   generic_fifo_DATA_WIDTH66_DATA_DEPTH4_2
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/Slave_aw_buffer_LP/buffer_i/cg_cell
+                   cluster_clock_gating_11
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/Slave_ar_buffer_LP
+                   axi_ar_buffer_ID_WIDTH4_ADDR_WIDTH32_USER_WIDTH1_BUFFER_DEPTH4_1
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/Slave_ar_buffer_LP/buffer_i
+                   generic_fifo_DATA_WIDTH66_DATA_DEPTH4_3
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/Slave_ar_buffer_LP/buffer_i/cg_cell
+                   cluster_clock_gating_12
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/Slave_w_buffer_LP
+                   axi_w_buffer_DATA_WIDTH32_USER_WIDTH1_BUFFER_DEPTH4_1
+                                area_12Kto18K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/Slave_w_buffer_LP/buffer_i
+                   generic_fifo_DATA_WIDTH38_DATA_DEPTH4_1
+                                area_12Kto18K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/Slave_w_buffer_LP/buffer_i/cg_cell
+                   cluster_clock_gating_13
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/Slave_r_buffer_LP
+                   axi_r_buffer_ID_WIDTH4_DATA_WIDTH32_USER_WIDTH1_BUFFER_DEPTH4_1
+                                area_9Kto12K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/Slave_r_buffer_LP/buffer_i
+                   generic_fifo_DATA_WIDTH40_DATA_DEPTH4_1
+                                area_9Kto12K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/Slave_r_buffer_LP/buffer_i/cg_cell
+                   cluster_clock_gating_14
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/Slave_b_buffer_LP
+                   axi_b_buffer_ID_WIDTH4_USER_WIDTH1_BUFFER_DEPTH4_1
+                                area_1Kto2K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/Slave_b_buffer_LP/buffer_i
+                   generic_fifo_DATA_WIDTH7_DATA_DEPTH4_1
+                                area_1Kto2K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/Slave_b_buffer_LP/buffer_i/cg_cell
+                   cluster_clock_gating_15
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_mem_axi_if/axi_mem_if_SP_i/READ_CTRL
+                   axi_read_only_ctrl_AXI4_ADDRESS_WIDTH32_AXI4_RDATA_WIDTH32_AXI4_WDATA_WIDTH32_AXI4_ID_WIDTH4_AXI4_USER_WIDTH1_AXI_NUMBYTES4_MEM_ADDR_WIDTH15
+                                area_5Kto6K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_ram_mux_i
+                   ram_mux_ADDR_WIDTH16_OUT_WIDTH32_IN0_WIDTH32_IN1_WIDTH32
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/axi_slice_core2axi
+                   axi_slice_wrap_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_USER_WIDTH1_AXI_ID_WIDTH2_SLICE_DEPTH2_axi_slave_AXI_BUS_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_ID_WIDTH2_AXI_USER_WIDTH1_Slave_axi_master_AXI_BUS_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_ID_WIDTH2_AXI_USER_WIDTH1_Master
+                                area_24Kto30K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/axi_slice_core2axi/WITH_SLICE.axi_slice_i
+                   axi_slice_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_USER_WIDTH1_AXI_ID_WIDTH2_SLICE_DEPTH2
+                                area_24Kto30K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/axi_slice_core2axi/WITH_SLICE.axi_slice_i/w_buffer_i
+                   axi_w_buffer_DATA_WIDTH32_USER_WIDTH1_BUFFER_DEPTH2
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/axi_slice_core2axi/WITH_SLICE.axi_slice_i/w_buffer_i/buffer_i
+                   generic_fifo_DATA_WIDTH38_DATA_DEPTH2
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/axi_slice_core2axi/WITH_SLICE.axi_slice_i/w_buffer_i/buffer_i/cg_cell
+                   cluster_clock_gating_3
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/axi_slice_core2axi/WITH_SLICE.axi_slice_i/ar_buffer_i
+                   axi_ar_buffer_ID_WIDTH2_ADDR_WIDTH32_USER_WIDTH1_BUFFER_DEPTH2
+                                area_5Kto6K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/axi_slice_core2axi/WITH_SLICE.axi_slice_i/ar_buffer_i/buffer_i
+                   generic_fifo_DATA_WIDTH64_DATA_DEPTH2_1
+                                area_5Kto6K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/axi_slice_core2axi/WITH_SLICE.axi_slice_i/ar_buffer_i/buffer_i/cg_cell
+                   cluster_clock_gating_2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/axi_slice_core2axi/WITH_SLICE.axi_slice_i/r_buffer_i
+                   axi_r_buffer_ID_WIDTH2_DATA_WIDTH32_USER_WIDTH1_BUFFER_DEPTH2
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/axi_slice_core2axi/WITH_SLICE.axi_slice_i/r_buffer_i/buffer_i
+                   generic_fifo_DATA_WIDTH38_DATA_DEPTH2_1
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/axi_slice_core2axi/WITH_SLICE.axi_slice_i/r_buffer_i/buffer_i/cg_cell
+                   cluster_clock_gating_4
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/axi_slice_core2axi/WITH_SLICE.axi_slice_i/b_buffer_i
+                   axi_b_buffer_ID_WIDTH2_USER_WIDTH1_BUFFER_DEPTH2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/axi_slice_core2axi/WITH_SLICE.axi_slice_i/b_buffer_i/buffer_i
+                   generic_fifo_DATA_WIDTH5_DATA_DEPTH2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/axi_slice_core2axi/WITH_SLICE.axi_slice_i/aw_buffer_i
+                   axi_aw_buffer_ID_WIDTH2_ADDR_WIDTH32_USER_WIDTH1_BUFFER_DEPTH2
+                                area_5Kto6K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/axi_slice_core2axi/WITH_SLICE.axi_slice_i/aw_buffer_i/buffer_i
+                   generic_fifo_DATA_WIDTH64_DATA_DEPTH2
+                                area_5Kto6K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/axi_slice_core2axi/WITH_SLICE.axi_slice_i/aw_buffer_i/buffer_i/cg_cell
+                   cluster_clock_gating_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/core2axi_i
+                   core2axi_wrap_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_USER_WIDTH1_AXI_ID_WIDTH2_REGISTERED_GRANT40h46414c5345_master_AXI_BUS_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_ID_WIDTH2_AXI_USER_WIDTH1_Master
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/core2axi_i/core2axi_i
+                   core2axi_AXI4_ADDRESS_WIDTH32_AXI4_RDATA_WIDTH32_AXI4_WDATA_WIDTH32_AXI4_ID_WIDTH2_AXI4_USER_WIDTH1_REGISTERED_GRANT40h46414c5345
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/adv_dbg_if_i
+                   adv_dbg_if_NB_CORES1_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_USER_WIDTH1_AXI_ID_WIDTH2
+                                area_234Kto312K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i
+                   adbg_top_NB_CORES1_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_USER_WIDTH1_AXI_ID_WIDTH2
+                                area_156Kto234K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_cpu_or1k
+                   adbg_or1k_module_NB_CORES1
+                                area_36Kto42K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_cpu_or1k/or1k_crc_i
+                   adbg_crc32_1 area_12Kto18K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_cpu_or1k/or1k_biu_i
+                   adbg_or1k_biu_NB_CORES1
+                                area_3Kto4K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_cpu_or1k/or1k_statusreg_i
+                   adbg_or1k_status_reg_NB_CORES1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_cpu_or1k/csa_tree_sub_321_47
+                   csa_tree_1   area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi
+                   adbg_axi_module_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_USER_WIDTH1_AXI_ID_WIDTH2
+                                area_78Kto156K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/axi_crc_i
+                   adbg_crc32   area_12Kto18K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/csa_tree_sub_423_47
+                   csa_tree     area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/add_383_50
+                   add_unsigned_5727
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/adv_dbg_if_i/dbg_module_i/i_dbg_axi/axi_biu_i
+                   adbg_axi_biu_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_USER_WIDTH1_AXI_ID_WIDTH2
+                                area_42Kto48K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i
+                   adbg_tap_top area_24Kto30K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem
+                   instr_ram_wrap_RAM_SIZE32768_DATA_WIDTH32
+                                area_234Kto312K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem/boot_rom_wrap_i
+                   boot_rom_wrap_DATA_WIDTH32
+                                area_7Kto8K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem/boot_rom_wrap_i/boot_code_i
+                   boot_code    area_7Kto8K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem/sp_ram_wrap_i
+                   sp_ram_wrap_RAM_SIZE32768_DATA_WIDTH32
+                                area_234Kto312K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem_axi_if
+                   axi_mem_if_SP_wrap_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_ID_WIDTH4_AXI_USER_WIDTH1_MEM_ADDR_WIDTH16_slave_AXI_BUS_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_ID_WIDTH4_AXI_USER_WIDTH1_Slave
+                                area_48Kto54K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i
+                   axi_mem_if_SP_AXI4_ADDRESS_WIDTH32_AXI4_RDATA_WIDTH32_AXI4_WDATA_WIDTH32_AXI4_ID_WIDTH4_AXI4_USER_WIDTH1_MEM_ADDR_WIDTH16
+                                area_48Kto54K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/Slave_ar_buffer_LP
+                   axi_ar_buffer_ID_WIDTH4_ADDR_WIDTH32_USER_WIDTH1_BUFFER_DEPTH4
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/Slave_ar_buffer_LP/buffer_i
+                   generic_fifo_DATA_WIDTH66_DATA_DEPTH4_1
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/Slave_ar_buffer_LP/buffer_i/cg_cell
+                   cluster_clock_gating_7
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/READ_CTRL
+                   axi_read_only_ctrl_AXI4_ADDRESS_WIDTH32_AXI4_RDATA_WIDTH32_AXI4_WDATA_WIDTH32_AXI4_ID_WIDTH4_AXI4_USER_WIDTH1_AXI_NUMBYTES4_MEM_ADDR_WIDTH16
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/Slave_r_buffer_LP
+                   axi_r_buffer_ID_WIDTH4_DATA_WIDTH32_USER_WIDTH1_BUFFER_DEPTH4
+                                area_12Kto18K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/Slave_r_buffer_LP/buffer_i
+                   generic_fifo_DATA_WIDTH40_DATA_DEPTH4
+                                area_12Kto18K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/Slave_r_buffer_LP/buffer_i/cg_cell
+                   cluster_clock_gating_9
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/Slave_b_buffer_LP
+                   axi_b_buffer_ID_WIDTH4_USER_WIDTH1_BUFFER_DEPTH4
+                                area_1Kto2K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/Slave_b_buffer_LP/buffer_i
+                   generic_fifo_DATA_WIDTH7_DATA_DEPTH4
+                                area_1Kto2K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/Slave_b_buffer_LP/buffer_i/cg_cell
+                   cluster_clock_gating_10
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/Slave_aw_buffer_LP
+                   axi_aw_buffer_ID_WIDTH4_ADDR_WIDTH32_USER_WIDTH1_BUFFER_DEPTH4
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/Slave_aw_buffer_LP/buffer_i
+                   generic_fifo_DATA_WIDTH66_DATA_DEPTH4
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/Slave_aw_buffer_LP/buffer_i/cg_cell
+                   cluster_clock_gating_6
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/WRITE_CTRL
+                   axi_write_only_ctrl_AXI4_ADDRESS_WIDTH32_AXI4_RDATA_WIDTH32_AXI4_WDATA_WIDTH32_AXI4_ID_WIDTH4_AXI4_USER_WIDTH1_AXI_NUMBYTES4_MEM_ADDR_WIDTH16
+                                area_3Kto4K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/Slave_w_buffer_LP
+                   axi_w_buffer_DATA_WIDTH32_USER_WIDTH1_BUFFER_DEPTH4
+                                area_12Kto18K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/Slave_w_buffer_LP/buffer_i
+                   generic_fifo_DATA_WIDTH38_DATA_DEPTH4
+                                area_12Kto18K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/instr_mem_axi_if/axi_mem_if_SP_i/Slave_w_buffer_LP/buffer_i/cg_cell
+                   cluster_clock_gating_8
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_mem
+                   sp_ram_wrap_RAM_SIZE32768_DATA_WIDTH32_1
+                                area_234Kto312K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/data_ram_mux_i
+                   ram_mux_ADDR_WIDTH15_OUT_WIDTH32_IN0_WIDTH32_IN1_WIDTH32
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE
+                   riscv_core_N_EXT_PERF_COUNTERS0_FPU0_SHARED_FP0_SHARED_FP_DIVSQRT2
+                                area_156Kto234K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i
+                   riscv_load_store_unit
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/load_store_unit_i/final_adder_mux_463_27
+                   add_unsigned_2778
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/cs_registers_i
+                   riscv_cs_registers_N_EXT_CNT0_APU0_FPU0_PULP_SECURE0
+                                area_8Kto9K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/cs_registers_i/inc_ADD_UNS_OP_57
+                   increment_unsigned_2770
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/debug_unit_i
+                   riscv_debug_unit
+                                area_5Kto6K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i
+                   riscv_id_stage_N_HWLP2_PULP_SECURE0_FPU0_APU0_SHARED_FP0_SHARED_DSP_MULT0_SHARED_INT_DIV0_SHARED_FP_DIVSQRT2_WAPUTYPE0_APU_NARGS_CPU3_APU_WOP_CPU6_APU_NDSFLAGS_CPU15_APU_NUSFLAGS_CPU5
+                                area_78Kto156K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/controller_i
+                   riscv_controller_FPU0
+                                area_1Kto2K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/add_581_38
+                   add_unsigned_1336_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/hwloop_regs_i
+                   riscv_hwloop_regs_N_REGS2
+                                area_12Kto18K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/hwloop_regs_i/dec_sub_103_50_I1_58
+                   decrement_unsigned_2771
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/hwloop_regs_i/dec_sub_103_50_I2_59
+                   decrement_unsigned_2771_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/add_580_38
+                   add_unsigned_1336
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/add_537_37
+                   add_unsigned_1336_4
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/registers_i
+                   riscv_register_file_ADDR_WIDTH6_FPU0
+                                area_72Kto78K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/add_536_37
+                   add_unsigned_1336_3
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/decoder_i
+                   riscv_decoder_FPU0_PULP_SECURE0_SHARED_FP0_SHARED_DSP_MULT0_SHARED_INT_DIV0_SHARED_FP_DIVSQRT2_WAPUTYPE0_APU_WOP_CPU6
+                                area_1Kto2K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/dec_sub_468_53_60
+                   decrement_unsigned_2771_2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/add_584_49
+                   add_unsigned_1336_2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/id_stage_i/int_controller_i
+                   riscv_int_controller_PULP_SECURE0
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/core_clock_gate_i
+                   cluster_clock_gating
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i
+                   riscv_ex_stage_FPU0_SHARED_FP0_SHARED_DSP_MULT0_SHARED_INT_DIV0_APU_NARGS_CPU3_APU_WOP_CPU6_APU_NDSFLAGS_CPU15_APU_NUSFLAGS_CPU5
+                                area_48Kto54K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/alu_i
+                   riscv_alu_SHARED_INT_DIV0_FPU0
+                                area_24Kto30K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/alu_i/csa_mux_a_mux_925_30
+                   bmux_2768    area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/alu_i/sll_882_39
+                   shift_left_vlog_unsigned_2316
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/alu_i/srl_283_46
+                   shift_right_vlog_unsigned
+                                area_1Kto2K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/alu_i/add_168_54
+                   add_signed   area_1Kto2K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/alu_i/sra_269_105
+                   arith_shift_right_vlog_unsigned_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/alu_i/alu_popcnt_i
+                   alu_popcnt   area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/alu_i/alu_popcnt_i/csa_tree_add_1154_39_groupi
+                   csa_tree_add_1154_39_group_4015
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/alu_i/add_182_44
+                   add_unsigned_1336_6
+                                area_1Kto2K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/alu_i/alu_ff_i
+                   alu_ff       area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/alu_i/int_div.div_i
+                   riscv_alu_div
+                                area_9Kto12K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/alu_i/int_div.div_i/gt_103_58
+                   gt_unsigned_1526
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/alu_i/int_div.div_i/minus_100_38
+                   sub_unsigned_1534
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/alu_i/int_div.div_i/add_107_46
+                   add_unsigned_1336_5
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/alu_i/int_div.div_i/sub_107_68
+                   sub_unsigned_1530
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/alu_i/csa_mux_b_mux_925_30
+                   bmux_2768_1  area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/alu_i/csa_tree_sub_839_35
+                   csa_tree_2763
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/alu_i/sra_270_105
+                   arith_shift_right_vlog_unsigned
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/mult_i
+                   riscv_mult_SHARED_DSP_MULT0
+                                area_24Kto30K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/mult_i/csa_tree_add_270_87_groupi
+                   csa_tree_add_270_87_group_3963
+                                area_4Kto5K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/mult_i/csa_tree_add_230_63_groupi
+                   csa_tree_add_230_63_group_3965
+                                area_5Kto6K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/mult_i/csa_tree_add_283_102_groupi
+                   csa_tree_add_283_102_group_3967
+                                area_7Kto8K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/mult_i/csa_tree_add_114_70_groupi
+                   csa_tree_add_114_70_group_3969
+                                area_4Kto5K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/ex_stage_i/mult_i/sra_117_128
+                   arith_shift_right_vlog_unsigned_3264
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/if_stage_i
+                   riscv_if_stage_N_HWLP2_RDATA_WIDTH32_FPU0
+                                area_24Kto30K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/if_stage_i/prefetch_32.prefetch_buffer_i
+                   riscv_prefetch_buffer
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/if_stage_i/prefetch_32.prefetch_buffer_i/add_115_54
+                   add_unsigned_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/if_stage_i/prefetch_32.prefetch_buffer_i/fifo_i
+                   riscv_fetch_fifo
+                                area_18Kto24K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/if_stage_i/prefetch_32.prefetch_buffer_i/fifo_i/add_182_49
+                   add_unsigned area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/if_stage_i/compressed_decoder_i
+                   riscv_compressed_decoder_FPU0
+                                area_1Kto2K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/core_region_i/CORE.RISCV_CORE/if_stage_i/hwloop_controller_i
+                   riscv_hwloop_controller_N_REGS2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/clk_rst_gen_i
+                   clk_rst_gen  area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/clk_rst_gen_i/i_rst_gen_soc
+                   rstgen       area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i
+                   axi_node_intf_wrap_NB_MASTER3_NB_SLAVE3_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_ID_WIDTH2_AXI_USER_WIDTH1_slave_AXI_BUS_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_ID_WIDTH2_AXI_USER_WIDTH1_Slave_master_AXI_BUS_AXI_ADDR_WIDTH32_AXI_DATA_WIDTH32_AXI_ID_WIDTH4_AXI_USER_WIDTH1_Master
+                                area_30Kto36K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i
+                   axi_node_AXI_ADDRESS_W32_AXI_DATA_W32_AXI_USER_W1_N_MASTER_PORT3_N_SLAVE_PORT3_AXI_ID_IN2_N_REGION1
+                                area_30Kto36K
+                                            CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[1].RESP_BLOCK
+                   axi_response_block_AXI_ADDRESS_W32_AXI_DATA_W32_AXI_USER_W1_N_INIT_PORT3_N_TARG_PORT3_FIFO_DEPTH_DW8_AXI_ID_IN2_N_REGION1_1
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[1].RESP_BLOCK/BW_ALLOC
+                   axi_BW_allocator_AXI_USER_W1_N_INIT_PORT3_N_TARG_PORT3_AXI_DATA_W32_AXI_ID_IN2_1
+                                area_1Kto2K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[1].RESP_BLOCK/BW_ALLOC/ARB_TREE.BW_ARB_TREE
+                   axi_ArbitrationTree_AUX_WIDTH3_ID_WIDTH2_N_MASTER3_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[1].RESP_BLOCK/BW_ALLOC/ARB_TREE.BW_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[1].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH3_ID_WIDTH2_5
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[1].RESP_BLOCK/BW_ALLOC/ARB_TREE.BW_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[0].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH3_ID_WIDTH2_4
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[1].RESP_BLOCK/BW_ALLOC/ARB_TREE.BW_ARB_TREE/RR_REQ
+                   axi_RR_Flag_Req_MAX_COUNT3_WIDTH2_8
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[1].RESP_BLOCK/BW_ALLOC/ARB_TREE.BW_ARB_TREE/BINARY_TREE.STAGE[0].INCR_VERT[0].LAST_NODE.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH3_ID_WIDTH2_3
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[1].RESP_BLOCK/BR_ALLOC
+                   axi_BR_allocator_AXI_USER_W1_N_INIT_PORT3_N_TARG_PORT3_AXI_DATA_W32_AXI_ID_IN2_1
+                                area_1Kto2K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[1].RESP_BLOCK/BR_ALLOC/ARB_TREE.BR_ARB_TREE
+                   axi_ArbitrationTree_AUX_WIDTH36_ID_WIDTH2_N_MASTER3_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[1].RESP_BLOCK/BR_ALLOC/ARB_TREE.BR_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[1].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH36_ID_WIDTH2_5
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[1].RESP_BLOCK/BR_ALLOC/ARB_TREE.BR_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[0].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH36_ID_WIDTH2_4
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[1].RESP_BLOCK/BR_ALLOC/ARB_TREE.BR_ARB_TREE/RR_REQ
+                   axi_RR_Flag_Req_MAX_COUNT3_WIDTH2_9
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[1].RESP_BLOCK/BR_ALLOC/ARB_TREE.BR_ARB_TREE/BINARY_TREE.STAGE[0].INCR_VERT[0].LAST_NODE.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH36_ID_WIDTH2_3
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[1].RESP_BLOCK/DW_ADDR_DEC
+                   axi_address_decoder_DW_N_INIT_PORT3_FIFO_DEPTH8_1
+                                area_2Kto3K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[1].RESP_BLOCK/DW_ADDR_DEC/MASTER_ID_FIFO
+                   generic_fifo_DATA_WIDTH3_DATA_DEPTH8_1
+                                area_2Kto3K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[1].RESP_BLOCK/DW_ADDR_DEC/MASTER_ID_FIFO/cg_cell
+                   cluster_clock_gating_33
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[1].RESP_BLOCK/AW_ADDR_DEC
+                   axi_address_decoder_AW_ADDR_WIDTH32_N_INIT_PORT3_N_REGION1_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[1].RESP_BLOCK/AR_ADDR_DEC
+                   axi_address_decoder_AR_ADDR_WIDTH32_N_INIT_PORT3_N_REGION1_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK
+                   axi_request_block_AXI_ADDRESS_W32_AXI_DATA_W32_AXI_USER_W1_N_INIT_PORT3_N_TARG_PORT3_FIFO_DW_DEPTH8_AXI_ID_IN2
+                                area_4Kto5K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK/AR_ALLOCATOR
+                   axi_AR_allocator_AXI_ADDRESS_W32_AXI_USER_W1_N_TARG_PORT3_AXI_ID_IN2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK/AR_ALLOCATOR/AW_ARB_TREE
+                   axi_ArbitrationTree_AUX_WIDTH64_ID_WIDTH5_N_MASTER3
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK/AR_ALLOCATOR/AW_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[1].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH64_ID_WIDTH5_2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK/AR_ALLOCATOR/AW_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[0].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH64_ID_WIDTH5_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK/AR_ALLOCATOR/AW_ARB_TREE/RR_REQ
+                   axi_RR_Flag_Req_MAX_COUNT3_WIDTH2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK/AR_ALLOCATOR/AW_ARB_TREE/BINARY_TREE.STAGE[0].INCR_VERT[0].LAST_NODE.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH64_ID_WIDTH5
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK/BR_DECODER
+                   axi_address_decoder_BR_N_TARG_PORT3_AXI_ID_IN2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK/BW_DECODER
+                   axi_address_decoder_BW_N_TARG_PORT3_AXI_ID_IN2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK/DW_ALLOC
+                   axi_DW_allocator_AXI_USER_W1_N_TARG_PORT3_FIFO_DEPTH8_AXI_DATA_W32
+                                area_3Kto4K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK/DW_ALLOC/WRITE_DATA_MUX
+                   axi_multiplexer_DATA_WIDTH38_N_IN3
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK/DW_ALLOC/MASTER_ID_FIFO
+                   generic_fifo_DATA_WIDTH5_DATA_DEPTH8
+                                area_3Kto4K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK/DW_ALLOC/MASTER_ID_FIFO/cg_cell
+                   cluster_clock_gating_29
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK/AW_ALLOCATOR
+                   axi_AW_allocator_AXI_ADDRESS_W32_AXI_USER_W1_N_TARG_PORT3_AXI_ID_IN2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK/AW_ALLOCATOR/AW_ARB_TREE
+                   axi_ArbitrationTree_AUX_WIDTH64_ID_WIDTH5_N_MASTER3_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK/AW_ALLOCATOR/AW_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[1].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH64_ID_WIDTH5_5
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK/AW_ALLOCATOR/AW_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[0].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH64_ID_WIDTH5_4
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK/AW_ALLOCATOR/AW_ARB_TREE/RR_REQ
+                   axi_RR_Flag_Req_MAX_COUNT3_WIDTH2_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK/AW_ALLOCATOR/AW_ARB_TREE/BINARY_TREE.STAGE[0].INCR_VERT[0].LAST_NODE.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH64_ID_WIDTH5_3
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[1].REQ_BLOCK
+                   axi_request_block_AXI_ADDRESS_W32_AXI_DATA_W32_AXI_USER_W1_N_INIT_PORT3_N_TARG_PORT3_FIFO_DW_DEPTH8_AXI_ID_IN2_1
+                                area_4Kto5K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[1].REQ_BLOCK/AR_ALLOCATOR
+                   axi_AR_allocator_AXI_ADDRESS_W32_AXI_USER_W1_N_TARG_PORT3_AXI_ID_IN2_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[1].REQ_BLOCK/AR_ALLOCATOR/AW_ARB_TREE
+                   axi_ArbitrationTree_AUX_WIDTH64_ID_WIDTH5_N_MASTER3_2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[1].REQ_BLOCK/AR_ALLOCATOR/AW_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[1].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH64_ID_WIDTH5_8
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[1].REQ_BLOCK/AR_ALLOCATOR/AW_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[0].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH64_ID_WIDTH5_7
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[1].REQ_BLOCK/AR_ALLOCATOR/AW_ARB_TREE/RR_REQ
+                   axi_RR_Flag_Req_MAX_COUNT3_WIDTH2_4
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[1].REQ_BLOCK/AR_ALLOCATOR/AW_ARB_TREE/BINARY_TREE.STAGE[0].INCR_VERT[0].LAST_NODE.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH64_ID_WIDTH5_6
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[1].REQ_BLOCK/BR_DECODER
+                   axi_address_decoder_BR_N_TARG_PORT3_AXI_ID_IN2_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[1].REQ_BLOCK/BW_DECODER
+                   axi_address_decoder_BW_N_TARG_PORT3_AXI_ID_IN2_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[1].REQ_BLOCK/DW_ALLOC
+                   axi_DW_allocator_AXI_USER_W1_N_TARG_PORT3_FIFO_DEPTH8_AXI_DATA_W32_1
+                                area_3Kto4K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[1].REQ_BLOCK/DW_ALLOC/WRITE_DATA_MUX
+                   axi_multiplexer_DATA_WIDTH38_N_IN3_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[1].REQ_BLOCK/DW_ALLOC/MASTER_ID_FIFO
+                   generic_fifo_DATA_WIDTH5_DATA_DEPTH8_1
+                                area_2Kto3K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[1].REQ_BLOCK/DW_ALLOC/MASTER_ID_FIFO/cg_cell
+                   cluster_clock_gating_31
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[1].REQ_BLOCK/AW_ALLOCATOR
+                   axi_AW_allocator_AXI_ADDRESS_W32_AXI_USER_W1_N_TARG_PORT3_AXI_ID_IN2_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[1].REQ_BLOCK/AW_ALLOCATOR/AW_ARB_TREE
+                   axi_ArbitrationTree_AUX_WIDTH64_ID_WIDTH5_N_MASTER3_3
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[1].REQ_BLOCK/AW_ALLOCATOR/AW_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[1].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH64_ID_WIDTH5_11
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[1].REQ_BLOCK/AW_ALLOCATOR/AW_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[0].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH64_ID_WIDTH5_10
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[1].REQ_BLOCK/AW_ALLOCATOR/AW_ARB_TREE/RR_REQ
+                   axi_RR_Flag_Req_MAX_COUNT3_WIDTH2_5
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[1].REQ_BLOCK/AW_ALLOCATOR/AW_ARB_TREE/BINARY_TREE.STAGE[0].INCR_VERT[0].LAST_NODE.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH64_ID_WIDTH5_9
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[2].REQ_BLOCK
+                   axi_request_block_AXI_ADDRESS_W32_AXI_DATA_W32_AXI_USER_W1_N_INIT_PORT3_N_TARG_PORT3_FIFO_DW_DEPTH8_AXI_ID_IN2_2
+                                area_4Kto5K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[2].REQ_BLOCK/DW_ALLOC
+                   axi_DW_allocator_AXI_USER_W1_N_TARG_PORT3_FIFO_DEPTH8_AXI_DATA_W32_2
+                                area_3Kto4K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[2].REQ_BLOCK/DW_ALLOC/WRITE_DATA_MUX
+                   axi_multiplexer_DATA_WIDTH38_N_IN3_2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[2].REQ_BLOCK/DW_ALLOC/MASTER_ID_FIFO
+                   generic_fifo_DATA_WIDTH5_DATA_DEPTH8_2
+                                area_3Kto4K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[2].REQ_BLOCK/DW_ALLOC/MASTER_ID_FIFO/cg_cell
+                   cluster_clock_gating_32
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[2].REQ_BLOCK/BW_DECODER
+                   axi_address_decoder_BW_N_TARG_PORT3_AXI_ID_IN2_2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[2].REQ_BLOCK/AW_ALLOCATOR
+                   axi_AW_allocator_AXI_ADDRESS_W32_AXI_USER_W1_N_TARG_PORT3_AXI_ID_IN2_2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[2].REQ_BLOCK/AW_ALLOCATOR/AW_ARB_TREE
+                   axi_ArbitrationTree_AUX_WIDTH64_ID_WIDTH5_N_MASTER3_5
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[2].REQ_BLOCK/AW_ALLOCATOR/AW_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[1].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH64_ID_WIDTH5_17
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[2].REQ_BLOCK/AW_ALLOCATOR/AW_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[0].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH64_ID_WIDTH5_16
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[2].REQ_BLOCK/AW_ALLOCATOR/AW_ARB_TREE/RR_REQ
+                   axi_RR_Flag_Req_MAX_COUNT3_WIDTH2_7
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[2].REQ_BLOCK/AW_ALLOCATOR/AW_ARB_TREE/BINARY_TREE.STAGE[0].INCR_VERT[0].LAST_NODE.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH64_ID_WIDTH5_15
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[2].REQ_BLOCK/AR_ALLOCATOR
+                   axi_AR_allocator_AXI_ADDRESS_W32_AXI_USER_W1_N_TARG_PORT3_AXI_ID_IN2_2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[2].REQ_BLOCK/AR_ALLOCATOR/AW_ARB_TREE
+                   axi_ArbitrationTree_AUX_WIDTH64_ID_WIDTH5_N_MASTER3_4
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[2].REQ_BLOCK/AR_ALLOCATOR/AW_ARB_TREE/RR_REQ
+                   axi_RR_Flag_Req_MAX_COUNT3_WIDTH2_6
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[2].REQ_BLOCK/AR_ALLOCATOR/AW_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[0].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH64_ID_WIDTH5_13
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[2].REQ_BLOCK/AR_ALLOCATOR/AW_ARB_TREE/BINARY_TREE.STAGE[0].INCR_VERT[0].LAST_NODE.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH64_ID_WIDTH5_12
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[2].REQ_BLOCK/AR_ALLOCATOR/AW_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[1].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH64_ID_WIDTH5_14
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[2].REQ_BLOCK/BR_DECODER
+                   axi_address_decoder_BR_N_TARG_PORT3_AXI_ID_IN2_2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[2].RESP_BLOCK
+                   axi_response_block_AXI_ADDRESS_W32_AXI_DATA_W32_AXI_USER_W1_N_INIT_PORT3_N_TARG_PORT3_FIFO_DEPTH_DW8_AXI_ID_IN2_N_REGION1_2
+                                area_7Kto8K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[2].RESP_BLOCK/BW_ALLOC
+                   axi_BW_allocator_AXI_USER_W1_N_INIT_PORT3_N_TARG_PORT3_AXI_DATA_W32_AXI_ID_IN2_2
+                                area_1Kto2K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[2].RESP_BLOCK/BW_ALLOC/ARB_TREE.BW_ARB_TREE
+                   axi_ArbitrationTree_AUX_WIDTH3_ID_WIDTH2_N_MASTER3_2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[2].RESP_BLOCK/BW_ALLOC/ARB_TREE.BW_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[1].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH3_ID_WIDTH2_8
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[2].RESP_BLOCK/BW_ALLOC/ARB_TREE.BW_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[0].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH3_ID_WIDTH2_7
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[2].RESP_BLOCK/BW_ALLOC/ARB_TREE.BW_ARB_TREE/RR_REQ
+                   axi_RR_Flag_Req_MAX_COUNT3_WIDTH2_10
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[2].RESP_BLOCK/BW_ALLOC/ARB_TREE.BW_ARB_TREE/BINARY_TREE.STAGE[0].INCR_VERT[0].LAST_NODE.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH3_ID_WIDTH2_6
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[2].RESP_BLOCK/BR_ALLOC
+                   axi_BR_allocator_AXI_USER_W1_N_INIT_PORT3_N_TARG_PORT3_AXI_DATA_W32_AXI_ID_IN2_2
+                                area_1Kto2K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[2].RESP_BLOCK/BR_ALLOC/ARB_TREE.BR_ARB_TREE
+                   axi_ArbitrationTree_AUX_WIDTH36_ID_WIDTH2_N_MASTER3_2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[2].RESP_BLOCK/BR_ALLOC/ARB_TREE.BR_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[1].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH36_ID_WIDTH2_8
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[2].RESP_BLOCK/BR_ALLOC/ARB_TREE.BR_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[0].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH36_ID_WIDTH2_7
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[2].RESP_BLOCK/BR_ALLOC/ARB_TREE.BR_ARB_TREE/RR_REQ
+                   axi_RR_Flag_Req_MAX_COUNT3_WIDTH2_11
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[2].RESP_BLOCK/BR_ALLOC/ARB_TREE.BR_ARB_TREE/BINARY_TREE.STAGE[0].INCR_VERT[0].LAST_NODE.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH36_ID_WIDTH2_6
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[2].RESP_BLOCK/DW_ADDR_DEC
+                   axi_address_decoder_DW_N_INIT_PORT3_FIFO_DEPTH8_2
+                                area_3Kto4K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[2].RESP_BLOCK/DW_ADDR_DEC/MASTER_ID_FIFO
+                   generic_fifo_DATA_WIDTH3_DATA_DEPTH8_2
+                                area_3Kto4K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[2].RESP_BLOCK/DW_ADDR_DEC/MASTER_ID_FIFO/cg_cell
+                   cluster_clock_gating_34
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[2].RESP_BLOCK/AW_ADDR_DEC
+                   axi_address_decoder_AW_ADDR_WIDTH32_N_INIT_PORT3_N_REGION1_2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[2].RESP_BLOCK/AR_ADDR_DEC
+                   axi_address_decoder_AR_ADDR_WIDTH32_N_INIT_PORT3_N_REGION1_2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[0].RESP_BLOCK
+                   axi_response_block_AXI_ADDRESS_W32_AXI_DATA_W32_AXI_USER_W1_N_INIT_PORT3_N_TARG_PORT3_FIFO_DEPTH_DW8_AXI_ID_IN2_N_REGION1
+                                area_6Kto7K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[0].RESP_BLOCK/BW_ALLOC
+                   axi_BW_allocator_AXI_USER_W1_N_INIT_PORT3_N_TARG_PORT3_AXI_DATA_W32_AXI_ID_IN2
+                                area_1Kto2K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[0].RESP_BLOCK/BW_ALLOC/ARB_TREE.BW_ARB_TREE
+                   axi_ArbitrationTree_AUX_WIDTH3_ID_WIDTH2_N_MASTER3
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[0].RESP_BLOCK/BW_ALLOC/ARB_TREE.BW_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[1].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH3_ID_WIDTH2_2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[0].RESP_BLOCK/BW_ALLOC/ARB_TREE.BW_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[0].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH3_ID_WIDTH2_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[0].RESP_BLOCK/BW_ALLOC/ARB_TREE.BW_ARB_TREE/RR_REQ
+                   axi_RR_Flag_Req_MAX_COUNT3_WIDTH2_2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[0].RESP_BLOCK/BW_ALLOC/ARB_TREE.BW_ARB_TREE/BINARY_TREE.STAGE[0].INCR_VERT[0].LAST_NODE.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH3_ID_WIDTH2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[0].RESP_BLOCK/BR_ALLOC
+                   axi_BR_allocator_AXI_USER_W1_N_INIT_PORT3_N_TARG_PORT3_AXI_DATA_W32_AXI_ID_IN2
+                                area_1Kto2K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[0].RESP_BLOCK/BR_ALLOC/ARB_TREE.BR_ARB_TREE
+                   axi_ArbitrationTree_AUX_WIDTH36_ID_WIDTH2_N_MASTER3
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[0].RESP_BLOCK/BR_ALLOC/ARB_TREE.BR_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[1].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH36_ID_WIDTH2_2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[0].RESP_BLOCK/BR_ALLOC/ARB_TREE.BR_ARB_TREE/BINARY_TREE.STAGE[1].INCR_VERT[0].LEAF_NODES.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH36_ID_WIDTH2_1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[0].RESP_BLOCK/BR_ALLOC/ARB_TREE.BR_ARB_TREE/RR_REQ
+                   axi_RR_Flag_Req_MAX_COUNT3_WIDTH2_3
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[0].RESP_BLOCK/BR_ALLOC/ARB_TREE.BR_ARB_TREE/BINARY_TREE.STAGE[0].INCR_VERT[0].LAST_NODE.FAN_IN_REQ
+                   axi_FanInPrimitive_Req_AUX_WIDTH36_ID_WIDTH2
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[0].RESP_BLOCK/DW_ADDR_DEC
+                   axi_address_decoder_DW_N_INIT_PORT3_FIFO_DEPTH8
+                                area_3Kto4K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[0].RESP_BLOCK/DW_ADDR_DEC/MASTER_ID_FIFO
+                   generic_fifo_DATA_WIDTH3_DATA_DEPTH8
+                                area_3Kto4K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[0].RESP_BLOCK/DW_ADDR_DEC/MASTER_ID_FIFO/cg_cell
+                   cluster_clock_gating_30
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[0].RESP_BLOCK/AW_ADDR_DEC
+                   axi_address_decoder_AW_ADDR_WIDTH32_N_INIT_PORT3_N_REGION1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+pulpino_top_i/axi_interconnect_i/axi_node_i/_RESP_BLOCK_GEN[0].RESP_BLOCK/AR_ADDR_DEC
+                   axi_address_decoder_AR_ADDR_WIDTH32_N_INIT_PORT3_N_REGION1
+                                area_0Kto1K CLOCK65LPLVT  automatic-by-area
+
+Power-specific unit information :
+    Voltage Units = 1 V
+    Capacitance Units = 1 pf
+    Time Units = 1 ns
+    Dynamic Power Units = 1 W
+    Leakage Power Units = 1 W
+
+
+
+  Attributes
+  ----------
+      i  -  Including register clock pin internal power
+      u  -  User defined power group
+
+                        Internal  Switching  Leakage    Total
+Power Group             Power     Power      Power      Power   (     %)  Attrs
+--------------------------------------------------------------------------------
+clock_network           8.651e-03 3.433e-03 2.894e-05    0.0121 (38.13%)  i
+register                8.576e-06 7.870e-06 2.391e-04 2.556e-04 ( 0.80%)  
+combinational           7.996e-04 1.462e-04    0.0112    0.0122 (38.26%)  
+sequential                 0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+memory                  7.229e-03 3.202e-07 6.643e-06 7.236e-03 (22.78%)  
+io_pad                  6.240e-06 1.798e-07 1.117e-14 6.420e-06 ( 0.02%)  
+black_box                  0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+
+  Net Switching Power  = 3.587e-03   (11.29%)
+  Cell Internal Power  =    0.0167   (52.56%)
+  Cell Leakage Power   =    0.0115   (36.15%)
+                         ---------
+Total Power            =    0.0318  (100.00%)
+
+X Transition Power     = 1.542e-05
+Glitching Power        =    0.0000
+
+Peak Power             =   14.8227
+Peak Time              = 3092820.888
+
+1

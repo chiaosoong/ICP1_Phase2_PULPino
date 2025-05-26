@@ -1,0 +1,81 @@
+****************************************
+Report : clock timing
+	-type skew
+	-verbose
+	-nworst 1
+	-setup
+Design : pulpino_padstop
+Version: O-2018.06-SP5
+Date   : Mon May 26 21:34:45 2025
+****************************************
+
+  Clock: clk
+
+  Startpoint: pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK/AR_ALLOCATOR/AW_ARB_TREE/RR_REQ/RR_FLAG_o_reg[0]
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: pulpino_top_i/axi_interconnect_i/axi_node_i/_REQ_BLOCK_GEN[0].REQ_BLOCK/AR_ALLOCATOR/AW_ARB_TREE/RR_REQ/RR_FLAG_o_reg[0]
+               (rising edge-triggered flip-flop clocked by clk)
+
+  Point                                          Trans       Incr       Path
+  -----------------------------------------------------------------------------
+  clock clk (rise edge)                           0.10
+  clock network delay (ideal)                                0.50       0.50
+  startpoint clock latency                                              0.50
+
+  clock clk (rise edge)                           0.00
+  clock network delay (ideal)                                0.00       0.00
+  endpoint clock latency                                                0.00
+  -----------------------------------------------------
+  startpoint clock latency                      0.50
+  endpoint clock latency                        0.00
+  clock reconvergence pessimism                 0.00
+  -----------------------------------------------------
+  skew                                          0.50
+
+  Clock: spi_clk
+
+  Startpoint: pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_dcfifo_rx/u_din/buffer/data_reg[0][0]
+               (rising edge-triggered flip-flop clocked by spi_clk)
+  Endpoint: pulpino_top_i/peripherals_i/axi_spi_slave_i/axi_spi_slave_i/u_dcfifo_rx/u_din/buffer/data_reg[0][0]
+               (rising edge-triggered flip-flop clocked by spi_clk)
+
+  Point                                          Trans       Incr       Path
+  -----------------------------------------------------------------------------
+  clock spi_clk (rise edge)                       1.00
+  clock network delay (ideal)                                5.00       5.00
+  startpoint clock latency                                              5.00
+
+  clock spi_clk (rise edge)                       0.00
+  clock network delay (ideal)                                0.00       0.00
+  endpoint clock latency                                                0.00
+  -----------------------------------------------------
+  startpoint clock latency                      5.00
+  endpoint clock latency                        0.00
+  clock reconvergence pessimism                -2.50
+  -----------------------------------------------------
+  skew                                          2.50
+
+  Clock: tck_i
+
+  Startpoint: pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/TAP_state_reg[0]
+               (rising edge-triggered flip-flop clocked by tck_i)
+  Endpoint: pulpino_top_i/core_region_i/adv_dbg_if_i/cluster_tap_i/TAP_state_reg[0]
+               (rising edge-triggered flip-flop clocked by tck_i)
+
+  Point                                          Trans       Incr       Path
+  -----------------------------------------------------------------------------
+  clock tck_i (rise edge)                         1.00
+  clock network delay (ideal)                                5.00       5.00
+  startpoint clock latency                                              5.00
+
+  clock tck_i (rise edge)                         0.00
+  clock network delay (ideal)                                0.00       0.00
+  endpoint clock latency                                                0.00
+  -----------------------------------------------------
+  startpoint clock latency                      5.00
+  endpoint clock latency                        0.00
+  clock reconvergence pessimism                 0.00
+  -----------------------------------------------------
+  skew                                          5.00
+
+1
