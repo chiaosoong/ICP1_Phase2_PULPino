@@ -43,7 +43,7 @@ int main(void) {
                 }
             }
             ofm[out_y][out_x] = (uint32_t)sum;
-            printf("OFM[%d][%d] = %10u\n", out_y, out_x, ofm[out_y][out_x]);
+            //printf("OFM[%d][%d] = %10u\n", out_y, out_x, ofm[out_y][out_x]);
         }
     }
  
