@@ -3,13 +3,13 @@ set ClkTop $DESIGN
 
 ##-----------CLK-----------##
 set ClkName1 clk
-set Clk_period 7000
-set ClkLatency 350
-set ClkRise_uncertainty 140
-set ClkFall_uncertainty 140
-set ClkSlew 350
-set InputDelay 350
-set OutputDelay 350
+set Clk_period 5000
+set ClkLatency 250
+set ClkRise_uncertainty 100
+set ClkFall_uncertainty 100
+set ClkSlew 250
+set InputDelay 250
+set OutputDelay 250
 
 # clk（200MHz）
 define_clock -name $ClkName1 -period $Clk_period -design $ClkTop [find / -port clk*]
