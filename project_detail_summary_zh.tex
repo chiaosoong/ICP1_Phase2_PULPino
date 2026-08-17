@@ -1,0 +1,828 @@
+﻿\documentclass[UTF8,a4paper,11pt]{ctexart}
+
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{xurl}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+
+\setlist[itemize]{leftmargin=2em,itemsep=0.25em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=2em,itemsep=0.25em,topsep=0.35em}
+\renewcommand{\arraystretch}{1.18}
+\setlength{\tabcolsep}{3pt}
+\emergencystretch=3em
+\Urlmuskip=0mu plus 1mu\relax
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newcommand{\fpath}[1]{\nolinkurl{#1}}
+\newcommand{\reg}[1]{\ifmmode\text{\ttfamily #1}\else\texttt{#1}\fi}
+
+\title{PULPino 卷积加速器项目细节总结要点}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent 本文基于当前仓库 \fpath{C:/ICP1_Phase2_PULPino} 的实际文件审阅形成。审阅时当前 Git 分支为 \reg{main}，跟踪 \reg{origin/main}，未看到本地未提交修改。本文只总结仓库中可以确认的工作内容：卷积加速器 Register Transfer Level (RTL，寄存器传输级) 设计、通过 APB (Advanced Peripheral Bus，先进外设总线) 接入 PULPino System on Chip (SoC，片上系统)、裸机 C 测试程序、综合、Place and Route (PnR，布局布线) 和 PrimeTime Static Timing Analysis (STA，静态时序分析)。凡仓库无法确认的内容均标为“仓库中未确认”。
+
+\section{项目定位、工作边界与整体架构}
+
+\subsection{本章解决的问题}
+本章明确项目目标、个人工作边界和系统数据流，避免把 PULPino 原平台内容、未实现功能或无关外设误写成项目成果。
+
+\subsection{项目目标与边界}
+本项目的目标是在 PULPino SoC 中设计并集成一个二维卷积加速器，使 CPU (Central Processing Unit，中央处理器) 软件能够通过 Memory-Mapped I/O (MMIO，内存映射 I/O) 访问 APB 地址空间，向加速器写入输入特征图、启动硬件计算、轮询完成状态并读取输出结果；同时完成 RTL 仿真、软件测试程序准备、Genus 综合、Innovus PnR 以及 PrimeTime STA 分析流程。
+
+仓库中可以确认的实现/修改范围如下：
+\begin{itemize}
+  \item 卷积核心 RTL：\fpath{rtl/CONV/convolution_accelerator.v}、\fpath{rtl/CONV/mac.v}、\fpath{rtl/CONV/parse_input_row.v}、\fpath{rtl/CONV/ROM.v}。
+  \item APB wrapper：\fpath{rtl/CONV/apb_conv.sv}，负责把 APB 访问转换为输入加载、启动、输出保存和读回。
+  \item SoC 集成点：\fpath{rtl/peripherals.sv} 中例化 \reg{apb\_conv\_i}，\fpath{rtl/includes/apb_bus.sv} 中新增/保留卷积加速器地址范围，\fpath{rtl/periph_bus_wrap.sv} 中将 \reg{s\_conv\_bus} 接入 APB node。
+  \item 软件测试程序：\fpath{Convolution Accelerator/apb_conv_printf.c} 是与当前 RTL wrapper 地址窗口最一致的 APB 访问版本；\fpath{Convolution Accelerator/CONV.c} 是纯软件卷积参考程序；\fpath{Convolution Accelerator/peripheral.c} 包含 filter 写入窗口，但当前 RTL 未实现 APB 可写 filter，因此不能作为当前硬件接口的准确描述。
+  \item 仿真与后仿真框架：\fpath{tb/testbench.sv}、\fpath{tb/tb_spi_pkg.sv}、\fpath{Convolution Accelerator/RTL/tb_conv_acc.v}、\fpath{post_synthesis/Makefile}、\fpath{post_PR/Makefile}。
+  \item 综合脚本和报告：\fpath{synthesis_scripts/synt.tcl}、\fpath{synthesis_scripts/design_setup_grade5.tcl}、\fpath{synthesis_scripts/create_clock.tcl}、\fpath{synthesis_scripts/reports/*}。
+  \item PnR 脚本：\fpath{PR_scripts/Design_imports/*}、\fpath{PR_scripts/scripts_grade5/*.tcl}。
+  \item PrimeTime 脚本和报告：\fpath{primetime/scripts_phase2/primetime.tcl}、\fpath{primetime/reports_grade5_perip/*}。
+\end{itemize}
+
+作为既有平台、仅与本项目发生接口关系的部分包括 RISC-V CPU core、PULPino AXI (Advanced eXtensible Interface，高级可扩展接口) interconnect、AXI-to-APB bridge、原有 UART (Universal Asynchronous Receiver/Transmitter，通用异步收发器)、GPIO (General-Purpose Input/Output，通用输入输出)、SPI (Serial Peripheral Interface，串行外设接口)、instruction/data SRAM (Static Random Access Memory，静态随机存储器)、debug/JTAG 等。本文不把这些模块作为本人实现重点展开，只说明它们如何把 CPU 访问路由到卷积加速器。
+
+\subsection{整体控制与数据流}
+与本加速器直接相关的端到端路径为：
+\[
+\begin{aligned}
+\text{CPU 软件}
+&\rightarrow \text{AXI 主端访问}
+ \rightarrow \text{AXI2APB bridge}
+ \rightarrow \text{APB 地址译码} \\
+&\rightarrow \text{apb\_conv wrapper}
+ \rightarrow \text{卷积核心}
+ \rightarrow \text{APB 读回结果}
+\end{aligned}
+\]
+
+具体控制流和数据流如下：
+\begin{enumerate}
+  \item C 程序使用 \reg{0x1A10\_3000} 作为卷积加速器基地址。该地址由 \fpath{rtl/includes/apb_bus.sv} 中 \reg{CONV\_START\_ADDR=32'h1A10\_3000} 和 \reg{CONV\_END\_ADDR=32'h1A10\_3FFF} 定义。
+  \item CPU 发起 MMIO 访问后，PULPino 顶层 \fpath{rtl/pulpino_top.sv} 中的 AXI interconnect 根据外设地址段 \reg{0x1A10\_0000--0x1A11\_FFFF} 将访问送入 \fpath{rtl/peripherals.sv}。
+  \item \fpath{rtl/peripherals.sv} 内部的 \reg{axi2apb\_wrap} 将 AXI transaction 转为 APB transaction，并送入 \reg{s\_apb\_bus}。
+  \item \fpath{rtl/periph_bus_wrap.sv} 将 \reg{s\_apb\_bus} 交给 \reg{apb\_node\_wrap}，并用 start/end address 数组把 \reg{0x1A10\_3000--0x1A10\_3FFF} 译码到 \reg{s\_conv\_bus}。仓库中的 \reg{apb\_node\_wrap} 源文件不在本仓库，而在综合脚本引用的外部 \fpath{ips/apb/apb_node/apb_node_wrap.sv}，因此 APB node 内部译码细节在本仓库中未确认。
+  \item \fpath{rtl/peripherals.sv} 把 \reg{s\_conv\_bus.paddr[11:0]}、\reg{pwdata}、\reg{pwrite}、\reg{psel}、\reg{penable} 连接到 \reg{apb\_conv\_i}。wrapper 只接收 12-bit local offset。
+  \item 软件先写控制寄存器 offset \reg{0x000}，使 wrapper 从 \reg{IDLE} 进入 \reg{LOAD}；随后向 offset \reg{0x100--0x40F} 连续写入 784 个 8-bit 输入像素。wrapper 将这些数据保存到内部寄存器阵列 \reg{ifm\_r[0:783]}。
+  \item wrapper 进入 \reg{CONV} 后，每个时钟向卷积核心送入一个像素。卷积核心内部固定 ROM 保存 5x5 kernel，仓库中未实现 APB 可写 kernel。
+  \item 卷积核心每次输出一行 24 个 21-bit OFM (Output Feature Map，输出特征图) 结果，wrapper 先锁存到 504-bit \reg{ofm\_buffer}，再逐元素写入三个 2048x8 SRAM 宏 \reg{byte0/byte1/byte2}。
+  \item 计算完成后，软件读取 status offset \reg{0x004} 直到返回 1，再从 offset \reg{0x008} 起按 32-bit word 读取 576 个输出结果。每个输出结果实际有效位为 \reg{PRDATA[20:0]}，高位补零。
+\end{enumerate}
+
+注意：卷积输入数据不直接存放在 PULPino 原有 data SRAM 中，而是由 APB wrapper 收到后存入 \reg{apb\_conv} 内部 \reg{ifm\_r} 寄存器阵列；kernel 不由软件加载，而是 \fpath{rtl/CONV/ROM.v} 中固定为全 255；输出结果不写回 PULPino data SRAM，而是写入 \reg{apb\_conv} 内部例化的三个 8-bit SRAM 宏，然后经 APB 读回。
+
+\subsection{关键目录树}
+\begin{verbatim}
+C:/ICP1_Phase2_PULPino
+|-- README.md
+|-- rtl
+|   |-- pulpino_top.sv
+|   |-- pulpino_padstop.v
+|   |-- peripherals.sv
+|   |-- periph_bus_wrap.sv
+|   |-- axi2apb_wrap.sv
+|   |-- includes
+|   |   |-- apb_bus.sv
+|   |   |-- axi_bus.sv
+|   |   `-- config.sv
+|   |-- components
+|   |   |-- SPHDL100909.v
+|   |   `-- cluster_clock_gating.sv
+|   `-- CONV
+|       |-- apb_conv.sv
+|       |-- convolution_accelerator.v
+|       |-- mac.v
+|       |-- parse_input_row.v
+|       `-- ROM.v
+|-- Convolution Accelerator
+|   |-- apb_conv_printf.c
+|   |-- apb_conv.c
+|   |-- CONV.c
+|   |-- peripheral.c
+|   |-- RTL/tb_conv_acc.v
+|   `-- MATLAB_stimuli
+|       |-- IFM.m
+|       |-- IFM.txt
+|       `-- OFM.txt
+|-- tb
+|   |-- testbench.sv
+|   |-- tb.sv
+|   |-- tb_spi_pkg.sv
+|   `-- uart.sv
+|-- post_synthesis
+|   |-- Makefile
+|   |-- build_libs.sh
+|   `-- slm_files/spi_stim.txt
+|-- post_PR
+|   |-- Makefile
+|   |-- do_simulation.tcl
+|   `-- slm_files/stimuli/spi_stim_apb_conv_printf.txt
+|-- synthesis_scripts
+|   |-- synt.tcl
+|   |-- design_setup.tcl
+|   |-- design_setup_grade5.tcl
+|   |-- create_clock.tcl
+|   `-- reports
+|-- PR_scripts
+|   |-- Design_imports
+|   |   |-- Import_Design
+|   |   |-- LU_pads.io
+|   |   `-- my_MMMC.view
+|   `-- scripts_grade5
+|       |-- 1_floorplan.tcl
+|       |-- ...
+|       `-- 10_export.tcl
+`-- primetime
+    |-- scripts_phase2/primetime.tcl
+    `-- reports_grade5_perip
+        |-- timing_setup.rpt
+        |-- timing_hold.rpt
+        |-- timing_violation.rpt
+        |-- timing_skew.rpt
+        `-- power.rpt
+\end{verbatim}
+
+\section{卷积加速器 RTL 微结构}
+
+\subsection{本章解决的问题}
+本章说明卷积核心本身如何组织输入、kernel、输出和控制时序，并区分核心 RTL 与 APB wrapper 中的数据缓存。
+
+\subsection{关键文件}
+\begin{itemize}
+  \item \fpath{rtl/CONV/convolution_accelerator.v}：卷积核心顶层，参数化输入宽度、IFM 尺寸和 kernel 尺寸。
+  \item \fpath{rtl/CONV/mac.v}：单个 5x5 Multiply-Accumulate (MAC，乘加) lane。
+  \item \fpath{rtl/CONV/parse_input_row.v}：将逐像素输入解析成一行 28 像素。
+  \item \fpath{rtl/CONV/ROM.v}：固定 5x5 kernel ROM。
+  \item \fpath{rtl/CONV/apb_conv.sv}：不是卷积算子本身，但负责向核心提供逐周期 \reg{i\_pixel}，并保存核心输出。
+\end{itemize}
+
+\subsection{顶层模块职责、参数和端口}
+\reg{convolution\_accelerator} 的默认参数为 \reg{PX\_W=8}、\reg{IFM\_W=28}、\reg{KE\_W=5}。其输入端口为 \reg{i\_clk}、低有效 \reg{i\_rstn} 和单像素输入 \reg{i\_pixel[7:0]}；输出为 \reg{o\_valid\_ofm} 和 \reg{o\_ofm[503:0]}。输出宽度来自
+\[
+(2\times PX\_W+\lceil\log_2(KE\_W^2)\rceil)\times(IFM\_W-KE\_W+1)
+=21\times24=504.
+\]
+因此每次 \reg{o\_valid\_ofm} 有效时，核心输出一整行 24 个 21-bit OFM 像素。
+
+核心不直接暴露 APB 信号，也不直接访问 SoC SRAM。它只接收 wrapper 逐周期送来的 8-bit 像素流，kernel 来自内部 ROM，OFM 行结果通过 \reg{o\_ofm} 返回给 wrapper。
+
+\subsection{支持的卷积维度、位宽和数值策略}
+仓库中可确认的卷积规格如下：
+\begin{itemize}
+  \item IFM (Input Feature Map，输入特征图)：28x28，8-bit unsigned。
+  \item Kernel：5x5，8-bit unsigned，固定 ROM，当前每个系数为 255。
+  \item Padding：无 padding。
+  \item Stride：1。
+  \item OFM：24x24，因为 \reg{28-5+1=24}。
+  \item 单个 MAC 输入窗口：5 行，每行 5 个 8-bit 像素，共 25 个像素；kernel 同样 25 个 8-bit 系数。
+  \item 乘法结果：RTL 中 \reg{prod[g]} 为 \reg{[2*PX\_W-1:0]}，即 16-bit。注释里写“15-bit”，但代码实际为 16-bit。
+  \item 累加结果：\reg{sum\_c[20:0]}，21-bit。最大值 \reg{25*255*255=1625625}，小于 $2^{21}=2097152$，因此在当前 8-bit、5x5、全 255 kernel 规格下 21-bit 足够覆盖最大无符号结果。仓库中未实现额外饱和或舍入逻辑，也未实现将结果截断到 8-bit/16-bit。
+\end{itemize}
+
+\subsection{数据存储结构}
+输入像素在 wrapper 内先存入 \reg{ifm\_r[0:783]}。进入 \reg{CONV} 状态后，wrapper 每个时钟把一个 \reg{ifm\_r} 元素送到核心 \reg{i\_pixel}。核心内部 \reg{parse\_input\_row} 用移位寄存器聚合 28 个像素并产生 \reg{o\_valid\_row}，随后 \reg{convolution\_accelerator} 把已解析的行保存到 \reg{ifm\_r0} 到 \reg{ifm\_r27} 这些 224-bit 行寄存器中。
+
+Kernel 由 \reg{ROM} 根据 3-bit \reg{addr} 输出一行 40-bit 系数。核心通过 \reg{ker0} 到 \reg{ker4} 保存五行 kernel。当前 \fpath{rtl/CONV/ROM.v} 的五个有效地址均返回 \reg{40\{1'b1\}}，即每行 5 个 \reg{8'hFF}。
+
+输出在核心中按一行 24 个结果并行形成。wrapper 在 \reg{ofm\_valid} 有效时把 \reg{o\_ofm[503:0]} 锁存到 \reg{ofm\_buffer}，再按 21-bit slice 逐个写入三个 SRAM 宏：
+\begin{itemize}
+  \item \reg{byte0} 保存结果 \reg{[7:0]}；
+  \item \reg{byte1} 保存结果 \reg{[15:8]}；
+  \item \reg{byte2} 保存 \reg{\{3'b000, result[20:16]\}}。
+\end{itemize}
+这三个 SRAM 均为 \fpath{rtl/components/SPHDL100909.v} 中的 \reg{ST\_SPHDL\_2048x8m8\_L} 宏实例，由 \fpath{rtl/CONV/apb_conv.sv} 例化为 \reg{byte0}、\reg{byte1}、\reg{byte2}。
+
+\subsection{地址生成和索引规则}
+核心级地址生成主要是行/窗口选择：
+\begin{itemize}
+  \item \reg{parse\_input\_row} 逐时钟移入一个 8-bit 像素，按计数器产生行有效信号。代码中当 \reg{cnt==5'h1C} 时产生 \reg{o\_valid\_row}。
+  \item \reg{valid\_row\_cnt} 记录已解析行数。行数达到 5 以后，组合 \reg{case} 逻辑从 28 个行寄存器中选择连续 5 行作为卷积窗口的纵向位置。
+  \item 水平方向由 \reg{generate for (i=0; i<24; i=i+1)} 生成 24 个并行 MAC lane。第 \reg{i} 个 lane 选择每行 \reg{rowX[8*i+39:8*i]}，即从第 \reg{i} 列开始的 5 个连续像素。
+  \item wrapper 保存 OFM 时，\reg{ofm\_ptr\_r} 从 0 到 23 选择 \reg{ofm\_buffer[ofm\_ptr\_r*21 +: 21]}，\reg{save\_cnt} 从 0 到 575 作为三字节 SRAM 的地址。
+\end{itemize}
+
+需要注意的是，\fpath{rtl/CONV/parse_input_row.v} 中的移位表达式为 \reg{row[PX\_W*IFM\_W-5:0]} 与 8-bit 像素宽度不完全匹配；综合器会按目标位宽处理该表达式，但仓库中未见对此写法的解释或修正。本文不把它描述成理想化的、已证明无误的 8-bit 整字节移位实现。
+
+\subsection{运算数据通路}
+核心的运算数据通路可以概括为：
+\[
+\begin{aligned}
+\text{像素流}
+&\rightarrow \text{行解析}
+ \rightarrow \text{5 行窗口选择} \\
+&\rightarrow 24\times(25\text{ 个 }8\times8\text{ 乘法}+21\text{-bit 累加}) \\
+&\rightarrow \text{一行 OFM}
+\end{aligned}
+\]
+
+每个 MAC lane 在 \reg{i\_start\_mac} 为高时，把 25 个 IFM 像素和 25 个 kernel 系数装入 \reg{row\_r[0:24]} 与 \reg{ker\_r[0:24]}。随后 25 个 \reg{prod[g]=row\_r[g]*ker\_r[g]} 并行组合产生，\reg{sum\_c} 在组合 \reg{always @(*)} 中循环累加 25 个乘积。
+
+综合报告 \fpath{synthesis_scripts/reports/datapath_pulpino_padstop.rpt} 中可以看到 \fpath{apb_conv_i/conv_init/inst_mac[*]} 下的 unsigned 8x8 multiplication 和 \fpath{csa_tree_add_69_27_I25_groupi}，说明综合器将 MAC 累加实现成乘法与 Carry-Save Adder (CSA，进位保存加法器) 相关结构。
+
+从吞吐角度看，当前实现是“行内 24 个输出并行、行间随输入流推进”。当已经缓存到足够 5 行数据时，核心每解析出新一行输入就触发 24 个 MAC lane，同一时刻生成该输出行的 24 个卷积窗口结果。MAC 内部没有显式多级流水的加法树寄存器，\reg{o\_ofm} 是组合求和结果，\reg{o\_valid\_ofm} 由 5-bit shift register 延迟 \reg{i\_start\_mac} 产生。
+
+\subsection{控制路径与复位}
+卷积核心内部没有命名的全局 FSM (Finite State Machine，有限状态机)，主要由计数器和有效信号驱动：
+\begin{itemize}
+  \item Kernel 读取计数器 \reg{addr} 在 \reg{0--4} 循环，驱动 ROM 输出五行系数。
+  \item \reg{parse\_input\_row} 的 \reg{cnt} 产生 \reg{o\_valid\_row}。
+  \item \reg{valid\_row\_cnt} 统计有效行，达到第 5 行后允许 \reg{start\_mac}。
+  \item \reg{parsed\_a\_row \&\& valid\_row\_cnt\_buff>=5} 组合产生 \reg{start\_mac}。
+  \item 24 个 MAC 的 \reg{o\_valid\_ofm} 全部为 1 时，核心顶层输出 \reg{o\_valid\_ofm=1}。
+\end{itemize}
+
+复位方面，核心使用低有效 \reg{i\_rstn}。wrapper 中的 \reg{conv\_rstn} 仅在 \reg{CONV} 状态拉高，因此卷积核心在 \reg{IDLE}、\reg{LOAD} 和 \reg{READ} 状态均被保持复位。仓库中可确认大多数 kernel、计数器和行寄存器在复位下被清零；但 \fpath{rtl/CONV/convolution_accelerator.v} 的行寄存器复位拼接中未包含 \reg{ifm\_r15} 到 \reg{ifm\_r19}，因此这些寄存器的复位值在仓库中未确认。
+
+\subsection{可综合 RTL 风格和关键路径}
+核心主要采用同步时序逻辑保存状态、寄存器阵列和计数器，组合逻辑完成窗口选择、next-state 计算和 MAC 累加。可综合性相关观察如下：
+\begin{itemize}
+  \item 24 个 MAC lane 并行实例化，面积主要来自 24 组 25 个 8x8 乘法器和累加树。
+  \item \reg{mac.v} 中乘法和 25 项累加为组合逻辑，可能形成加速器内部主要数据关键路径。
+  \item \fpath{synthesis_scripts/reports/area_pulpino_padstop.rpt} 显示 \reg{apb\_conv\_i} cell area 约 841294，\reg{conv\_init} 约 698654，单个 \reg{inst\_mac[*]} 约 23779--23891，说明 MAC 阵列是面积主因。
+  \item \reg{apb\_conv.sv} 使用三个实例化 SRAM 宏保存输出，而不是推断 block RAM。
+  \item 若从代码质量角度看，部分时序 \reg{always @(posedge)} 中使用 blocking assignment，且存在前述复位/移位表达式不一致点；本文只按仓库实际 RTL 描述，不把这些写法扩展成未确认的优化设计。
+\end{itemize}
+
+\subsection{模块与存储体总结表}
+\begingroup
+\small
+\begin{longtable}{L{0.24\textwidth}L{0.22\textwidth}L{0.30\textwidth}L{0.15\textwidth}}
+\toprule
+模块/寄存器或存储体 & 作用 & 读写时机 & 关键文件 \\
+\midrule
+\endhead
+\reg{apb\_conv}\newline\reg{ifm\_r[0:783]} & 保存 28x28 IFM，每项 8-bit & \reg{LOAD} 状态下 APB 写 offset \reg{0x100--0x40F} 时写入；\reg{CONV} 状态每周期读出一个像素给核心 & \fpath{rtl/CONV/apb_conv.sv} \\
+\reg{parse\_input\_row.row} & 将逐像素输入聚合成 28 像素行 & 每个 \reg{i\_clk} 移入 \reg{i\_pixel}；计数到代码中的 \reg{5'h1C} 后产生行有效 & \fpath{rtl/CONV/parse_input_row.v} \\
+\reg{ifm\_r0--ifm\_r27} & 核心内部 28 行 IFM 行缓存，每行 224-bit & \reg{reg\_valid\_row} 有效时按 \reg{valid\_row\_cnt} 写入；窗口选择组合逻辑读取连续 5 行 & \fpath{rtl/CONV/convolution_accelerator.v} \\
+\reg{ROM} 与 \reg{ker0--ker4} & 固定 5x5 kernel，每个系数 255 & ROM 地址 \reg{0--4} 循环读取；核心寄存五行 kernel & \fpath{rtl/CONV/ROM.v}、\fpath{rtl/CONV/convolution_accelerator.v} \\
+\reg{inst\_mac[0:23]} & 24 个并行 MAC lane，每个计算一个水平输出位置 & \reg{start\_mac} 有效时锁存 5x5 窗口和 kernel；组合乘加产生 21-bit 输出；valid 延迟 5 周期 & \fpath{rtl/CONV/mac.v} \\
+\reg{apb\_conv.ofm\_buffer} & 暂存核心输出的一行 24 个 21-bit OFM & \reg{ofm\_valid} 有效时写入；随后按 21-bit slice 读出写 SRAM & \fpath{rtl/CONV/apb_conv.sv} \\
+\reg{byte0/byte1/byte2} SRAM & 保存 576 个 OFM，每个结果拆成 3 字节 & \reg{CONV} 中 \reg{save\_start} 时逐元素写；\reg{READ} 中按 APB 地址读 & \fpath{rtl/CONV/apb_conv.sv}、\fpath{rtl/components/SPHDL100909.v} \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\section{APB Wrapper 与 SoC 集成设计}
+
+\subsection{本章解决的问题}
+本章解释加速器作为 APB slave 接入 SoC 的实际层次、信号、地址译码、寄存器映射和软件可见接口。这是本项目硬件集成的核心。
+
+\subsection{关键文件}
+\begin{itemize}
+  \item \fpath{rtl/includes/apb_bus.sv}：APB interface、地址宏和 \reg{CONV\_START\_ADDR}/\reg{CONV\_END\_ADDR}。
+  \item \fpath{rtl/periph_bus_wrap.sv}：将 APB 主访问按地址段分发到各 slave；与本文相关的是 CONV 分支，其他分支包括 UART/GPIO/SPI/event/FLL/SoC control/debug。
+  \item \fpath{rtl/peripherals.sv}：例化 \reg{axi2apb\_wrap}、\reg{periph\_bus\_wrap} 和 \reg{apb\_conv\_i}。
+  \item \fpath{rtl/axi2apb_wrap.sv}：连接 AXI slave 到 APB master，实际协议转换模块来自外部 \fpath{ips/axi/axi2apb}。
+  \item \fpath{rtl/CONV/apb_conv.sv}：卷积加速器 APB slave wrapper。
+\end{itemize}
+
+\subsection{Wrapper 的职责与层次关系}
+\reg{apb\_conv} 存在的原因是卷积核心本身只有像素流输入和 OFM 行输出，不认识 APB 协议，也没有软件可见寄存器。wrapper 承担四类职责：
+\begin{enumerate}
+  \item 把 APB 写控制寄存器转换成内部 FSM 启动条件；
+  \item 把 APB 逐字节 IFM 写入转换成内部 \reg{ifm\_r} buffer 装载；
+  \item 在 \reg{CONV} 状态向卷积核心逐时钟提供像素，并收集核心输出；
+  \item 把 OFM 写入内部三字节 SRAM，并把 APB 读请求转换成 SRAM 地址和 \reg{PRDATA}。
+\end{enumerate}
+
+层次连接关系为：
+\begin{verbatim}
+pulpino_padstop
+`-- pulpino_top_i
+    |-- axi_interconnect_i
+    `-- peripherals_i
+        |-- axi2apb_i
+        |-- periph_bus_i
+        |   `-- apb_node_wrap_i  (external IPS source)
+        `-- apb_conv_i
+            |-- conv_init
+            |   |-- inst_parse_input_row
+            |   |-- inst_rom
+            |   `-- inst_mac[0:23]
+            |-- byte0
+            |-- byte1
+            `-- byte2
+\end{verbatim}
+
+地址关系如下：
+\begin{itemize}
+  \item SoC 外设总地址段：\fpath{rtl/pulpino_top.sv} 中 AXI interconnect 将 \reg{0x1A10\_0000--0x1A11\_FFFF} 路由到 \reg{peripherals\_i}。
+  \item APB 外设译码：\fpath{rtl/includes/apb_bus.sv} 定义 \reg{CONV\_START\_ADDR} 为 \reg{0x1A10\_3000}，\reg{CONV\_END\_ADDR} 为 \reg{0x1A10\_3FFF}。
+  \item 本 wrapper 内部 offset：\fpath{rtl/peripherals.sv} 只把 \fpath{s_conv_bus.paddr[11:0]} 连接给 \reg{apb\_conv.PADDR}，因此 wrapper 中的 \reg{PADDR} 是 4 KiB local offset。
+\end{itemize}
+
+\subsection{APB 协议信号解释}
+当前 wrapper 端口没有命名为 \reg{PCLK}/\reg{PRESETn}，而是使用 \reg{HCLK}/\reg{HRESETn} 作为 APB slave 时钟和低有效复位。接口信号含义如下：
+
+\begingroup
+\small
+\begin{longtable}{L{0.14\textwidth}L{0.10\textwidth}L{0.17\textwidth}L{0.50\textwidth}}
+\toprule
+信号 & 方向 & 有效阶段 & 本项目中的使用方式 \\
+\midrule
+\endhead
+\reg{HCLK} & 输入 & 全周期 & wrapper、内部 SRAM 和卷积核心共用时钟。在 \fpath{rtl/peripherals.sv} 中连接为 \reg{clk\_int[4]}。按 APB 语义可对应 \reg{PCLK}。 \\
+\reg{HRESETn} & 输入 & 异步低有效 & 复位 wrapper FSM、指针、状态标志、\reg{ofm\_buffer}、\reg{PREADY\_rst} 等。按 APB 语义可对应 \reg{PRESETn}。 \\
+\reg{PSEL} & 输入 & SETUP/ACCESS & APB slave 被地址译码选中。wrapper 所有读写使能都要求 \reg{PSEL=1}。 \\
+\reg{PENABLE} & 输入 & ACCESS & 区分 SETUP 和 ACCESS。wrapper 只在 \reg{PSEL \&\& PENABLE} 时接受写入或登记读请求。 \\
+\reg{PADDR}\newline\reg{[11:0]} & 输入 & SETUP/ACCESS & local offset。控制寄存器 \reg{0x000}，status \reg{0x004}，OFM 读窗口 \reg{0x008--0x907}，IFM 写窗口 \reg{0x100--0x40F}。 \\
+\reg{PWRITE} & 输入 & SETUP/ACCESS & \reg{1} 表示写，\reg{0} 表示读。写 IFM 和启动要求 \reg{PWRITE=1}；进入 \reg{READ} 的完成读触发要求 \reg{!PWRITE}。 \\
+\reg{PWDATA}\newline\reg{[31:0]} & 输入 & ACCESS 写 & 控制寄存器要求 \reg{PWDATA==32'd1}。IFM 写时根据 \reg{PADDR[1:0]} 从 \reg{PWDATA} 的对应 byte lane 取 8-bit 像素。 \\
+\reg{PRDATA}\newline\reg{[31:0]} & 输出 & ACCESS 读 & \reg{READ} 状态下 offset \reg{0x004} 返回 1；OFM 读返回 \reg{\{8'd0,rdata2,rdata1,rdata0\}}。其他情况默认为 0。 \\
+\reg{PREADY} & 输出 & ACCESS & 大多数状态固定为 1；\reg{READ} 状态下第一次 OFM SRAM 读 ACCESS 可能拉低一拍，用 \reg{PREADY\_rst} 为 SRAM 一拍读延迟插入 wait state。 \\
+\reg{PSLVERR} & 输出 & ACCESS & 当前代码固定为 \reg{1'b0}，未实现非法地址或非法访问错误上报。 \\
+\reg{PPROT}/\reg{PSTRB} & 无端口 & 不适用 & 当前 APB interface 未包含这些信号。wrapper 不能依据 \reg{PSTRB} 判断 byte enable，而是通过 \reg{PADDR[1:0]} 选择 \reg{PWDATA} byte lane。 \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+APB 两阶段传输在本项目中的语义为：
+\begin{enumerate}
+  \item SETUP phase：\reg{PSEL=1}、\reg{PENABLE=0}。地址、写方向和写数据已由 master 驱动，但 wrapper 不在该阶段更新 IFM buffer 或读请求寄存器。
+  \item ACCESS phase：\reg{PSEL=1}、\reg{PENABLE=1}。写事务在该阶段由 wrapper 采样；读事务在该阶段根据 \reg{PREADY} 决定何时返回有效 \reg{PRDATA}。
+\end{enumerate}
+
+关于 APB back-to-back transfer：APB 本身没有 burst，本项目 wrapper 支持普通连续单笔 APB transfer。写路径在 \reg{LOAD} 状态 \reg{PREADY=1}，因此 CPU 可以连续发起 IFM byte write，每一笔 ACCESS 被 wrapper 接收一次。读路径由于 OFM 存在 SRAM 一拍读延迟，wrapper 在 \reg{READ} 状态利用 \reg{PREADY\_rst} 让每个新读访问的第一个 ACCESS 插入一个 wait state；因此 OFM 读不是零等待的背靠背读，而是符合 APB ready/等待机制的多拍读。
+
+\subsection{Wrapper 写使能、读使能与地址 decode}
+\paragraph{写使能}
+启动写条件为：
+\[
+\reg{PSEL \&\& PENABLE \&\& PWRITE \&\& PADDR==12'd0 \&\& PWDATA==32'd1}
+\]
+满足该条件时，next state 从 \reg{IDLE} 进入 \reg{LOAD}。IFM 数据写条件为：
+\[
+\reg{state==LOAD \&\& PSEL \&\& PENABLE \&\& PWRITE \&\& 12'h100 <= PADDR <= 12'h40F}.
+\]
+wrapper 并不使用 \reg{PADDR} 计算 \reg{ifm\_r} 下标，而是用内部 \reg{ifm\_ptr} 顺序递增。因此软件必须按期望顺序连续写入 784 个 byte；随机写或漏写不会产生错误响应，但会破坏 IFM 顺序。写入的 byte lane 由 \reg{PADDR[1:0]} 决定：
+\begin{itemize}
+  \item \reg{00}：写 \reg{PWDATA[7:0]}；
+  \item \reg{01}：写 \reg{PWDATA[15:8]}；
+  \item \reg{10}：写 \reg{PWDATA[23:16]}；
+  \item \reg{11}：写 \reg{PWDATA[31:24]}。
+\end{itemize}
+
+\paragraph{读使能}
+OFM 读请求只在 \reg{READ} 状态登记：
+\[
+\reg{PSEL \&\& PENABLE \&\& 12'h008 <= PADDR < 12'h908}.
+\]
+\reg{ofm\_read} 是时序寄存器，用于指示上一拍访问为 OFM 读。SRAM 地址组合计算为：
+\[
+\reg{sram\_addr = PADDR[11:2] - 10'd2}.
+\]
+因此 offset \reg{0x008} 对应 OFM index 0，offset \reg{0x00C} 对应 index 1，最后一个按 32-bit 访问的 offset \reg{0x904} 对应 index 575。
+
+\paragraph{\reg{PRDATA} 产生方式}
+\reg{PRDATA} 在组合逻辑中默认置 0。进入 \reg{READ} 状态后：
+\begin{itemize}
+  \item offset \reg{0x004--0x007} 返回 \reg{32'd1}，作为软件轮询的 done/status；
+  \item 若 \reg{ofm\_read} 为 1，则返回 \reg{\{8'd0,rdata2,rdata1,rdata0\}}；
+  \item 非法或未覆盖 offset 不报错，通常读到 0。
+\end{itemize}
+由于 \reg{ofm\_read} 是寄存后的读请求，wrapper 用 \reg{PREADY} wait state 对齐 SRAM 读数据。仓库中未实现独立的 busy 位、ack 清零位或中断输出。
+
+\paragraph{\reg{PREADY} 和非法访问}
+\reg{PREADY} 默认 1。在 \reg{CONV} 状态也固定为 1；在 \reg{READ} 状态，若 \reg{PREADY\_rst==0} 且当前为 ACCESS，则 \reg{PREADY=0}，下一拍 \reg{PREADY\_rst} 被置 1 后 \reg{PREADY=1}。非法地址不会使 \reg{PSLVERR} 置位，因为 \reg{PSLVERR} 被固定为 0。非法写也不会改变状态或报错。
+
+\paragraph{reset 后状态}
+复位后 wrapper 状态为 \reg{IDLE}，\reg{ifm\_ptr}、\reg{load\_done}、\reg{ifm\_input\_done}、\reg{save\_start}、\reg{save\_cnt}、\reg{ofm\_ptr\_r}、\reg{save\_done}、\reg{ofm\_buffer}、\reg{ofm\_read} 和 \reg{PREADY\_rst} 被清零。代码未清零 \reg{ifm\_r} 数组本身，也未清零三个 SRAM 宏内容；这些存储体复位值在仓库中未确认。
+
+\subsection{寄存器映射与软件可见接口}
+\begingroup
+\scriptsize
+\begin{longtable}{L{0.14\textwidth}L{0.20\textwidth}L{0.06\textwidth}L{0.15\textwidth}L{0.25\textwidth}L{0.10\textwidth}}
+\toprule
+寄存器名称 & 地址 offset / 绝对地址 & 读写属性 & bit 字段 & 硬件语义 & 软件使用时机 \\
+\midrule
+\endhead
+Control / Start & offset \reg{0x000}\newline absolute \reg{0x1A10\_3000} & W & \reg{PWDATA==1}，实际 C 中用 byte write 写 \reg{bit0=1} & 在 \reg{IDLE} 状态写 1 后进入 \reg{LOAD}。读未实现。 & 软件必须先写 start，使 wrapper 接受后续 IFM 写。 \\
+Status / Done & offset \reg{0x004}\newline absolute \reg{0x1A10\_3004} & R & \reg{PRDATA[0]=1}，实际返回 \reg{32'd1} & \reg{READ} 状态下返回完成。首次完成后的读会触发状态从 \reg{CONV} 到 \reg{READ}，下一次读可稳定看到 1。 & 软件轮询直到返回 1。无 busy 位、无 clear 位。 \\
+OFM read window & offset \reg{0x008--0x907}\newline absolute \reg{0x1A10\_3008--}\newline\reg{0x1A10\_3907} & R & \reg{PRDATA[20:0]} 有效，高位补零 & 按 32-bit word 读取 576 个结果。local offset \reg{0x008+4*i} 对应 SRAM index \reg{i}。 & done 后读输出矩阵；C 中 \reg{OFM\_ADDR[i]} 访问。 \\
+IFM write window & offset \reg{0x100--0x40F}\newline absolute \reg{0x1A10\_3100--}\newline\reg{0x1A10\_340F} & W & 每次有效写取一个 byte lane & \reg{LOAD} 状态下顺序写入 \reg{ifm\_r[ifm\_ptr]}，累计 784 次后 \reg{load\_done=1} 并进入 \reg{CONV}。 & start 后连续写入 28x28 个 8-bit 像素。 \\
+Kernel / Filter & 仓库中无 APB offset & 无 & 无 & 当前 kernel 固定在 \fpath{rtl/CONV/ROM.v}，五行均为 \reg{8'hFF} 系数。 & 软件不可配置。 \\
+Interrupt / Ack / Clear & 仓库中无 APB offset & 无 & 无 & \reg{apb\_conv} 没有 \reg{irq\_o} 端口，\reg{PSLVERR} 固定 0，也没有 done clear/ack。 & 软件只能轮询 status。 \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\section{从 CPU C 程序到硬件执行的完整流程}
+
+\subsection{本章解决的问题}
+本章按时间顺序说明裸机 C 程序如何驱动 APB wrapper，以及仿真框架如何装载并执行该程序。重点是软件--硬件契约，而不是逐行翻译 C 代码。
+
+\subsection{关键文件}
+\begin{itemize}
+  \item \fpath{Convolution Accelerator/apb_conv_printf.c}：与当前 RTL 地址窗口最匹配的 APB 测试程序。
+  \item \fpath{Convolution Accelerator/apb_conv.c}：只写中心 20x20 IFM，未写满 784 个像素；按当前 wrapper 会导致 \reg{load\_done} 无法成立，因此不应作为完整测试主程序描述。
+  \item \fpath{Convolution Accelerator/CONV.c}：纯软件 golden/reference 卷积计算。
+  \item \fpath{Convolution Accelerator/peripheral.c}：定义了 filter APB 写窗口，但当前 RTL 无对应实现，因此该文件与当前硬件寄存器映射不一致。
+  \item \fpath{post_PR/slm_files/stimuli/spi_stim_apb_conv_printf.txt}：包含 \reg{1A103} 相关指令常量的 APB 卷积程序镜像候选。
+  \item \fpath{tb/testbench.sv}、\fpath{tb/tb_spi_pkg.sv}：SPI 装载程序镜像、启动 CPU、等待 GPIO[8] 结束并读取返回码。
+\end{itemize}
+
+\subsection{软件初始化与地址定义}
+\fpath{Convolution Accelerator/apb_conv_printf.c} 定义：
+\begin{itemize}
+  \item \reg{CONV\_ACCEL\_BASE = 0x1A103000}；
+  \item \reg{CTRL\_REG} 为 base offset \reg{0x000} 的 \reg{volatile uint8\_t}；
+  \item \reg{STATUS\_REG} 为 base offset \reg{0x004} 的 \reg{volatile uint32\_t}；
+  \item \reg{IFM\_ADDR} 为 base offset \reg{0x100} 的 \reg{volatile uint8\_t*}；
+  \item \reg{OFM\_ADDR} 为 base offset \reg{0x008} 的 \reg{volatile uint32\_t*}。
+\end{itemize}
+这些定义与 \fpath{rtl/CONV/apb_conv.sv} 的控制/status/IFM/OFM offset 一致。
+
+\subsection{输入数据、kernel 和输出 buffer}
+\fpath{Convolution Accelerator/apb_conv_printf.c} 在 \reg{main()} 中定义 \reg{uint8\_t ifm[28][28]=\{0\}} 和 \reg{uint32\_t output[24][24]=\{0\}}，随后把 C 下标 \reg{i=4..23}、\reg{j=4..23} 的中心 20x20 区域置为 1。kernel 未由 C 程序写入；硬件 kernel 固定在 ROM 中，全 255。输出 buffer 在 C 程序内只是 CPU 读回结果后的存放位置，不是硬件计算时写入的位置。
+
+\subsection{启动、加载、轮询和读回顺序}
+与当前 wrapper 匹配的顺序是：
+\begin{enumerate}
+  \item CPU 写 \reg{CTRL\_REG=1}。该 APB 写使 wrapper 从 \reg{IDLE} 进入 \reg{LOAD}。
+  \item CPU 调用 \reg{load\_ifm()}，从 \reg{IFM\_ADDR[0]} 到 \reg{IFM\_ADDR[783]} 连续写 784 个 byte。wrapper 每收到一次有效 APB ACCESS 写，就把相应 byte lane 存入 \reg{ifm\_r[ifm\_ptr]} 并递增指针。
+  \item 当第 784 个 byte 写入后，wrapper 设置 \reg{load\_done=1}，状态进入 \reg{CONV}。
+  \item \reg{CONV} 状态下 wrapper 释放核心复位，每个时钟给 \reg{convolution\_accelerator} 一个像素。核心解析行、触发 24 个 MAC lane 并输出 24 行 OFM。
+  \item wrapper 把每个 21-bit OFM 结果拆成三字节写入 \reg{byte0/byte1/byte2} SRAM，\reg{save\_cnt} 达到 576 后置 \reg{save\_done=1}。
+  \item C 程序在 \reg{wait\_for\_done()} 中轮询 \reg{STATUS\_REG}。由于 wrapper 的 \reg{READ} 状态由一次读访问触发，完成后的第一次轮询可能只让 FSM 从 \reg{CONV} 转到 \reg{READ}，后续轮询返回 1。
+  \item C 程序调用 \reg{read\_ofm()}，按 \reg{OFM\_ADDR[i]} 读取 576 个 32-bit word，保存到 \reg{output[24][24]}。
+\end{enumerate}
+
+\subsection{PASS/FAIL 与 golden result}
+仓库中存在纯软件参考程序 \fpath{Convolution Accelerator/CONV.c}，它使用相同的 28x28 IFM、5x5 全 255 filter，并以 MATLAB \reg{conv2} 的 valid 模式等价嵌套循环计算 24x24 OFM。MATLAB 脚本 \fpath{Convolution Accelerator/MATLAB_stimuli/IFM.m} 也会生成 \fpath{Convolution Accelerator/MATLAB_stimuli/OFM.txt}。但是，当前 \fpath{Convolution Accelerator/apb_conv_printf.c} 没有把硬件读回 OFM 与 golden result 自动比较；\reg{print\_ofm()} 内的 \reg{printf} 也处于注释状态。因此“硬件输出与 golden 自动比较并 PASS/FAIL”的机制在仓库中未确认。
+
+仿真框架中的 PASS/FAIL 来自 \fpath{tb/tb_spi_pkg.sv} 的 \reg{spi\_check\_return\_codes()}：testbench 在程序结束后通过 SPI 读取 \reg{0x1A10\_7014}，若返回 0 则打印 \reg{Test OK}，否则打印 \reg{Test FAILED}。这属于 PULPino 软件返回码机制，不等价于卷积结果逐元素比对。
+
+\subsection{端到端对应表}
+\begingroup
+\scriptsize
+\begin{longtable}{L{0.23\textwidth}L{0.24\textwidth}L{0.34\textwidth}L{0.10\textwidth}}
+\toprule
+软件操作 & APB 操作 & 硬件动作 & 关键文件 \\
+\midrule
+\endhead
+定义 \reg{CONV\_ACCEL\_BASE}\newline \reg{0x1A103000} & 无立即 APB 事务 & 与 \reg{CONV\_START\_ADDR} 对齐，后续 load/store 进入 \reg{s\_conv\_bus} & \fpath{Convolution Accelerator/apb_conv_printf.c}、\fpath{rtl/includes/apb_bus.sv} \\
+\reg{start\_conv()} 写 \reg{CTRL\_REG=1} & 写 absolute \reg{0x1A10\_3000}；local offset \reg{0x000} & wrapper 从 \reg{IDLE} 进入 \reg{LOAD} & \fpath{rtl/CONV/apb_conv.sv} \\
+\reg{load\_ifm()} 连续写 784 byte & 写 \reg{0x1A10\_3100--}\newline\reg{0x1A10\_340F} & 每笔 ACCESS 写入 \reg{ifm\_r[ifm\_ptr]}；写满后 \reg{load\_done=1} & 同上 \\
+CPU 继续执行并轮询 status & 读 \reg{0x1A10\_3004} & \reg{save\_done} 后读访问推动 wrapper 进入 \reg{READ}；\reg{READ} 状态返回 1 & 同上 \\
+wrapper 处于 \reg{CONV} & 无需 CPU 干预 & 每周期向核心送 1 像素；核心按 24-lane MAC 输出 OFM 行 & \fpath{rtl/CONV/convolution_accelerator.v}、\fpath{rtl/CONV/mac.v} \\
+\reg{read\_ofm()} 读 576 word & 读 \reg{0x1A10\_3008+4*i} & wrapper 读三字节 SRAM，插入 wait state 后返回 \reg{PRDATA[20:0]} & \fpath{rtl/CONV/apb_conv.sv} \\
+程序 \reg{return 0} & PULPino runtime 写返回码位置，仓库中 runtime 源未包含 & testbench 通过 SPI 读 \reg{0x1A10\_7014} 判断返回码 & \fpath{tb/tb_spi_pkg.sv} \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\section{RTL 仿真与 FPGA 验证框架}
+
+\subsection{本章解决的问题}
+本章只总结与卷积加速器直接相关的验证文件和流程，并区分核心级 RTL 仿真、SoC 级程序加载仿真、后综合/后布局仿真与 FPGA 上板验证。
+
+\subsection{核心级 RTL 仿真}
+\fpath{Convolution Accelerator/RTL/tb_conv_acc.v} 是独立卷积核心 testbench。它例化 \reg{convolution\_accelerator}，产生 10 ns 周期时钟，先复位 150 ns。
+
+随后 testbench 通过 \reg{\$readmemb} 将 \fpath{IFM.txt} 读入 \reg{memory}，共 784 行二进制像素，并在每个 \reg{i\_clk} 上升沿把一个像素送到 \reg{i\_pixel}。
+
+\fpath{Convolution Accelerator/MATLAB_stimuli/IFM.m} 生成：
+\begin{itemize}
+  \item \fpath{Convolution Accelerator/MATLAB_stimuli/IFM.txt}：28x28 输入，中心 20x20 为 1，其余为 0，每行一个 8-bit 二进制字符串；
+  \item \fpath{Convolution Accelerator/MATLAB_stimuli/OFM.txt}：5x5 全 255 kernel 的 24x24 参考输出；
+  \item \fpath{ofm1.jpg} 和 \fpath{ofm2.jpg}：输出可视化图像。
+\end{itemize}
+当前核心级 testbench 没有在 Verilog 中读取 \fpath{OFM.txt} 并逐元素 assert，因此可确认的是 stimulus 驱动和波形观察框架；自动 reference comparison 在仓库中未确认。
+
+\subsection{SoC 级仿真}
+\fpath{tb/testbench.sv} 例化 \reg{pulpino\_padstop}，产生主时钟 \reg{CLK\_PERIOD=40ns}，即 25 MHz；也支持 FLL reference clock 配置，但当前参数 \reg{CLK\_USE\_FLL=0}。testbench 连接 SPI slave model、UART bus、JTAG debug interface，并通过 \reg{gpio\_out[8]} 作为程序结束等待信号。
+
+程序装载路径由 \fpath{tb/tb_spi_pkg.sv} 实现：
+\begin{itemize}
+  \item \reg{spi\_load()} 读取 \fpath{./slm_files/spi_stim.txt}，用 SPI 写入 instruction/data memory stimulus。
+  \item \reg{spi\_check()} 再读回并检查 SPI 写入内容是否一致。
+  \item testbench 通过 JTAG 写 \reg{0x1A10\_7008} 设置 boot address 为 \reg{0x0000\_0000}，随后拉高 \reg{fetch\_enable} 启动 CPU。
+  \item 程序结束时 testbench 等待 \reg{gpio\_out[8]}，再调用 \reg{spi\_check\_return\_codes()} 从 \reg{0x1A10\_7014} 读取返回码。
+\end{itemize}
+
+仓库中 \fpath{post_PR/slm_files/stimuli/spi_stim_apb_conv_printf.txt} 包含 \reg{1A103} 相关指令常量，说明存在卷积 APB 测试程序镜像候选；但 \fpath{tb/tb_spi_pkg.sv} 固定读取 \fpath{./slm_files/spi_stim.txt}，仓库中未见自动选择 \fpath{spi_stim_apb_conv_printf.txt} 的脚本。因此执行卷积 APB 用例前，需要确认相应 stimulus 是否已复制/链接为当前仿真的 \fpath{slm_files/spi_stim.txt}。
+
+\subsection{后综合和后布局仿真}
+\fpath{post_synthesis/Makefile} 使用 QuestaSim/ModelSim 流程编译综合后网表 \fpath{../Synthesis/outputs/pulpino_padstop.v}，并用 \fpath{../Synthesis/outputs/pulpino_padstop.sdf} 做 SDF (Standard Delay Format，标准延迟格式) 标注。它还通过 \fpath{post_synthesis/build_libs.sh} 建立 MEMORY、PADS、CLOCK65LPLVT、CORE65LPLVT 仿真库。
+
+\fpath{post_PR/Makefile} 使用 PnR 后网表 \fpath{../PR/outputs/pulpino_padstop.v} 和 \fpath{../PR/outputs/pulpino_padstop.sdf}，并在 \reg{ANNOTATE\_WITH\_SDF} 中同时给出 \reg{-sdfmax} 和 \reg{-sdfmin}。它同样编译 \fpath{tb/testbench.sv}，并可配合 \fpath{post_PR/do_simulation.tcl} 记录 \fpath{/export/space/nobackup/fa7855yu-s/VCD_MM.vcd}。
+
+\subsection{FPGA 或板级验证状态}
+仓库中没有可确认的 Nexys4 bitstream、下载脚本或完整 FPGA 板级 I/O 约束流程。当前可确认的是：
+\begin{itemize}
+  \item ASIC padstop 文件 \fpath{rtl/pulpino_padstop.v} 和 pad placement 文件 \fpath{PR_scripts/Design_imports/LU_pads.io}；
+  \item RTL、后综合、后 PnR 仿真框架；
+  \item PnR layout 图片 \fpath{PR_scripts/layout.png} 和 \fpath{pulpino_grade5_layout.png}。
+\end{itemize}
+因此本文表述为“仓库中可确认的是仿真/实现流程，而非完整 FPGA 上板实测”。
+
+\section{综合（Synthesis）流程与脚本解读}
+
+\subsection{本章解决的问题}
+本章基于当前综合脚本和报告，说明综合工具、顶层、RTL/file list、库、约束、输出产物及其与 PnR 的关系。同时指出脚本中与卷积文件相关的可复现性问题。
+
+\subsection{关键文件和工具线索}
+\begin{itemize}
+  \item \fpath{synthesis_scripts/synt.tcl}：主综合流程脚本。
+  \item \fpath{synthesis_scripts/design_setup.tcl}：基础 design setup，但当前文件未列入卷积核心 RTL。
+  \item \fpath{synthesis_scripts/design_setup_grade5.tcl}：包含 \fpath{rtl/CONV} 路径和 \reg{apb\_conv.sv} 的 setup 变体。
+  \item \fpath{synthesis_scripts/create_clock.tcl}：Genus 时钟和 I/O delay 约束。
+  \item \fpath{synthesis_scripts/reports/qor_pulpino_padstop.rpt}、\fpath{area_pulpino_padstop.rpt}、\fpath{timing_pulpino_padstop.rpt}、\fpath{datapath_pulpino_padstop.rpt}：已有综合报告。
+\end{itemize}
+
+已有报告头部显示：工具为 Genus(TM) Synthesis Solution 16.12-s027\_1；顶层模块为 \reg{pulpino\_padstop}；technology libraries 包括 CLOCK65LPLVT、CORE65LPLVT、SPHDL100909 和 PAD；operating condition 为 typical。
+
+\subsection{RTL source、include path 与库}
+\fpath{synthesis_scripts/design_setup_grade5.tcl} 设置：
+\begin{itemize}
+  \item \reg{DESIGN=pulpino\_padstop}；
+  \item 主要路径变量包括 \reg{RTL=\$\{ROOT\}/rtl}、\reg{INCLUDES=\$\{ROOT\}/rtl/includes} 和 \reg{COMPONENTS=\$\{ROOT\}/rtl/components}；
+  \item 卷积与外部 IP 路径变量为 \reg{CONV=\$\{ROOT\}/rtl/CONV} 和 \reg{IPS=\$\{ROOT\}/ips}；
+  \item HDL search path 覆盖 PULPino RTL、components、APB/AXI/debug/FPU/RISC-V/zero-riscy 等 IPS 目录；
+  \item library search path 指向 ST 65 nm core/clock library、SPHDL100909 SRAM memory library 和 pad library；
+  \item library list 包括 \fpath{CLOCK65LPLVT_nom_1.20V_25C.lib}、\fpath{CORE65LPLVT_nom_1.20V_25C.lib}、\fpath{SPHDL100909_nom_1.20V_25C.lib} 和 \fpath{Pads_Oct2012.lib}。
+\end{itemize}
+
+卷积相关文件在 \fpath{design_setup_grade5.tcl} 中体现为：
+\begin{itemize}
+  \item \reg{DESIGN\_FILES\_conv} 定义了 \fpath{convolution_accelerator.v}、\fpath{mac.v}、\fpath{parse_input_row.v}、\fpath{ROM.v}；
+  \item \reg{DESIGN\_FILES\_sv6} 中加入了 \fpath{rtl/CONV/apb_conv.sv}。
+\end{itemize}
+但当前 \fpath{synthesis_scripts/synt.tcl} 只 source \fpath{design_setup.tcl}，且即便改为 source \fpath{design_setup_grade5.tcl}，脚本也没有显式 \reg{read\_hdl -v2001 \$\{DESIGN\_FILES\_conv\}}。已有 \fpath{area_pulpino_padstop.rpt} 明确包含 \reg{apb\_conv\_i/conv\_init/inst\_mac[*]} 层级，说明报告生成时的综合运行包含了卷积核心；但是当前仓库脚本的完整可复现性存在缺口。严格复现时应补充读取 \reg{DESIGN\_FILES\_conv}，或把四个 Verilog 核心文件加入已被 \reg{synt.tcl} 读取的 file list。该修正意图在仓库中未确认。
+
+\subsection{时钟与 I/O 约束}
+\fpath{synthesis_scripts/create_clock.tcl} 使用 Genus 风格命令 \reg{define\_clock} 和 \reg{external\_delay}：
+\begin{itemize}
+  \item 主时钟 \reg{clk}：period \reg{5000 ps}，即 5 ns / 200 MHz；network/source late latency 为 250 ps；setup/hold uncertainty 设置为 250 ps；input/output delay 为 250 ps。
+  \item \reg{spi\_clk}：period \reg{50000 ps}，即 50 ns / 20 MHz；latency 和 I/O delay 为 2500 ps。
+  \item \reg{tck\_i}：period \reg{50000 ps}，即 50 ns / 20 MHz；latency 和 I/O delay 为 2500 ps。
+  \item 异步时钟组约束使用 \reg{set\_clock\_groups -asynchronous}，三个 group 分别为 \reg{clk}、\reg{spi\_clk} 和 \reg{tck\_i}。
+\end{itemize}
+脚本未设置 driving cell、load、multicycle path 或 false path；注释中保留了跨时钟 false path 示例，但当前未启用。
+
+\subsection{综合主流程}
+\fpath{synthesis_scripts/synt.tcl} 的主要步骤为：
+\begin{enumerate}
+  \item 设置 \reg{ROOT}、\reg{SYNT\_SCRIPT}、\reg{SYNT\_OUT}、\reg{SYNT\_REPORT} 并创建输出目录。
+  \item source design setup，读取 Verilog/SystemVerilog/VHDL file list。
+  \item 设置 \reg{hdl\_error\_on\_blackbox=true}，并保留 \reg{hdl\_error\_on\_latch} 注释。
+  \item \reg{elaborate \$DESIGN}，随后 \reg{check\_design} 和 \reg{report timing -lint}。
+  \item source \fpath{create_clock.tcl} 施加时序约束。
+  \item 顺序执行 \reg{syn\_generic}、\reg{syn\_map}、\reg{syn\_opt}。
+  \item 输出综合网表、SDC 和 SDF：\reg{\$\{SYNT\_OUT\}/pulpino\_padstop.v}、\reg{.sdc}、\reg{.sdf}。
+  \item 生成 QoR、area、datapath、messages、gates、timing、timing lint 报告。
+\end{enumerate}
+
+\subsection{关键报告观察}
+\fpath{synthesis_scripts/reports/qor_pulpino_padstop.rpt} 显示：
+\begin{itemize}
+  \item clocks：\reg{clk=5000 ps}、\reg{spi\_clk=50000 ps}、\reg{tck\_i=50000 ps}；
+  \item default group critical path slack 为 0.0 ps，TNS 为 0，violating paths 为 0；
+  \item total cell area 约 1717661.546；
+  \item max fanout 为 23681，位置为 \fpath{pulpino_top_i/peripherals_i/apb_conv_i/conv_init/inst_mac[3].inst_mac_i/i_clk}。
+\end{itemize}
+\fpath{synthesis_scripts/reports/area_pulpino_padstop.rpt} 显示 \reg{apb\_conv\_i} cell area 约 841294，\reg{conv\_init} 约 698654，24 个 MAC lane 各约 23.8k cell area。该结果支持“卷积加速器显著影响面积”的结论。
+
+\subsection{脚本路径--主要命令--作用--产物--下一阶段关系}
+\begingroup
+\scriptsize
+\begin{longtable}{L{0.20\textwidth}L{0.20\textwidth}L{0.19\textwidth}L{0.18\textwidth}L{0.13\textwidth}}
+\toprule
+脚本路径 & 主要命令 & 作用 & 产物 & 下一阶段关系 \\
+\midrule
+\endhead
+\fpath{synthesis_scripts/design_setup_grade5.tcl} & 设置 \reg{DESIGN}、search path、library、file list & 定义综合环境与 RTL/IPS 输入 & 变量和约束环境 & 被主综合脚本 source 后供 \reg{read\_hdl} 使用 \\
+\fpath{synthesis_scripts/create_clock.tcl} & \reg{define\_clock}、\reg{external\_delay}、\reg{set\_clock\_groups} & 定义主时钟、SPI 时钟、JTAG 时钟和 I/O delay & 综合约束 & 输出 SDC 供 PnR/STA 使用 \\
+\fpath{synthesis_scripts/synt.tcl} & 读取 HDL、\reg{elaborate}、\reg{syn\_generic/map/opt}、输出 netlist/SDC/SDF & 完成 RTL 到门级网表综合 & \fpath{Synthesis/outputs/pulpino_padstop.v/.sdc/.sdf} 和 reports & PnR 使用网表和 SDC；后综合仿真使用网表和 SDF \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\section{PnR（Place and Route）流程与脚本解读}
+
+\subsection{本章解决的问题}
+本章按仓库中实际 PnR 脚本顺序解释设计导入、floorplan、power planning、placement、CTS、routing、post-route optimization、检查、寄生抽取和输出产物。
+
+\subsection{关键文件}
+\begin{itemize}
+  \item \fpath{PR_scripts/Design_imports/Import_Design}：列出 LEF、timing library、RC corner、operation condition 和约束文件。
+  \item \fpath{PR_scripts/Design_imports/my_MMMC.view}：Innovus MMMC (Multi-Mode Multi-Corner，多模式多工艺角) view 定义。
+  \item \fpath{PR_scripts/Design_imports/LU_pads.io}：pad placement。
+  \item \fpath{PR_scripts/scripts_grade5/1_floorplan.tcl} 到 \fpath{10_export.tcl}：后端实现阶段脚本。
+\end{itemize}
+
+\subsection{Design import / netlist import}
+\fpath{PR_scripts/Design_imports/Import_Design} 不是完整的 \reg{init\_design} Tcl 脚本，而是列出导入配置：tech LEF、standard-cell LEF、clock-cell LEF、pad LEF、SPHDL100909 SRAM LEF、MMMC library/RC/op condition 和 SDC 路径 \fpath{../Synthesis/outputs/pulpino_padstop.sdc}。仓库中未看到明确的 \reg{init\_verilog}、\reg{init\_lef\_file} 或 \reg{init\_design} 命令脚本，因此自动化 design import 命令在仓库中未确认。
+
+可以确认的输入意图是：综合后 \fpath{../Synthesis/outputs/pulpino_padstop.v} 作为门级网表，\fpath{../Synthesis/outputs/pulpino_padstop.sdc} 作为约束，65 nm LEF/timing/RC files 作为物理和时序库。
+
+\subsection{MMMC 设置}
+\fpath{PR_scripts/Design_imports/my_MMMC.view} 定义两组 corner：
+\begin{itemize}
+  \item \reg{FF}：best-case timing library，\reg{1.30V}、\reg{-40C}，RCMIN qrcTechFile，用于 hold analysis。
+  \item \reg{SS}：worst-case timing library，\reg{1.10V}、\reg{125C}，RCMAX qrcTechFile，用于 setup analysis。
+\end{itemize}
+脚本创建 \reg{Clock\_Constraint} constraint mode，读取 \fpath{../Synthesis/outputs/pulpino_padstop.sdc}；创建 \reg{FF} 和 \reg{SS} analysis view，并通过 \reg{set\_analysis\_view -setup \{SS\} -hold \{FF\}} 指定 setup/hold 分析视角。
+
+\subsection{Floorplan 与宏放置}
+\fpath{PR_scripts/scripts_grade5/1_floorplan.tcl} 执行：
+\begin{itemize}
+  \item \reg{setMultiCpuUsage -localCpu 6}；
+  \item \reg{floorPlan -site CORE}\newline
+        \reg{-s 3400 3400 30 30 30 30}\newline
+        \reg{-fplanOrigin llcorner}，即 3400x3400 core/floorplan 尺寸，四边 margin 30；
+  \item 放置 data memory bank；
+  \item 用 \reg{dbGet top.insts.name *apb\_conv\_i/byte*} 找到 \reg{apb\_conv\_i/byte0..byte2} 三个卷积输出 SRAM 宏，并相对 core boundary/前一个宏放置；
+  \item 放置 instruction memory banks；
+  \item \reg{fit} 调整视图。
+\end{itemize}
+这说明 PnR 阶段把卷积输出 SRAM 宏作为显式 macro 处理，而不是普通 standard cell。
+
+\subsection{Halo、cut rows 和 power planning}
+\fpath{PR_scripts/scripts_grade5/2_halo_and_cut_rows.tcl} 对所有 block 添加 \reg{28 28 28 28} halo，并定义 instruction RAM、data RAM 和 \reg{apb\_conv\_i/byte0..byte2} 组成的 \reg{conv\_banks}。随后 \reg{selectInst \$all\_ram\_banks} 和 \reg{cutRow -selected}，为 SRAM macro 周围切 standard-cell row，避免标准单元与宏重叠。
+
+\fpath{PR_scripts/scripts_grade5/3_global_net_n_power_ring.tcl} 执行 VDD/GND global net connection，并创建 core power ring：
+\begin{itemize}
+  \item VDD 连接 \reg{vdd/VDDC/tiehi}；
+  \item GND 连接 \reg{gnd/GNDC/tielo}；
+  \item \reg{addRing} 在 core 周围用 M3/M4、width 2、spacing 2、offset 2 创建 VDD/GND ring。
+\end{itemize}
+\fpath{PR_scripts/scripts_grade5/4_power_stripes.tcl} 添加 M4 vertical stripe 和 M3 horizontal stripe，set-to-set distance 为 300，width 为 2。该脚本中 source 路径 \fpath{./scripts111/3_global_net_n_power_ring.tcl} 与当前仓库目录 \fpath{PR_scripts/scripts_grade5} 不一致，属于脚本路径可移植性风险；手动运行时需要修正 source 路径或预先执行第 3 步。
+
+\subsection{Placement 与 pre-CTS optimization}
+\fpath{PR_scripts/scripts_grade5/5_1_tap_n_std_cell.tcl} 设置 placement 目标：
+\begin{itemize}
+  \item \reg{place\_global\_uniform\_density=true}；
+  \item \reg{place\_global\_max\_density=0.6}；
+  \item congestion effort 和 timing effort 均设为 high；
+  \item 建立 partial placement blockage，density 30，box 为 \reg{\{118 2399 3500 3500\}}；
+  \item 每 100 距离插入 well tap cell \reg{HS65\_LH\_FILLERNPWPFP4}；
+  \item \reg{placeDesign} 完成标准单元放置。
+\end{itemize}
+\fpath{PR_scripts/scripts_grade5/5_2_OPT.tcl} 创建 \reg{In2Reg}、\reg{Reg2Out}、\reg{Reg2Reg} path group，设置 setup target slack 0.02，并执行 \reg{optDesign -preCTS -setup}。这一步把 floorplan/placement 后的网表和约束作为输入，输出 pre-CTS 优化后的放置设计。
+
+\fpath{PR_scripts/scripts_grade5/5_3_pre_CTS_timing_analysis.tcl} 使用 on-chip variation 和 CPPR (Common Path Pessimism Removal，公共路径悲观去除)，分别执行 pre-CTS setup 和 hold \reg{timeDesign}，输出 \fpath{timingReports}。
+
+\subsection{CTS 与 post-CTS optimization}
+\fpath{PR_scripts/scripts_grade5/6_1_design_clk.tcl} 设置 CTS (Clock Tree Synthesis，时钟树综合) 可用 inverter/buffer cell 和 hold fixing cells，配置 path group effort，生成并 source \fpath{ccopt.spec}，随后执行 \reg{ccopt\_design}。脚本没有手写具体 skew/latency target，而是依赖 SDC/MMMC 与 \reg{ccopt} spec。
+
+CTS 后优化分为：
+\begin{itemize}
+  \item \fpath{6_2_Post_CTS_setup_OPT.tcl}：\reg{optDesign -postCTS -setup}；
+  \item \fpath{6_3_Post_CTS_hold_OPT.tcl}：删除 partial blockage，设置 hold target slack 0.05，执行 \reg{optDesign -postCTS -hold}；
+  \item \fpath{6_4_Post_CTS_setup_OPT_incr.tcl}：增量 setup 优化；
+  \item \fpath{6_5_Post_CTS_hold_OPT_incr.tcl}：增量 hold 优化。
+\end{itemize}
+
+\subsection{Routing、post-route optimization 和检查}
+\fpath{PR_scripts/scripts_grade5/8_1_route.tcl} 先用 \reg{sroute} 连接 VDD/GND 的 block pin、pad pin、core pin 和 floating stripe，然后设置 NanoRoute 模式并执行 \reg{routeDesign -globalDetail}。当前脚本中 timing-driven routing 和 SI-driven routing 均设置为 false。路由后执行：
+\begin{itemize}
+  \item \reg{verify\_drc -limit 1000 -report ./reports/veryfy\_drc.pg.rpt}；
+  \item \reg{verifyPowerVia -report ./reports/veryfy\_PowerVia.pg.rpt}；
+  \item \reg{verifyConnectivity -report ./reports/veryfy\_Connectivity.pg.rpt}；
+  \item \reg{checkPlace}。
+\end{itemize}
+Post-route 优化由 \fpath{8_2_Post_route_setup_OPT.tcl}、\fpath{8_3_Post_route_hold_OPT.tcl}、\fpath{8_4_Post_route_setup_OPT_incr.tcl}、\fpath{8_5_Post_route_hold_OPT_incr.tcl} 完成，分别针对 setup/DRV、hold、增量 setup 和增量 hold。
+
+\subsection{Filler、寄生抽取和输出}
+\fpath{PR_scripts/scripts_grade5/7_filler_cell.tcl} 和 \fpath{7_io_filler.tcl} 调整 pad spacing 并加入 IO filler。最终 standard-cell filler 由 \fpath{9_filler_cell_last.tcl} 通过 \reg{addFiller} 插入。
+
+\fpath{PR_scripts/scripts_grade5/10_export.tcl} 输出：
+\begin{itemize}
+  \item \reg{saveNetlist outputs/pulpino\_padstop.v}；
+  \item \reg{write\_sdf -version 3.0 outputs/pulpino\_padstop.sdf}，min view 为 FF，max view 为 SS；
+  \item \reg{rcOut -spf/-spef} 分别输出 \fpath{outputs/pulpino_padstop_ss.spf}、\fpath{outputs/pulpino_padstop_ss.spef}、\fpath{outputs/pulpino_padstop_ff.spf}、\fpath{outputs/pulpino_padstop_ff.spef}。
+\end{itemize}
+仓库中未看到 \reg{streamOut}、\reg{saveDef} 或 GDS/DEF 输出命令，因此 final DEF/GDS 产物在仓库中未确认。
+
+\subsection{与卷积加速器相关的物理实现关注点}
+卷积加速器对 PnR 的影响主要来自：
+\begin{itemize}
+  \item 三个 \reg{apb\_conv\_i/byte*} SRAM 宏需要 macro placement、halo、cut row 和电源连接；
+  \item 24 个 MAC lane 带来大量乘法器和 CSA/adder 逻辑，面积密度和局部拥塞风险较高；
+  \item \reg{ifm\_r} 大型寄存器阵列、\reg{ofm\_buffer} 和 SRAM 地址/数据路径会形成较多时序端点；
+  \item \fpath{primetime/reports_grade5_perip/timing_violation.rpt} 中出现 \reg{apb\_conv\_i/byte*}、\reg{ifm\_reg}、\reg{ofm\_buffer\_reg} 等 violation 端点，说明卷积 wrapper/存储路径是签核阶段需要重点查看的区域之一。
+\end{itemize}
+
+\section{PrimeTime STA 与签核检查}
+
+\subsection{本章解决的问题}
+本章说明 PrimeTime STA 脚本输入、约束来源、报告含义以及当前报告中可确认的时序状态，不虚构 WNS/TNS 或不存在的签核结论。
+
+\subsection{关键文件}
+\begin{itemize}
+  \item \fpath{primetime/scripts_phase2/primetime.tcl}：当前 PrimeTime 脚本。
+  \item \fpath{primetime_phase1.tcl}：旧样例脚本，top 为 \reg{PADSTOP}，memory library 为 \reg{SPHD110420}，与当前 \reg{pulpino\_padstop}/SPHDL100909 流程不匹配。
+  \item \fpath{primetime/reports_grade5_perip/timing_setup.rpt}、\fpath{timing_hold.rpt}、\fpath{timing_violation.rpt}、\fpath{timing_skew.rpt}、\fpath{power.rpt}：与当前卷积集成层级匹配的报告组，报告中包含 \reg{apb\_conv\_i}。
+\end{itemize}
+
+\subsection{PrimeTime 输入与脚本流程}
+\fpath{primetime/scripts_phase2/primetime.tcl} 设置：
+\begin{itemize}
+  \item top design：\reg{pulpino\_padstop}；
+  \item power analysis：\reg{power\_enable\_analysis=true}，\reg{power\_analysis\_mode=time\_based}；
+  \item library search path：CORE65LPLVT、CLOCK65LPLVT、SPHDL100909、Pads；
+  \item link path：\fpath{CORE65LPLVT_bc_1.30V_m40C.db}、\fpath{CLOCK65LPLVT_bc_1.30V_m40C.db}、\fpath{SPHDL100909_bc_1.30V_m40C.db}、\fpath{Pads_Oct2012.db}；
+  \item netlist：\fpath{../PR/outputs/pulpino_padstop.v}；
+  \item SDC：\fpath{../Synthesis/outputs/pulpino_padstop.sdc}；
+  \item parasitics：\fpath{../PR/outputs/pulpino_padstop_ff.spef}；
+  \item SDF：\fpath{../PR/outputs/pulpino_padstop.sdf}，以 \reg{sdf\_max} 读入；
+  \item switching activity：\fpath{/export/space/nobackup/fa7855yu-s/VCD_MM.vcd}，strip path 为 \reg{testbench/pulpino\_padstop\_inst}。
+\end{itemize}
+该脚本输出 \reg{report\_power}、min/hold timing、max/setup timing、\reg{report\_constraints} 的 all-violators 报告，以及 clock skew 报告。
+
+需要注意：PnR MMMC 中 setup 使用 SS、hold 使用 FF；当前 PrimeTime 脚本 link path 和 parasitic file 主要使用 FF/bc corner。仓库中未见与 \fpath{reports_grade5_perip} 完全对应的多 corner PrimeTime 脚本，因此报告与脚本的一一复现关系需要进一步确认。
+
+\subsection{约束含义}
+PrimeTime 读取的 SDC 来自综合输出，其源头是 \fpath{synthesis_scripts/create_clock.tcl}：
+\begin{itemize}
+  \item \reg{clk}：5 ns，用于 SoC 主时钟域，包括卷积 wrapper 所在 \reg{clk\_int[4]} 的源时钟；
+  \item \reg{spi\_clk}：50 ns，用于 SPI slave 装载路径；
+  \item \reg{tck\_i}：50 ns，用于 JTAG/debug；
+  \item 三个时钟组声明为 asynchronous；
+  \item I/O delay 使用 external delay 约束，主时钟 250 ps，SPI/TCK 2500 ps。
+\end{itemize}
+仓库中未确认 false path 或 multicycle path 已被实际启用。
+
+\subsection{Setup 与 hold 分析检查内容}
+Setup analysis 检查数据从 startpoint 发出后，能否在目标 endpoint 的下一捕获边沿前满足 setup time；对应 \reg{report\_timing -delay\_type max}。Hold analysis 检查数据在同一捕获边沿后是否保持足够长时间，避免太快到达导致旧数据被覆盖；对应 \reg{report\_timing -delay\_type min}。
+
+阅读报告时应重点查看：
+\begin{itemize}
+  \item \reg{Startpoint}：发起寄存器、memory macro 或 input port；
+  \item \reg{Endpoint}：捕获寄存器、memory macro pin 或 output port；
+  \item \reg{Path Group} 和 \reg{Path Type}：属于 \reg{clk/spi\_clk/tck\_i} 哪个组，是 max/setup 还是 min/hold；
+  \item \reg{data arrival time}：数据实际到达时间；
+  \item \reg{data required time}：约束要求的最晚/最早时间；
+  \item \reg{slack}：required 与 arrival 的差值，负值为 violation；
+  \item clock path、uncertainty、CPPR：用于判断是否是时钟约束、clock gating 或跨域处理造成的问题。
+\end{itemize}
+
+\subsection{当前可确认报告状态}
+\fpath{primetime/reports_grade5_perip/timing_setup.rpt} 显示 PrimeTime 版本为 O-2018.06-SP5，报告日期为 2025-05-26，design 为 \reg{pulpino\_padstop}。前 10 条 setup 路径中最差 slack 为 \reg{-4.81 ns}，出现在 debug/JTAG 相关 \reg{tck\_i} 路径；后续多条 \reg{clk} 组路径也有负 slack。前 10 条不以 \reg{apb\_conv\_i} 为主，但 \fpath{timing_violation.rpt} 中可见卷积相关 violation 端点，例如 \fpath{apb_conv_i/byte2/D[0]} slack \reg{-0.73 ns}、\fpath{apb_conv_i/ifm_reg[6]/D} slack \reg{-0.59 ns}、\fpath{apb_conv_i/byte0/A[8]} slack \reg{-0.42 ns} 等。
+
+\fpath{primetime/reports_grade5_perip/timing_hold.rpt} 中前 10 条 hold 路径最差 slack 为 \reg{-0.82 ns}，出现在 SPI output path；另有 clock gating latch 和 data SRAM 到 AXI memory interface 的 hold violation。卷积相关 hold violation 是否进入最差前 10 条在该报告开头未显示，需结合 \fpath{timing_violation.rpt} 逐项筛查。
+
+\fpath{primetime/reports_grade5_perip/power.rpt} 包含 \fpath{pulpino_top_i/peripherals_i/apb_conv_i}、\reg{conv\_init} 和各 \reg{inst\_mac[*]} 层级，说明该报告对应包含卷积加速器的 netlist。相比之下，\fpath{primetime/reports_phase2/power.rpt} 中仍出现 \reg{apb\_timer\_i}，与当前 \fpath{rtl/peripherals.sv} 中 \reg{apb\_conv\_i} 不一致，因此本文不用 phase2 报告证明卷积版本 STA。
+
+\subsection{综合前、综合后、PnR 后 STA 差异}
+\begin{itemize}
+  \item RTL/综合前阶段主要依靠理想线延迟或 wireload 估算，不包含真实布局布线寄生。
+  \item Genus 综合后 timing report 使用综合库和 wireload/enclosed 模式，\fpath{qor_pulpino_padstop.rpt} 中显示 violating paths 为 0，但该结论不等价于布局后签核。
+  \item PnR 后 PrimeTime STA 读取门级网表、SDF、SPEF 和 VCD，包含物理布线 RC、cell delay 和活动信息。当前 \fpath{reports_grade5_perip} 显示仍存在 setup/hold violation，因此不能声称最终时序已完全收敛。
+\end{itemize}
+
+\section{项目关键设计选择、工程挑战与可用于面试的要点}
+
+\subsection{本章解决的问题}
+本章把仓库中可确认的实现抽象成工程难点、解决方案、验证方式和面试表达要点，不夸大性能、面积、频率或上板结果。
+
+\subsection{关键工程难点}
+
+\paragraph{问题一：APB 两阶段时序与 wrapper 状态机对齐}
+问题：APB 写/读必须在 ACCESS phase 才能被采样，否则 SETUP phase 的地址和数据可能被误用。实现方案：\fpath{rtl/CONV/apb_conv.sv} 中所有 start、IFM write、OFM read request 均要求 \reg{PSEL \&\& PENABLE}，并用 \reg{PWRITE} 区分读写。为什么这样设计：符合 APB 两阶段协议，并避免 SETUP 阶段重复写入。如何验证：查看 \fpath{tb/testbench.sv} 中 SPI 程序执行路径、\fpath{Convolution Accelerator/apb_conv_printf.c} 中 MMIO 操作，以及波形中 \reg{PSEL/PENABLE/PWRITE/PADDR/PWDATA} 与 \reg{ifm\_ptr/state} 的关系。
+
+\paragraph{问题二：软件--硬件地址映射一致性}
+问题：C 程序中的 base/offset 必须与 \fpath{apb_bus.sv} 和 \fpath{apb_conv.sv} 的 decode 一致。实现方案：硬件把 \reg{0x1A10\_3000--0x1A10\_3FFF} 译码到 \reg{s\_conv\_bus}，wrapper 使用低 12 bit offset；\fpath{apb_conv_printf.c} 使用 base \reg{0x1A103000}、IFM offset \reg{0x100}、OFM offset \reg{0x008}。为什么这样设计：保持 SoC 级地址译码和 slave 内部寄存器映射解耦。如何验证：用 \fpath{post_PR/slm_files/stimuli/spi_stim_apb_conv_printf.txt} 中 \reg{1A103} 常量、\fpath{rtl/includes/apb_bus.sv} 地址宏和 \fpath{rtl/peripherals.sv} 连接关系交叉确认。
+
+\paragraph{问题三：IFM 加载顺序与计算启动同步}
+问题：wrapper 只在 \reg{LOAD} 状态接受 IFM 写，并且使用内部 \reg{ifm\_ptr} 顺序计数，而不是根据地址随机写入。实现方案：软件先写 start，再连续写 784 个 byte；wrapper 写满后自动进入 \reg{CONV}。为什么这样设计：简化硬件地址生成，降低 wrapper 复杂度。如何验证：检查 \fpath{apb_conv_printf.c} 的 \reg{start\_conv(); load\_ifm(); wait\_for\_done();} 顺序，并注意 \fpath{apb_conv.c} 只写中心 20x20，不能触发完整 \reg{load\_done}，因此不是完整验证用例。
+
+\paragraph{问题四：输出保存与 APB 读延迟处理}
+问题：核心一次输出一行 24 个 21-bit 结果，而软件按 32-bit word 读 576 个 OFM。实现方案：wrapper 用 \reg{ofm\_buffer} 暂存 504-bit 行结果，再用 \reg{save\_cnt} 和 \reg{ofm\_ptr\_r} 把每个 21-bit 结果拆成三字节写入 SRAM；读回时用 \reg{PREADY\_rst} 插入 wait state 对齐 SRAM 读延迟。为什么这样设计：将核心宽输出转换成软件易读的 32-bit MMIO 窗口。如何验证：波形中观察 \reg{ofm\_valid}、\reg{ofm\_buffer}、\reg{save\_cnt}、\reg{sram\_addr}、\reg{PREADY} 和 \reg{PRDATA}。
+
+\paragraph{问题五：MAC 阵列面积、时序和物理实现压力}
+问题：24 个并行 MAC lane，每个含 25 个 8x8 乘法和累加，面积和时序压力集中。实现方案：RTL 用 generate 并行展开 24 个 lane；综合器将乘法/累加映射到标准单元和 CSA 结构；PnR 单独放置 wrapper 的三个输出 SRAM 宏。为什么这样设计：以面积换取行内 24 个输出并行，降低控制复杂度。如何验证：综合 area/datapath report 中 \reg{apb\_conv\_i/conv\_init/inst\_mac[*]} 占比，PnR floorplan 中 \reg{apb\_conv\_i/byte*} 宏放置，PrimeTime violation report 中卷积相关端点。
+
+\paragraph{问题六：实现脚本与报告的一致性}
+问题：当前仓库中综合/PnR/PrimeTime 脚本存在路径和版本不一致，例如 \fpath{synt.tcl} source \fpath{design_setup.tcl} 而非 \fpath{design_setup_grade5.tcl}，\fpath{4_power_stripes.tcl} source \fpath{scripts111}，PrimeTime phase2 报告层级与当前 RTL 不一致。实现方案：文档中以包含 \reg{apb\_conv\_i} 的 \fpath{design_setup_grade5.tcl}、\fpath{synthesis reports}、\fpath{PR_scripts/scripts_grade5} 和 \fpath{reports_grade5_perip} 为主要证据，同时明确脚本可复现性风险。为什么这样设计：避免把旧报告或不匹配脚本当作最终结果。如何验证：用报告层级搜索 \reg{apb\_conv\_i/conv\_init}，并检查脚本 file list 和输出路径。
+
+\subsection{可用于项目答辩或 RTL/ASIC 面试的要点}
+\begin{enumerate}
+  \item 本项目不是重新设计整个 PULPino，而是在既有 PULPino SoC 外设地址空间中集成一个 APB slave 卷积加速器。
+  \item SoC 访问路径是 CPU 发起 AXI MMIO，经过 \reg{axi2apb\_wrap} 转成 APB。随后 \fpath{periph_bus_wrap/apb_node_wrap} 按 \reg{0x1A10\_3000--0x1A10\_3FFF} 译码到 \reg{apb\_conv}。
+  \item wrapper 是核心集成关键：它把 APB 控制/数据事务转换为 IFM buffer 加载、核心启动、OFM SRAM 写入和 APB 读回。
+  \item 当前 kernel 是 RTL ROM 固定全 255，不是软件可配置；\fpath{peripheral.c} 中的 filter 写接口没有当前硬件支持。
+  \item IFM 写窗口是 \reg{0x100--0x40F}，wrapper 使用顺序 \reg{ifm\_ptr} 接收 784 个 byte，不支持任意顺序随机写。
+  \item 卷积核心支持 28x28 IFM、5x5 kernel、stride 1、no padding，输出 24x24；每个输出是 21-bit，当前规格下足以覆盖最大结果。
+  \item 数据通路采用 24 个并行 MAC lane，每个 lane 计算一个水平输出位置；核心每次有效输出一行 24 个 OFM。
+  \item 输出结果先进入 \reg{ofm\_buffer}，再拆成三字节写入三个 SRAM 宏，软件按 32-bit word 读取并获得 \reg{PRDATA[20:0]}。
+  \item APB read path 为 SRAM 读延迟插入 wait state，\reg{PREADY} 不是所有读都零等待；\reg{PSLVERR} 固定 0。
+  \item 综合报告显示 \reg{apb\_conv\_i} 和 \reg{conv\_init} 是面积大户，MAC 阵列是主要面积来源。
+  \item PnR 脚本对 \reg{apb\_conv\_i/byte0..byte2} SRAM 宏做了显式 floorplan、halo 和 cut row 处理。
+  \item PrimeTime \fpath{reports_grade5_perip} 中存在包含卷积端点的 timing violation，因此不能声称最终时序完全签核通过，只能说明完成了 STA 流程并定位了需要关注的路径。
+\end{enumerate}
+
+\subsection{150--250 字项目描述}
+本项目基于 PULPino SoC 集成了一个 28x28 输入、5x5 固定 kernel、stride 1、无 padding 的二维卷积加速器。本人完成卷积核心 RTL、APB slave wrapper、SoC 外设地址映射接入和裸机 C 测试程序准备。软件通过 \reg{0x1A10\_3000} 地址段写控制寄存器、连续加载 784 个 IFM byte、轮询完成状态，并从 APB 输出窗口读回 24x24 个 21-bit 卷积结果。硬件侧 wrapper 负责 APB 两阶段事务解析、IFM buffer 管理、核心启动、OFM 行缓存和三字节 SRAM 写回。项目还包含核心级 RTL testbench、SoC SPI 程序加载仿真、Genus 综合、Innovus PnR 脚本和 PrimeTime STA 报告；仓库中可确认完成了实现与分析流程，但未确认完整 FPGA 上板实测或最终无违例时序签核。
+
+\end{document}
